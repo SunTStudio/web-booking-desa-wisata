@@ -1,0 +1,56 @@
+*{
+    font-family: 'montserrat', sans-serif;
+
+}
+#logo{
+    width: 15%;
+}
+
+#main-menu a{
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+#form-custom{
+    font-size: 0.9rem;
+    color: #969AB8;
+}
+
+#smartphone-menu a p{
+    font-size: 0.8rem;
+    margin: 0.5rem;
+}
+#smartphone-menu a p i{
+    font-size: 1.2rem;
+}
+
+#smartphone-menu a{
+    text-decoration: none;
+}
+
+#mobile-content {
+    display: none;
+}
+
+#main-menu{
+    display: block;
+}
+
+#drop-menu{
+        min-width: 0.5rem;
+}
+
+@media (max-width: 768px) {
+   #mobile-content {
+     display: block;
+  }
+
+  #main-menu{
+    display: none;
+}
+
+#logo{
+    width: 30%;
+}
+}
+
