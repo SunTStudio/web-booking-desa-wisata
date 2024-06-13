@@ -14,3 +14,7 @@ Route::get('/kalender', function () {
 Route::get('/booking', function () {
     return view('admin/booking');
 });
+
+Route::get('/testing', function () {
+    return view('calendar');
+});
