@@ -1,0 +1,20 @@
+.waktu-appointment{
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.appointment-info{
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.appointment-info span{
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.appointment-info p{
+   margin: 0.5rem 0;
+   letter-spacing: 1px;
+}
