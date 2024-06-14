@@ -1,3 +1,4 @@
+
 @extends('admin.layout')
 
 @section('title', 'Kalender | Admin')
@@ -35,59 +36,49 @@
         </div>
     </div>
 
-<div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form >
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Nama Pembooking</label>
-                <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" aria-describedby="emailHelp">
+    <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="GET" action="">
+                        <div class="mb-3">
+                            <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                            <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="{{ htmlspecialchars($tanggalBooking) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                            <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" value="{{ htmlspecialchars($namaBooking) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                            <input type="text" placeholder="Masukan No. Telp" class="form-control" name="no-telp-pic" id="no-telp-pic" value="{{ htmlspecialchars($noTelpPic) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                            <input type="time" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" value="{{ htmlspecialchars($jamBookingMulai) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                            <input type="time" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" value="{{ htmlspecialchars($jamBookingSelesai) }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="jumlah-visitor" id="jumlah-visitor" value="{{ htmlspecialchars($jumlahVisitor) }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Tanggal Booking</label>
-                <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Jam Booking Mulai</label>
-                <input type="text" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Jam Booking Selesai</label>
-                <input type="text" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" aria-describedby="emailHelp">
-            </div>
-           
-            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="tambahBooking()">Submit</button>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 @endsection
 
 @section('menuHp')
-    <div class="col text-center rounded-top bg-secondary">
-        <a href="{{ route('admin.kalender') }}" class="text-white">
-            <p><i class="fa-regular fa-calendar-days m-0 p-0 pt-2"></i></p>
-            <p>Kalender</p>
-        </a>
-    </div>
-    <div class="col text-center">
-        <a href="{{ route('admin.dashboard') }}" class="text-secondary">
-            <p><i class="fa-solid fa-globe m-0 p-0 pt-2"></i></p>
-            <p>Dashboard</p>
-        </a>
-    </div>
-    <div class="col text-center">
-        <a href="{{ route('admin.booking') }}" class="text-secondary">
-            <p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
-            <p>Booking</p>
-        </a>
-    </div>
+    <!-- MenuHp content -->
 @endsection
 
 @section('scripts')
@@ -104,6 +95,7 @@
                     initialView: 'timeGridWeek',
                     selectable: true,
                     locale: 'id',
+                    allDaySlot: false,
                     headerToolbar: {
                         left: 'prev,next today',
                         center: 'title',
@@ -144,7 +136,9 @@
             }
         });
 
-        function tambahBooking() {
+        function tambahBooking(event) {
+            event.preventDefault(); // Mencegah form dikirim secara default
+
             var name = document.getElementById('nama-pembooking').value;
             var tanggal = document.getElementById('tanggal-booking').value;
             var jamMulai = document.getElementById('jam-booking-mulai').value;
@@ -158,6 +152,9 @@
                     allDay: false
                 };
                 calendar.addEvent(event);
+                // Optionally close the modal
+                var modal = bootstrap.Modal.getInstance(document.getElementById('tambahModal'));
+                modal.hide();
             } else {
                 alert("Please fill in all fields");
             }

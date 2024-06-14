@@ -10,7 +10,10 @@
     color: black;
 }
 
-
+#modal-form{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 @media (max-width: 768px) {
 .fc .fc-toolbar-title{
