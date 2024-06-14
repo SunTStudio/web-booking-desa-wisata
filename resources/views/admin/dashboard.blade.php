@@ -17,45 +17,47 @@
 
 @section('content')
     <div class="row justify-content-center mt-3">
-        <div class="col-5">
+        <div class="col-lg-5 col-12">
             <div class="row justify-content-between m-3 bg-white rounded shadow p-2 " id="menuCount">
                 <div class="col-4 mt-2 mb-2">
                     <div class="box-info p-3 text-center text-white bg-info rounded shadow">
-                    <p class="m-1"><i class="fa-solid fa-calendar-day fs-1"></i></p>
-                    <p class="m-0 fs-3 fw-bold">1</p>
-                    <p class="m-0 fw-bold"><small>Kunjungan<br>Hari ini</small></p>
+                    <p class="m-1 icon-menu"><i class="fa-solid fa-calendar-day"></i></p>
+                    <p class="m-0 total-menu fw-bold">1</p>
+                    <p class="m-0 fw-bold keterangan-menu">Kunjungan<br>Hari ini</p>
                     </div>
                 </div>
                 <div class="col-4 mt-2 mb-2">
                     <div class="box-info p-3 text-white text-center bg-danger rounded shadow">
-                    <p class="m-1"><i class="fa-solid fa-calendar-days fs-1"></i></p>
-                    <p class="m-0 fs-3 fw-bold">50</p>
-                    <p class="m-0 fw-bold"><small>Kunjungan<br>Bulan ini</small></p>
+                    <p class="m-1 icon-menu"><i class="fa-solid fa-calendar-days"></i></p>
+                    <p class="m-0 total-menu fw-bold">50</p>
+                    <p class="m-0 fw-bold keterangan-menu">Kunjungan<br>Bulan ini</p>
                     </div>
                 </div>
                 <div class="col-4 mt-2 mb-2">
                     <div class="box-info p-3 text-white text-center bg-secondary rounded shadow">
-                    <p class="m-1"><i class="fa-solid fa-people-line fs-1"></i></p>
-                    <p class="m-0 fs-3 fw-bold">321</p>
-                    <p class="m-0 fw-bold"><small>Total<br>Kunjungan</small></p>
+                    <p class="m-1 icon-menu"><i class="fa-solid fa-people-line"></i></p>
+                    <p class="m-0 total-menu fw-bold">321</p>
+                    <p class="m-0 fw-bold keterangan-menu">Total<br>Kunjungan</p>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center m-3 bg-white rounded shadow p-3">
                 <div class="col text-center">
-                    <a href="" class="btn btn-primary fw-bold p-3 me-4"><span><i class="fa-regular fa-square-plus fs-1 p-2"></i></span><br>Buat Booking</a>
+                    <a href="" class="btn btn-primary fw-bold p-3"><span><i class="fa-regular fa-square-plus fs-1 p-2"></i></span><br>Buat Booking</a>
+                </div>
+                <div class="col text-center">
                     <a href="" class="btn btn-success fw-bold p-3 "><span><i class="fa-solid fa-print fs-1 p-2"></i></span><br>Cetak Laporan</a>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="row justify-content-center m-3 bg-white rounded shadow p-4 pt-2">
+        <div class="col-lg-6 col-12" id="appointment">
+            <div class="row justify-content-center m-3 bg-white rounded shadow p-4 pt-2" >
                 <p class=" m-0 fw-bold text-center text-secondary p-2">Kunjungan Terdekat</p>
-                <div class="col-5 bg-primary me-5 shadow p-3 rounded">
-                    <div class="waktu-appointment text-white d-flex
+                <div class="col-5 bg-primary me-4 shadow p-3 rounded">
+                    <div class="waktu-appointment text-white 
                      justify-content-between fw-medium">
-                        <p class="m-0">Tanggal : <br> 2024/06/12 </p>
-                        <p class="m-0">waktu : <br> 08:00 - 10:00</p>
+                        <p class="m-0 pb-1">Tanggal : <br> 2024/06/12 </p>
+                        <p class="m-0 pb-1">waktu : <br> 08:00 - 10:00</p>
                     </div>
                     <div class="appointment-info text-white">
                         <p class="mt-2"><span>Nama PIC : </span><br> Iqbal</p>
@@ -65,10 +67,10 @@
                     </div>
                 </div>
                 <div class="col-5 bg-primary p-3 shadow rounded">
-                    <div class="waktu-appointment text-white  d-flex
+                    <div class="waktu-appointment text-white  
                      justify-content-between fw-medium">
-                        <p class="m-0">Tanggal : <br> 2024/06/12 </p>
-                        <p class="m-0">waktu : <br> 08:00 - 10:00</p>
+                        <p class="m-0 pb-1">Tanggal : <br> 2024/06/12 </p>
+                        <p class="m-0 pb-1">waktu : <br> 08:00 - 10:00</p>
                     </div>
                     <div class="appointment-info text-white " >
                         <p class="mt-2"><span>Nama PIC : </span><br> Iqbal</p>

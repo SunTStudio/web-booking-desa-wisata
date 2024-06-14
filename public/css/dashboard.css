@@ -1,8 +1,20 @@
 .waktu-appointment{
     font-size: 0.6rem;
+        display: flex;
     letter-spacing: 1px;
 }
 
+.icon-menu{
+    font-size: 2rem;
+}
+
+.total-menu{
+    font-size: 1.5rem;
+}
+
+.keterangan-menu{
+    font-size: 0.9rem;
+}
 .appointment-info{
     font-size: 0.95rem;
     letter-spacing: 1px;
@@ -28,4 +40,40 @@
 
 #menuCount small{
     font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    #tabel-booking{
+        display: none;
+    }
+
+
+    .icon-menu{
+    font-size: 1rem;
+    }
+
+    .total-menu{
+        font-size: 1rem;
+    }
+
+    .keterangan-menu{
+        font-size: 0.6rem;
+    }
+
+    .waktu-appointment{
+        display: block;
+    }
+
+    .appointment-info{
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    }
+
+    .appointment-info span{
+        font-size: 0.5rem;
+        letter-spacing: 1px;
+    }
+    #appointment{
+        margin-bottom: 5rem;
+    }
 }

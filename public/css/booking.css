@@ -14,3 +14,11 @@
 #tabel-booking table{
     font-size: 0.8rem;
 }
+
+@media (max-width: 768px) {
+
+#tabel-col{
+    margin-bottom: 5rem;
+}
+
+}

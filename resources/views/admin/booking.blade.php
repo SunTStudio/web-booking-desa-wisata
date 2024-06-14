@@ -16,7 +16,7 @@
 
 @section('content')
 <div class="row p-4 mt-3" id="search">
-    <div class="col-4">
+    <div class="col-lg-4 col-12">
         <div class="search-pic">
             <form action="#">
                 <div class="form-floating mb-3 d-flex">
@@ -27,7 +27,7 @@
             </form>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-12">
         <div class="search-tanggal">
             <form action="#">
                 <div class="form-floating mb-3 d-flex">
@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="row justify-content-center rounded bg-white m-3 mt-0" id="tabel-booking">
+<div class="row justify-content-center rounded bg-white m-3 mt-0 mb-5" id="tabel-booking">
     <div class="col p-3">
         <table class="table text-center ">
             <thead>
