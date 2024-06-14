@@ -4,17 +4,28 @@
 }
 
 .appointment-info{
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 1px;
 }
 
 .appointment-info span{
-    font-weight: 600;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
+    font-size: 0.6rem;
+    letter-spacing: 1.3px;
 }
 
 .appointment-info p{
-   margin: 0.5rem 0;
+   margin: 0.6rem 0;
    letter-spacing: 1px;
+}
+
+#menuCount{
+   letter-spacing: 0.5px;
+}
+
+#tabel-booking{
+    font-size: 0.8rem;
+}
+
+#menuCount small{
+    font-size: 0.8rem;
 }
