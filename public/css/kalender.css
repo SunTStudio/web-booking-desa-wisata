@@ -1,0 +1,56 @@
+.fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: black;
+    text-decoration: none;
+}
+
+.fc-daygrid-day-number{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+@media (max-width: 768px) {
+.fc .fc-toolbar-title{
+    font-size: 1.5rem;
+    display: none;
+}
+.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-top: 0.5rem;
+}
+
+.fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: black;
+    text-decoration: none;
+    font-size: 0.7rem;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.fc .fc-timegrid-axis-cushion, .fc .fc-timegrid-slot-label-cushion {
+    padding: 0px 7px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.fc-v-event .fc-event-title {
+    bottom: 0px;
+    max-height: 100%;
+    overflow: hidden;
+    font-size: 0.6rem;
+    top: 0px;
+}
+
+.fc-timegrid-event .fc-event-time {
+    margin-bottom: 1px;
+    font-size: 0.6rem;
+    white-space: nowrap;
+}
+}
