@@ -21,4 +21,9 @@ Route::get('/booking', function () {
 Route::get('/testing', function () {
     return view('calendar');
 })->name('admin.test');
+
+Route::get('/form', function () {
+    return view('form');
+})->name('admin.form');
+
 Route::get('/landingpage', [LandingPageController::class, 'index'])->name('wisata.landingpage');
