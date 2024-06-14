@@ -43,7 +43,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="#">
+        <form >
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Pembooking</label>
                 <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" aria-describedby="emailHelp">
@@ -60,10 +60,7 @@
                 <label for="exampleInputEmail1" class="form-label">Jam Booking Selesai</label>
                 <input type="text" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
+           
             <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="tambahBooking()">Submit</button>
         </form>
       </div>
