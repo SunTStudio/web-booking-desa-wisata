@@ -5,3 +5,12 @@
 .table{
     font-size: 0.9rem;
 }
+
+#tabel-booking small{
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+
+#tabel-booking table{
+    font-size: 0.8rem;
+}

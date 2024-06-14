@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="row justify-content-center rounded bg-white m-3 mt-0">
+<div class="row justify-content-center rounded bg-white m-3 mt-0" id="tabel-booking">
     <div class="col p-3">
         <table class="table text-center ">
             <thead>
@@ -53,6 +53,7 @@
                 <th scope="col">Jam Mulai</th>
                 <th scope="col">Jam Selesai</th>
                 <th scope="col">Jumlah Visitor</th>
+                <th scope="col">Status</th>
                 <th scope="col">Opsi</th>
                 </tr>
             </thead>
@@ -66,7 +67,8 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td class="pt-3"><small class="btn btn-dark">Belum ACC</small></td>
+                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
                 </tr>
                 <tr>
                 <th scope="row"  class="pt-3">2</th>
@@ -77,7 +79,8 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td class="pt-3"><small class="btn btn-success">Sudah ACC</small></td>
+                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
                 </tr>
                 <tr>
                 <th scope="row"  class="pt-3">3</th>
@@ -88,7 +91,8 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td class="pt-3"><small class="btn btn-dark">Belum ACC</small></td>
+                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
                 </tr>
                 <tr>
                 <th scope="row"  class="pt-3">4</th>
@@ -99,6 +103,7 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
+                <td class="pt-3"><small class="btn btn-success">Sudah ACC</small></td>
                 <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
                 </tr>
                 <tr>
@@ -110,7 +115,8 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td class="pt-3"><small class="btn btn-success">Sudah ACC</small></td>
+                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
                 </tr>
             </tbody>
         </table>
