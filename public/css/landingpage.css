@@ -1,10 +1,15 @@
-.navbar .container .sosmed li{
+.navbar {
+    border-top: #00A5AF solid 5px;
+}
+
+.navbar .container .sosmed li {
     list-style: none;
     background-color: white;
 }
 
 .container .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../asset/joglo-krebet.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("../asset/joglo-krebet.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -17,12 +22,14 @@
     color: white;
 }
 
-.container .pemesanan h1{
+.container .pemesanan > h2 {
     background-color: beige;
 }
 
 footer {
     background-color: #f5f5f5;
+    border-top: #00A5AF solid 5px;
+
 }
 
 .fc .fc-col-header-cell-cushion {
@@ -32,52 +39,51 @@ footer {
     text-decoration: none;
 }
 
-.fc-daygrid-day-number{
+.fc-daygrid-day-number {
     text-decoration: none;
     color: black;
 }
-
-
 
 @media (max-width: 768px) {
-.fc .fc-toolbar-title{
-    font-size: 1.5rem;
-    display: none;
-}
-.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
-    margin-top: 0.5rem;
-}
+    .fc .fc-toolbar-title {
+        font-size: 1.5rem;
+        display: none;
+    }
+    .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+        margin-top: 0.5rem;
+    }
 
-.fc .fc-col-header-cell-cushion {
-    display: inline-block;
-    padding: 2px 4px;
-    color: black;
-    text-decoration: none;
-    font-size: 0.7rem;
-}
+    .fc .fc-col-header-cell-cushion {
+        display: inline-block;
+        padding: 2px 4px;
+        color: black;
+        text-decoration: none;
+        font-size: 0.7rem;
+    }
 
-.fc-direction-ltr .fc-timegrid-slot-label-frame {
-    text-align: center;
-    font-size: 0.7rem;
-}
+    .fc-direction-ltr .fc-timegrid-slot-label-frame {
+        text-align: center;
+        font-size: 0.7rem;
+    }
 
-.fc .fc-timegrid-axis-cushion, .fc .fc-timegrid-slot-label-cushion {
-    padding: 0px 7px;
-    text-align: center;
-    font-size: 0.7rem;
-}
+    .fc .fc-timegrid-axis-cushion,
+    .fc .fc-timegrid-slot-label-cushion {
+        padding: 0px 7px;
+        text-align: center;
+        font-size: 0.7rem;
+    }
 
-.fc-v-event .fc-event-title {
-    bottom: 0px;
-    max-height: 100%;
-    overflow: hidden;
-    font-size: 0.6rem;
-    top: 0px;
-}
+    .fc-v-event .fc-event-title {
+        bottom: 0px;
+        max-height: 100%;
+        overflow: hidden;
+        font-size: 0.6rem;
+        top: 0px;
+    }
 
-.fc-timegrid-event .fc-event-time {
-    margin-bottom: 1px;
-    font-size: 0.6rem;
-    white-space: nowrap;
-}
+    .fc-timegrid-event .fc-event-time {
+        margin-bottom: 1px;
+        font-size: 0.6rem;
+        white-space: nowrap;
+    }
 }
