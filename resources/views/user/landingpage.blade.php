@@ -45,7 +45,7 @@
             <!-- Navbar Start -->
             <!-- Hero End -->
             <!-- Calendar Start -->
-            <div class="col-lg-10 col-sm-12">
+            <div class="col-lg-10 col-sm-12 mb-4">
                 <section class="pemesanan">
                     <h1 class="text-center mb-5 rounded">Pemesanan Tanggal</h1>
                     <div height="20">
@@ -54,7 +54,11 @@
                 </section>
             </div>
 
-            <button type="button" >Booking Tanggal</button>
+            <div class="row justify-content-center m-lg-1 m-1 mt-5">
+                <div class="col bg-white p-lg-1 p-2 rounded text-center">
+                    <button class="btn btn-primary mb-3 w-80" data-bs-toggle="modal" data-bs-target="#tambahModal">Booking Tanggal Sekarang</button>
+                </div>
+            </div>
             <!-- Calendar End -->
         </div>
 
@@ -67,18 +71,56 @@
         </div>
     </footer>
 
-
+    <!-- Modal Start -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nama Pembooking</label>
+                            <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Tanggal Booking</label>
+                            <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Jam Booking Mulai</label>
+                            <input type="text" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Jam Booking Selesai</label>
+                            <input type="text" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="tambahBooking()">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
     <script>
+        var calendar; // Declare calendar variable in the global scope
+
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
             if (calendarEl) {
-                var calendar = new FullCalendar.Calendar(calendarEl, {
+                calendar = new FullCalendar.Calendar(calendarEl, {
                     initialView: 'timeGridWeek',
                     selectable: true,
                     locale: 'id',
@@ -120,6 +162,25 @@
                 console.error("Element with id 'calendar' not found.");
             }
         });
+
+        function tambahBooking() {
+            var name = document.getElementById('nama-pembooking').value;
+            var tanggal = document.getElementById('tanggal-booking').value;
+            var jamMulai = document.getElementById('jam-booking-mulai').value;
+            var jamSelesai = document.getElementById('jam-booking-selesai').value;
+
+            if (name && tanggal && jamMulai && jamSelesai) {
+                var event = {
+                    title: `${name}`,
+                    start: `${tanggal}T${jamMulai}:00`,
+                    end: `${tanggal}T${jamSelesai}:00`,
+                    allDay: false
+                };
+                calendar.addEvent(event);
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
     </script>
 
 
