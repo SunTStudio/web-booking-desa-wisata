@@ -75,6 +75,23 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Info Kunjungan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Event information will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('menuHp')
@@ -124,21 +141,35 @@
                     },
                     events: [
                         {
-                            title: 'Event Satu',
+                            title: 'Kementerian Budaya',
                             start: '2024-06-01T10:00:00',
                             end: '2024-06-01T12:00:00'
                         },
                         {
-                            title: 'Event Dua',
+                            title: 'Dusun RT 01',
                             start: '2024-06-07T14:00:00',
                             end: '2024-06-07T16:00:00'
                         },
                         {
-                            title: 'Event Tiga',
+                            title: 'Pemda Bantul',
                             start: '2024-06-09T09:00:00',
                             end: '2024-06-09T10:00:00'
                         }
-                    ]
+                    ],
+                    eventClick: function(info) {
+                    // Prevent the browser from following the URL
+                    info.jsEvent.preventDefault();
+
+                    // Update the modal's content
+                    document.getElementById('modalBody').innerHTML = `
+                        <p><strong>Pengunjung : </strong> ${info.event.title}</p>
+                        <p><strong>Waktu Mulai : </strong> ${info.event.start}</p>
+                        <p><strong>Waktu Selesai : </strong> ${info.event.end}</p>
+                    `;
+
+                    // Show the modal
+                    $('#eventModal').modal('show');
+                 }
                 });
 
                 calendar.render();

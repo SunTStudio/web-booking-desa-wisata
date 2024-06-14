@@ -1,0 +1,1 @@
+var classModal = document.querySelector
