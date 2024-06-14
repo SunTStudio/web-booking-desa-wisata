@@ -26,4 +26,6 @@ Route::get('/form', function () {
     return view('form');
 })->name('admin.form');
 
-Route::get('/landingpage', [LandingPageController::class, 'index'])->name('wisata.landingpage');
+Route::get('/landingpage', function () {
+    return view('user/landingpage');
+})->name('user.landingpage');
