@@ -155,7 +155,7 @@
 
             if (name && tanggal && jamMulai && jamSelesai) {
                 var event = {
-                    title: `${name} - ${jamMulai} - ${jamSelesai}`,
+                    title: `${name}`,
                     start: `${tanggal}T${jamMulai}:00`,
                     end: `${tanggal}T${jamSelesai}:00`,
                     allDay: false
