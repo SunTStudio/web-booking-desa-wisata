@@ -2,14 +2,6 @@
 
 @section('title', 'Booking Tanggal Visit')
 
-@section('css')
-<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/landingpage.css">
-@endsection
-
 @section('konten')
 
 <div class="container">
@@ -55,38 +47,54 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form method="GET" action="">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Tanggal Visitor</label>
-                        <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" aria-describedby="emailHelp" placeholder="Masukan tanggal YYYY-MM-DD">
+                        <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                        <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nama PIC</label>
-                        <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" aria-describedby="emailHelp" placeholder="Masukan Nama">
+                        <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                        <input type="text" class="form-control" name="nama-booking" placeholder="Masukan Nama" id="nama-pembooking">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">No. Telp PIC</label>
-                        <input type="text" class="form-control" name="no-telp-booking" id="no-telp-pembooking" aria-describedby="emailHelp" placeholder="Masukan No. Telp">
+                        <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                        <input type="text" placeholder="Masukan No. Telp" class="form-control" name="no-telp-pic" id="no-telp-pic">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Jam Mulai</label>
-                        <input type="text" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" aria-describedby="emailHelp" placeholder="Masukan Jam Mulai">
+                        <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                        <input type="time" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Jam Selesai</label>
-                        <input type="text" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" aria-describedby="emailHelp" placeholder="Masukan Jam Selesai">
+                        <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                        <input type="time" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Jumlah Visitor</label>
-                        <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control">
+                        <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                        <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="jumlah-visitor" id="jumlah-visitor">
                     </div>
-                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="tambahBooking()">Booking Tanggal</button>
+                    <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal End -->
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Info Kunjungan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Event information will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
@@ -134,7 +142,21 @@
                         start: '2024-06-09T09:00:00',
                         end: '2024-06-09T10:00:00'
                     }
-                ]
+                ],
+                eventClick: function(info) {
+                    // Prevent the browser from following the URL
+                    info.jsEvent.preventDefault();
+
+                    // Update the modal's content
+                    document.getElementById('modalBody').innerHTML = `
+                        <p><strong>Pengunjung : </strong> ${info.event.title}</p>
+                        <p><strong>Waktu Mulai : </strong> ${info.event.start}</p>
+                        <p><strong>Waktu Selesai : </strong> ${info.event.end}</p>
+                    `;
+
+                    // Show the modal
+                    $('#eventModal').modal('show');
+                }
             });
 
             calendar.render();
@@ -143,14 +165,15 @@
         }
     });
 
-    function tambahBooking() {
+    function tambahBooking(event) {
+        event.preventDefault(); // Mencegah form dikirim secara default
+
         var name = document.getElementById('nama-pembooking').value;
-        var telp = document.getElementById('no-telp-pembooking').value;
         var tanggal = document.getElementById('tanggal-booking').value;
         var jamMulai = document.getElementById('jam-booking-mulai').value;
         var jamSelesai = document.getElementById('jam-booking-selesai').value;
 
-        if (name && telp && tanggal && jamMulai && jamSelesai) {
+        if (name && tanggal && jamMulai && jamSelesai) {
             var event = {
                 title: `${name}`,
                 start: `${tanggal}T${jamMulai}:00`,
@@ -158,6 +181,9 @@
                 allDay: false
             };
             calendar.addEvent(event);
+            // Optionally close the modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById('tambahModal'));
+            modal.hide();
         } else {
             alert("Please fill in all fields");
         }

@@ -35,7 +35,7 @@
                 <label for="" class="mb-2">Jumlah Visitor</label>
                 <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control">
             </div>
-            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="tambahBooking()">Booking Tanggal</button>
+            <button type="submit" class="btn btn-primary">Booking Tanggal</button>
         </form>
     </div>
 
