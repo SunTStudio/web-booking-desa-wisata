@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('deskripsi');
-            $table->integer('harga');
+            $table->integer('harga_belajar');
+            $table->integer('harga_pementasan');
             $table->timestamps();
         });
     }

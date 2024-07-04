@@ -37,40 +37,154 @@
     </div>
 
     <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="GET" action="">
-                        <div class="mb-3">
-                            <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                            <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="{{ htmlspecialchars($tanggalBooking) }}">
+                    <div class="row justify-content-center border rounded p-4 m-3">
+                        <div class="col me-4">
+                            <form method="GET" action="">
+                                <div class="mb-3">
+                                    <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                    <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="{{ htmlspecialchars($tanggalBooking) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                    <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" value="{{ htmlspecialchars($namaBooking) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                    <input type="text" placeholder="Masukan No. Telp" class="form-control" name="no-telp-pic" id="no-telp-pic" value="{{ htmlspecialchars($noTelpPic) }}">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                            <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                            <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" value="{{ htmlspecialchars($namaBooking) }}">
+                        <div class="col">
+                            <div class="mb-3">
+                                    <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                                    <input type="time" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" value="{{ htmlspecialchars($jamBookingMulai) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                                    <input type="time" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" value="{{ htmlspecialchars($jamBookingSelesai) }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                                    <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="jumlah-visitor" id="jumlah-visitor" value="{{ htmlspecialchars($jumlahVisitor) }}">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                            <input type="text" placeholder="Masukan No. Telp" class="form-control" name="no-telp-pic" id="no-telp-pic" value="{{ htmlspecialchars($noTelpPic) }}">
+                        
+                    </div>
+                    <div class="row justify-content-center m-3">
+                        <div class="col">
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-batik" class="form-label">Paket Batik</label>
+                                @foreach ($batiks as $batik)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $batik->id }}" type="checkbox" id="flexCheckDefault{{ $batik->id }}">
+                                        <label class="form-check-label" for="flexCheckDefault{{ $batik->id }}">
+                                            <h5 class="card-header">{{ $batik->nama }}</h5>
+                                            <hr>
+                                            <small>Souvenir yang didapat:</small>
+                                            <p class="card-text">{{ $batik->deskripsi }}</p>
+                                            <small>Harga Paket:</small>
+                                            <p class="card-text">{{ $batik->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Kesenian -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kesenian" class="form-label">Paket Kesenian</label>
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="checkbox" id="flexCheckDefault{{ $kesenian->id }}">
+                                        <label class="form-check-label" for="flexCheckDefault{{ $kesenian->id }}">
+                                            <h5 class="card-header">{{ $kesenian->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $kesenian->deskripsi }}</p>
+                                            <small>Harga Belajar:</small>
+                                            <p class="card-text">{{ $kesenian->harga_belajar }}</p>
+                                            <small>Harga Pementasan:</small>
+                                            <p class="card-text">{{ $kesenian->harga_pementasan }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Cocok Tanam -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-cocok-tanam" class="form-label">Paket Cocok Tanam</label>
+                                @foreach ($cocokTanams as $cocokTanam)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="checkbox" id="flexCheckDefault{{ $cocokTanam->id }}">
+                                        <label class="form-check-label" for="flexCheckDefault{{ $cocokTanam->id }}">
+                                            <h5 class="card-header">{{ $cocokTanam->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $cocokTanam->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">{{ $cocokTanam->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Permainan -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-permainan" class="form-label">Paket Permainan</label>
+                                @foreach ($permainans as $permainan)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $permainan->id }}" type="checkbox" id="flexCheckDefault{{ $permainan->id }}">
+                                        <label class="form-check-label" for="flexCheckDefault{{ $permainan->id }}">
+                                            <h5 class="card-header">{{ $permainan->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $permainan->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">{{ $permainan->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Kuliner -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label">Paket Kuliner</label>
+                                @foreach ($kuliners as $kuliner)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="checkbox" id="flexCheckDefault{{ $kuliner->id }}">
+                                        <label class="form-check-label" for="flexCheckDefault{{ $kuliner->id }}">
+                                            <h5 class="card-header">{{ $kuliner->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $kuliner->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">{{ $kuliner->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                            <input type="time" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" value="{{ htmlspecialchars($jamBookingMulai) }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                            <input type="time" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" value="{{ htmlspecialchars($jamBookingSelesai) }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="jumlah-visitor" id="jumlah-visitor" value="{{ htmlspecialchars($jumlahVisitor) }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button>
-                    </form>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -92,6 +206,7 @@
             </div>
         </div>
     </div>
+    
 @endsection
 
 @section('menuHp')
@@ -107,11 +222,15 @@
                     <a href="{{ route('admin.booking') }}" class="text-secondary"><p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
                     <p>Booking</p></a>
                 </div>
+
+                
 @endsection
 
 @section('scripts')
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
+    <script src="/js/kalender.js"></script>
+
     <script>
         var calendar; // Declare calendar variable in the global scope
 

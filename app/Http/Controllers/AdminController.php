@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Models\Batik;
+use App\Models\Kesenian;
+use App\Models\CocokTanam;
+use App\Models\Permainan;
+use App\Models\Kuliner;
 
 class AdminController extends Controller
 {
@@ -19,14 +24,18 @@ class AdminController extends Controller
         $jamBookingSelesai = $request->input('jam-booking-selesai', '');
         $jumlahVisitor = $request->input('jumlah-visitor', '');
 
-        return view('admin.kalender', compact(
-            'tanggalBooking', 
+        $batiks = Batik::all();
+        $kesenians = Kesenian::all();
+        $cocokTanams = CocokTanam::all();
+        $permainans = Permainan::all();
+        $kuliners = Kuliner::all();
+
+        return view('admin.kalender', compact('batiks', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
             'namaBooking', 
             'noTelpPic', 
             'jamBookingMulai', 
             'jamBookingSelesai', 
-            'jumlahVisitor'
-        ));
+            'jumlahVisitor')); 
     }
 
     /**
@@ -76,4 +85,23 @@ class AdminController extends Controller
     {
         //
     }
+
+    // public function index(Request $request)
+    // {
+    //     $tanggalBooking = $request->input('tanggal-booking', '');
+    //     $namaBooking = $request->input('nama-booking', '');
+    //     $noTelpPic = $request->input('no-telp-pic', '');
+    //     $jamBookingMulai = $request->input('jam-booking-mulai', '');
+    //     $jamBookingSelesai = $request->input('jam-booking-selesai', '');
+    //     $jumlahVisitor = $request->input('jumlah-visitor', '');
+
+    //     return view('admin.kalender', compact(
+    //         'tanggalBooking', 
+    //         'namaBooking', 
+    //         'noTelpPic', 
+    //         'jamBookingMulai', 
+    //         'jamBookingSelesai', 
+    //         'jumlahVisitor'
+    //     ));
+    // }
 }
