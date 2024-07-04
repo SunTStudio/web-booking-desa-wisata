@@ -1,5 +1,5 @@
 .navbar {
-    border-top: #00A5AF solid 5px;
+    border-top: #00a5af solid 5px;
 }
 
 .navbar .container .sosmed li {
@@ -26,10 +26,13 @@
     background-color: beige;
 }
 
+.fc-event-main {
+    cursor: pointer;
+}
+
 footer {
     background-color: #f5f5f5;
-    border-top: #00A5AF solid 5px;
-
+    border-top: #00a5af solid 5px;
 }
 
 .fc .fc-col-header-cell-cushion {
@@ -85,5 +88,9 @@ footer {
         margin-bottom: 1px;
         font-size: 0.6rem;
         white-space: nowrap;
+    }
+
+    .fc-timegrid-event-harness .fc-timegrid-event-harness-inset {
+        cursor: pointer;
     }
 }
