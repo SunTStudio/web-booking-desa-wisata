@@ -12,7 +12,7 @@
 @section('menu')
     <p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class=" text-light fw-bold m-1 ms-3"><i class="bi bi-key me-2  ps-1 pe-1 rounded"></i> Dashboard </a></p>
     <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.kalender') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-person-fill-up  ps-1 pe-1 rounded"></i> Kalender </a></p>
-    <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key    ps-1 pe-1 rounded"></i> Booking </a> </p>
+    <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key ps-1 pe-1 rounded"></i> Booking </a> </p>
 @endsection
 
 @section('content')
@@ -108,7 +108,7 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a> | <a href="admin/invoice" class="btn btn-info" style="font-size: 0.8rem ;">Cetak</a></td>
                 </tr>
                 <tr>
                 <th scope="row"  class="pt-3">2</th>
@@ -119,7 +119,7 @@
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
                 <td class="pt-3">12</td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a> | <a href="admin/invoice" class="btn btn-info" style="font-size: 0.8rem ;">Cetak</a></td>
                 </tr>
             </tbody>
         </table>

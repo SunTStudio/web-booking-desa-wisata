@@ -1,0 +1,34 @@
+.invoice {
+    margin: 4rem 5rem;
+}
+
+.invoice .navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoice .informasi {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoice .detail {
+    width: 100%; /* Mengatur tabel agar mengisi 100% lebar kontainer */
+    border-collapse: collapse; /* Menggabungkan border sel */
+}
+
+.invoice .detail th, .invoice .detail td {
+    border: 1px solid #dddddd; /* Garis batas sel */
+    text-align: left; /* Penyusunan teks */
+    padding: 8px; /* Ruang isi dalam sel */
+    height: 1rem;
+}
+
+.invoice .footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.invoice .footer .tanda-tangan{
+    justify-content: center;
+}
