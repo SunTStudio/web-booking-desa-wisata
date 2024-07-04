@@ -42,109 +42,49 @@
 
 <div class="row justify-content-center rounded bg-white m-3 mt-0 mb-5" id="tabel-booking">
     <div class="col p-3">
+    <div class="table-responsive" >
         <table class="table text-center ">
             <thead>
                 <tr>
                 <th scope="col">No</th>
-                <th scope="col">Tanggal</th>
                 <th scope="col">Nama PIC</th>
-                <th scope="col">Nama Organisasi</th>
                 <th scope="col">No Telpon</th>
+                <th scope="col">Nama Organisasi</th>
+                <th scope="col">Jumlah Visitor</th>
+                <th scope="col">Tanggal</th>
                 <th scope="col">Jam Mulai</th>
                 <th scope="col">Jam Selesai</th>
-                <th scope="col">Jumlah Visitor</th>
+                <th scope="col">Detail</th>
+                <th scope="col">Guide</th>
                 <th scope="col">Status</th>
-                <th scope="col">Opsi</th>
+                <th scope="col" style="width:10%;">Opsi</th>
                 </tr>
             </thead>
             <tbody >
                 <tr>
                 <th scope="row"  class="pt-3">1</th>
-                <td class="pt-3">2024/10/11</td>
                 <td class="pt-3">Iqbal</td>
+                <td class="pt-3">12</td>
                 <td class="pt-3">Pemda Sleman</td>
                 <td class="pt-3">085868144268</td>
+                <td class="pt-3">2024/10/11</td>
                 <td class="pt-3">07:00:00</td>
                 <td class="pt-3">16:00:00</td>
-                <td class="pt-3">12</td>
+                <th scope="col">detail</th>
+                <th scope="col">Hadi Suherman</th>
                 <td class="pt-3">
                     <select class="form-select btn btn-dark text-light" aria-label="Default select example">
                         <option value="1" >Belum ACC</option>
                         <option value="2">Sudah ACC</option>
                     </select>
                 </td>
-                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
+                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
-                <tr>
-                <th scope="row"  class="pt-3">2</th>
-                <td class="pt-3">2024/10/11</td>
-                <td class="pt-3">Iqbal</td>
-                <td class="pt-3">Pemda Sleman</td>
-                <td class="pt-3">085868144268</td>
-                <td class="pt-3">07:00:00</td>
-                <td class="pt-3">16:00:00</td>
-                <td class="pt-3">12</td>
-                <td class="pt-3">
-                    <select class="form-select btn btn-dark text-light" aria-label="Default select example">
-                        <option value="1" >Belum ACC</option>
-                        <option value="2">Sudah ACC</option>
-                    </select>
-                </td>
-                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
-                </tr>
-                <tr>
-                <th scope="row"  class="pt-3">3</th>
-                <td class="pt-3">2024/10/11</td>
-                <td class="pt-3">Iqbal</td>
-                <td class="pt-3">Pemda Sleman</td>
-                <td class="pt-3">085868144268</td>
-                <td class="pt-3">07:00:00</td>
-                <td class="pt-3">16:00:00</td>
-                <td class="pt-3">12</td>
-                <td class="pt-3">
-                    <select class="form-select btn btn-dark text-light" aria-label="Default select example">
-                        <option value="1" >Belum ACC</option>
-                        <option value="2">Sudah ACC</option>
-                    </select>
-                </td>
-                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
-                </tr>
-                <tr>
-                <th scope="row"  class="pt-3">4</th>
-                <td class="pt-3">2024/10/11</td>
-                <td class="pt-3">Iqbal</td>
-                <td class="pt-3">Pemda Sleman</td>
-                <td class="pt-3">085868144268</td>
-                <td class="pt-3">07:00:00</td>
-                <td class="pt-3">16:00:00</td>
-                <td class="pt-3">12</td>
-                <td class="pt-3">
-                    <select class="form-select btn btn-dark text-light" aria-label="Default select example">
-                        <option value="1" >Belum ACC</option>
-                        <option value="2">Sudah ACC</option>
-                    </select>
-                </td>
-                <td "><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
-                </tr>
-                <tr>
-                <th scope="row"  class="pt-3">5</th>
-                <td class="pt-3">2024/10/11</td>
-                <td class="pt-3">Iqbal</td>
-                <td class="pt-3">Pemda Sleman</td>
-                <td class="pt-3">085868144268</td>
-                <td class="pt-3">07:00:00</td>
-                <td class="pt-3">16:00:00</td>
-                <td class="pt-3">12</td>
-                <td class="pt-3">
-                    <select class="form-select btn btn-dark text-light" aria-label="Default select example">
-                        <option value="1" >Belum ACC</option>
-                        <option value="2">Sudah ACC</option>
-                    </select>
-                </td>
-                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a></td>
-                </tr>
+                
             </tbody>
         </table>
+    </div>
+
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -154,6 +94,8 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
         </nav>
+
+        
     </div>
 </div>
 
@@ -167,16 +109,20 @@
                 <div class="modal-body">
                     <form action="">
                     <div class="mb-3">
-                        <label for="" class="mb-2">Tanggal Visitor</label>
-                        <input type="text" placeholder="Masukan tanggal YYYY-MM-DD" class="form-control">
-                    </div>
-                    <div class="mb-3">
                         <label for="" class="mb-2">Nama PIC</label>
                         <input type="text" placeholder="Masukan Nama" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="" class="mb-2">No. Telp PIC</label>
                         <input type="text" placeholder="Masukan No. Telp" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2">Jumlah Visitor</label>
+                        <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2">Tanggal Visitor</label>
+                        <input type="text" placeholder="Masukan tanggal YYYY-MM-DD" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="" class="mb-2">Jam Mulai</label>
@@ -187,8 +133,12 @@
                         <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="" class="mb-2">Jumlah Visitor</label>
-                        <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control">
+                        <label for="" class="mb-2">Detail</label>
+                        <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2">Guide</label>
+                        <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Edit Booking</button>
                 </form>

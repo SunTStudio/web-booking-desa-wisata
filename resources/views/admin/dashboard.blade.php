@@ -54,14 +54,13 @@
             <div class="row justify-content-center m-3 bg-white rounded shadow p-4 pt-2" >
                 <p class=" m-0 fw-bold text-center text-secondary p-2">Kunjungan Terdekat</p>
                 <div class="col-5 bg-primary me-4 shadow p-3 rounded">
-                    <div class="waktu-appointment text-white 
-                     justify-content-between fw-medium">
-                        <p class="m-0 pb-1">Tanggal : <br> 2024/06/12 </p>
-                        <p class="m-0 pb-1">waktu : <br> 08:00 - 10:00</p>
+                    <div class="waktu-appointment text-white  fw-medium">
+                        <p class="m-0 pb-2">Tanggal : <br> 2024/06/12 </p>
+                        <p class="m-0 pb-2">waktu : <br> 08:00 - 10:00</p>
                     </div>
                     <div class="appointment-info text-white">
                         <p class="mt-2"><span>Nama PIC : </span><br> Iqbal</p>
-                        <p><span>Organisasi : </span><br> Pemda Sleman</p>
+                        <p><span>Organisasi : </span><br> BTS</p>
                         <p><span>Jumlah Orang : </span><br> 15 Orang</p>
                         <p><span>No Telepon : </span><br> 085868144268 </p>
                     </div>

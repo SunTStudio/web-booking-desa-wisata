@@ -24,6 +24,6 @@ Route::get('/form', function () {
     return view('form');
 })->name('admin.form');
 
-Route::get('/landingpage', function () {
+Route::get('/', function () {
     return view('user/landingpage');
 })->name('user.landingpage');
