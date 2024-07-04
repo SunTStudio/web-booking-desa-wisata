@@ -44,6 +44,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
                     <div class="row justify-content-center border rounded p-4 m-3">
                         <div class="col me-4">
                             <form method="GET" action="">
@@ -79,16 +80,18 @@
                         </div>
                         
                     </div>
+
+                    <h5 class="fw-bold m-3 mt-5">Pilih Paket-Paket Desa Wisata</h5>
                     <div class="row justify-content-center m-3">
                         <div class="col">
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-batik" class="form-label">Paket Batik</label>
+                                <label for="paket-batik" class="form-label fw-bold">Paket Batik</label>
                                 @foreach ($batiks as $batik)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $batik->id }}" type="checkbox" id="flexCheckDefault{{ $batik->id }}">
-                                        <label class="form-check-label" for="flexCheckDefault{{ $batik->id }}">
-                                            <h5 class="card-header">{{ $batik->nama }}</h5>
+                                        <input class="form-check-input" value="{{ $batik->id }}" type="checkbox" id="batik{{ $batik->id }}">
+                                        <label class="form-check-label" for="batik{{ $batik->id }}">
+                                            <h5 class="card-header fw-bold">{{ $batik->nama }}</h5>
                                             <hr>
                                             <small>Souvenir yang didapat:</small>
                                             <p class="card-text">{{ $batik->deskripsi }}</p>
@@ -102,13 +105,13 @@
 
                             <!-- Paket Kesenian -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-kesenian" class="form-label">Paket Kesenian</label>
+                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian</label>
                                 @foreach ($kesenians as $kesenian)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="checkbox" id="flexCheckDefault{{ $kesenian->id }}">
-                                        <label class="form-check-label" for="flexCheckDefault{{ $kesenian->id }}">
-                                            <h5 class="card-header">{{ $kesenian->nama }}</h5>
+                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="checkbox" id="kesenian{{ $kesenian->id }}">
+                                        <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $kesenian->deskripsi }}</p>
@@ -124,13 +127,13 @@
 
                             <!-- Paket Cocok Tanam -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-cocok-tanam" class="form-label">Paket Cocok Tanam</label>
+                                <label for="paket-cocok-tanam" class="form-label fw-bold">Paket Cocok Tanam</label>
                                 @foreach ($cocokTanams as $cocokTanam)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="checkbox" id="flexCheckDefault{{ $cocokTanam->id }}">
-                                        <label class="form-check-label" for="flexCheckDefault{{ $cocokTanam->id }}">
-                                            <h5 class="card-header">{{ $cocokTanam->nama }}</h5>
+                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="checkbox" id="cocokTanam{{ $cocokTanam->id }}">
+                                        <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
+                                            <h5 class="card-header fw-bold">{{ $cocokTanam->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $cocokTanam->deskripsi }}</p>
@@ -144,13 +147,13 @@
 
                             <!-- Paket Permainan -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-permainan" class="form-label">Paket Permainan</label>
+                                <label for="paket-permainan" class="form-label fw-bold">Paket Permainan</label>
                                 @foreach ($permainans as $permainan)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $permainan->id }}" type="checkbox" id="flexCheckDefault{{ $permainan->id }}">
-                                        <label class="form-check-label" for="flexCheckDefault{{ $permainan->id }}">
-                                            <h5 class="card-header">{{ $permainan->nama }}</h5>
+                                        <input class="form-check-input" value="{{ $permainan->id }}" type="checkbox" id="permainan{{ $permainan->id }}">
+                                        <label class="form-check-label" for="permainan{{ $permainan->id }}">
+                                            <h5 class="card-header fw-bold">{{ $permainan->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $permainan->deskripsi }}</p>
@@ -164,13 +167,13 @@
 
                             <!-- Paket Kuliner -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-kuliner" class="form-label">Paket Kuliner</label>
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
                                 @foreach ($kuliners as $kuliner)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="checkbox" id="flexCheckDefault{{ $kuliner->id }}">
-                                        <label class="form-check-label" for="flexCheckDefault{{ $kuliner->id }}">
-                                            <h5 class="card-header">{{ $kuliner->nama }}</h5>
+                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="checkbox" id="kuliner{{ $kuliner->id }}">
+                                        <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kuliner->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $kuliner->deskripsi }}</p>
