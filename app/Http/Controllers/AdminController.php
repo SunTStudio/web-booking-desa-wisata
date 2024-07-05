@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Models\Batik;
+use App\Models\Booking;
 use App\Models\Kesenian;
 use App\Models\CocokTanam;
 use App\Models\Permainan;
@@ -37,6 +38,63 @@ class AdminController extends Controller
             'jamBookingSelesai', 
             'jumlahVisitor')); 
     }
+
+    public function dashboard() {
+        $data = Booking::all();
+        return view('admin/dashboard', compact('data'));
+    }
+
+    public function laporan(Request $request) {
+        $data = Booking::get();
+        return view('admin/laporan', compact('data', 'request'));
+    }
+
+    public function laporanSearch(Request $request) {
+        $searchTerm = $request->search;
+    
+        // Cek apakah $searchTerm adalah kata kunci bulan
+        $isMonth = false;
+        $monthNumber = null;
+    
+        $months = [
+            'januari' => '01',
+            'februari' => '02',
+            'maret' => '03',
+            'april' => '04',
+            'mei' => '05',
+            'juni' => '06',
+            'juli' => '07',
+            'agustus' => '08',
+            'september' => '09',
+            'oktober' => '10',
+            'november' => '11',
+            'desember' => '12',
+        ];
+    
+        foreach ($months as $monthName => $monthNum) {
+            if (strtolower($searchTerm) == $monthName) {
+                $isMonth = true;
+                $monthNumber = $monthNum;
+                break;
+            }
+        }
+    
+        // Jika $searchTerm adalah nama bulan, ubah menjadi rentang tanggal
+        if ($isMonth) {
+            // Misalnya, ubah pencarian menjadi bulan Agustus
+            $data = Booking::whereMonth('tanggal', $monthNumber)->get();
+        } else {
+            // Jika bukan, lakukan pencarian berdasarkan input seperti sebelumnya
+            $data = Booking::where('tanggal', 'LIKE', '%' . $searchTerm . '%')->get();
+        }
+    
+        return view('admin/laporan', compact('data', 'request'));
+    }
+
+    // public function laporanSearch(Request $request) {
+    //     $data = Booking::where('tanggal', 'LIKE', '%' . $request->search . '%')->get();
+    //     return view('admin/laporan', compact('data', 'request'));
+    // }
 
     /**
      * Show the form for creating a new resource.

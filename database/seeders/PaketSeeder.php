@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Paket;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,5 +14,14 @@ class PaketSeeder extends Seeder
     public function run(): void
     {
         //
+        Paket::create([
+            'batik_id' => 2, 
+            'kesenian_id' => 4, 
+            'study_banding' => 1, 
+            'cocok_tanam_id' => 1, 
+            'permainan_id' => 3, 
+            'homestay' => 1, 
+            'kuliner_id' => 3
+        ]);
     }
 }

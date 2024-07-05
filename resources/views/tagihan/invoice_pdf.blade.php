@@ -80,8 +80,8 @@
                     <p>Email : pdwkrebet@gmail.com</p>
                 </td>
                 <td class="booker">
-                    <p>Yogyakarta, 29 MEI 2024</p>
-                    <p>Kepada Yth. KALA TOUR</p>
+                    <p>Yogyakarta,  {{ \Carbon\Carbon::parse($data->tanggal)->translatedFormat('d F Y') }}</p>
+                    <p>Kepada Yth. {{ $data->nama_pic }}</p>
                 </td>
             </tr>
         </table>

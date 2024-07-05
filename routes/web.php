@@ -5,16 +5,24 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
 
-Route::get('/admin', function () {
-    return view('admin/dashboard');
-})->name('admin.dashboard');
+// Route::get('/admin', function () {
+//     return view('admin/dashboard');
+// })->name('admin.dashboard');
 
-Route::get('/admin/invoice', function () {
-    return view('tagihan/invoice');
-})->name('admin.invoice');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/laporan', [AdminController::class, 'laporan'])->name('admin.laporan');
+Route::get('/laporan/search', [AdminController::class, 'laporanSearch'])->name('admin.laporan.search');
+
+
+
+// Route::get('/admin/invoice', function () {
+//     return view('tagihan/invoice');
+// })->name('admin.invoice');
+
+Route::get('/admin/invoice{id}', [InvoiceController::class, 'pdf'])->name('admin.invoice');
+Route::get('/admin/invoice{id}?output=pdf', [InvoiceController::class, 'pdf'])->name('admin.invoice.pdf');
 
 Route::get('/kalender', [AdminController::class, 'index'])->name('admin.kalender');
-Route::get('/admin/invoice_pdf', [InvoiceController::class, 'pdf'])->name('admin.invoice.pdf');
 
 Route::get('/booking', function () {
     return view('admin/booking');
