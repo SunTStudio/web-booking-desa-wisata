@@ -10,9 +10,10 @@
 @endsection
 
 @section('menu')
-<p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class=" text-light fw-bold m-1 ms-3"><i class="bi bi-key me-2  ps-1 pe-1 rounded"></i> Dashboard </a></p>
+<p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-view-list ps-1 pe-1 rounded"></i> Dashboard </a> </p>
 <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.kalender') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-person-fill-up  ps-1 pe-1 rounded"></i> Kalender </a></p>
 <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key ps-1 pe-1 rounded"></i> Booking </a> </p>
+<p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.laporan') }}" class=" text-light fw-bold m-1 ms-3"><i class="bi bi-journal me-2  ps-1 pe-1 rounded"></i> Laporan </a></p>
 @endsection
 
 @section('content')
