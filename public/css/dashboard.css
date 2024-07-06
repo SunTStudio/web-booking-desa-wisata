@@ -1,6 +1,20 @@
+.informasi {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .waktu-appointment{
     font-size: 0.8rem;
     letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+hr {
+    /* color: white; */
+    border: solid 1.5px white;
+    border-radius: 10rem;
 }
 
 .icon-menu{
@@ -27,6 +41,9 @@
 .appointment-info p{
    margin: 0.6rem 0;
    letter-spacing: 1px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 
 #menuCount{
