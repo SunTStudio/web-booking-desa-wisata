@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nama_pic');
             $table->string('organisasi');
+            $table->string('noTelpPIC');
             $table->integer('visitor');
             $table->date('tanggal');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->foreignId('paket_id')->constrained('pakets');
+            $table->integer('tagihan');
             $table->foreignId('guide_id')->constrained('guides');
             $table->string('status');
             $table->timestamps();

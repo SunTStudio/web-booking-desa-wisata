@@ -22,11 +22,10 @@ Route::get('/laporan/search', [AdminController::class, 'laporanSearch'])->name('
 Route::get('/admin/invoice{id}', [InvoiceController::class, 'pdf'])->name('admin.invoice');
 Route::get('/admin/invoice{id}?output=pdf', [InvoiceController::class, 'pdf'])->name('admin.invoice.pdf');
 
-Route::get('/kalender', [AdminController::class, 'index'])->name('admin.kalender');
+Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.kalender');
+Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
 
-Route::get('/booking', function () {
-    return view('admin/booking');
-})->name('admin.booking');
+Route::get('/admin/booking',[AdminController::class, 'show'])->name('admin.booking');
 
 Route::get('/testing', function () {
     return view('calendar');

@@ -26,6 +26,7 @@
             <i class="me-2 bi bi-key ps-1 pe-1 rounded"></i> Booking 
         </a>
     </p>
+    <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.laporan') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key ps-1 pe-1 rounded"></i> Laporan </a> </p>
 @endsection
 
 @section('content')
@@ -47,35 +48,38 @@
                     <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
                     <div class="row justify-content-center border rounded p-4 m-3">
                         <div class="col me-4">
-                            <form method="GET" action="">
+                            <form method="GET" action="{{ route('admin.bookingProses') }}">
                                 <div class="mb-3">
                                     <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                    <input type="text" class="form-control" name="tanggal-booking" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="{{ htmlspecialchars($tanggalBooking) }}">
+                                    <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                    <input type="text" class="form-control" name="nama-booking" id="nama-pembooking" value="{{ htmlspecialchars($namaBooking) }}">
+                                    <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                    <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                    <input type="text" placeholder="Masukan No. Telp" class="form-control" name="no-telp-pic" id="no-telp-pic" value="{{ htmlspecialchars($noTelpPic) }}">
+                                    <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
                                 </div>
                                 
-                                <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button>
-                            </form>
+                               
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                     <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                                    <input type="time" class="form-control" name="jam-booking-mulai" id="jam-booking-mulai" value="{{ htmlspecialchars($jamBookingMulai) }}">
+                                    <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                                    <input type="time" class="form-control" name="jam-booking-selesai" id="jam-booking-selesai" value="{{ htmlspecialchars($jamBookingSelesai) }}">
+                                    <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                                    <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="jumlah-visitor" id="jumlah-visitor" value="{{ htmlspecialchars($jumlahVisitor) }}">
+                                    <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
                             </div>
                         </div>
                         
@@ -89,14 +93,14 @@
                                 @foreach ($batiks as $batik)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $batik->id }}" type="checkbox" id="batik{{ $batik->id }}">
+                                        <input class="form-check-input" value="{{ $batik->id }}" type="radio" name="batik" id="batik{{ $batik->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="batik{{ $batik->id }}">
                                             <h5 class="card-header fw-bold">{{ $batik->nama }}</h5>
                                             <hr>
                                             <small>Souvenir yang didapat:</small>
                                             <p class="card-text">{{ $batik->deskripsi }}</p>
                                             <small>Harga Paket:</small>
-                                            <p class="card-text">{{ $batik->harga }}</p>
+                                            <p class="card-text">Rp {{ $batik->harga }}</p>
                                         </label>
                                     </div>
                                 </div>
@@ -109,7 +113,7 @@
                                 @foreach ($kesenians as $kesenian)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="checkbox" id="kesenian{{ $kesenian->id }}">
+                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
                                             <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
                                             <hr>
@@ -118,7 +122,7 @@
                                             <small>Harga Belajar:</small>
                                             <p class="card-text">{{ $kesenian->harga_belajar }}</p>
                                             <small>Harga Pementasan:</small>
-                                            <p class="card-text">{{ $kesenian->harga_pementasan }}</p>
+                                            <p class="card-text">Rp {{ $kesenian->harga_pementasan }}</p>
                                         </label>
                                     </div>
                                 </div>
@@ -131,14 +135,14 @@
                                 @foreach ($cocokTanams as $cocokTanam)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="checkbox" id="cocokTanam{{ $cocokTanam->id }}">
+                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="radio" name="cocokTanam" id="cocokTanam{{ $cocokTanam->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
                                             <h5 class="card-header fw-bold">{{ $cocokTanam->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $cocokTanam->deskripsi }}</p>
                                             <small>Harga:</small>
-                                            <p class="card-text">{{ $cocokTanam->harga }}</p>
+                                            <p class="card-text">Rp {{ $cocokTanam->harga }}</p>
                                         </label>
                                     </div>
                                 </div>
@@ -151,14 +155,14 @@
                                 @foreach ($permainans as $permainan)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $permainan->id }}" type="checkbox" id="permainan{{ $permainan->id }}">
+                                        <input class="form-check-input" value="{{ $permainan->id }}" type="radio" name="permainan" id="permainan{{ $permainan->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="permainan{{ $permainan->id }}">
                                             <h5 class="card-header fw-bold">{{ $permainan->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $permainan->deskripsi }}</p>
                                             <small>Harga:</small>
-                                            <p class="card-text">{{ $permainan->harga }}</p>
+                                            <p class="card-text">Rp {{ $permainan->harga }}</p>
                                         </label>
                                     </div>
                                 </div>
@@ -171,20 +175,62 @@
                                 @foreach ($kuliners as $kuliner)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="checkbox" id="kuliner{{ $kuliner->id }}">
+                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="radio" name="kuliner" id="kuliner{{ $kuliner->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
                                             <h5 class="card-header fw-bold">{{ $kuliner->nama }}</h5>
                                             <hr>
                                             <small>Deskripsi:</small>
                                             <p class="card-text">{{ $kuliner->deskripsi }}</p>
                                             <small>Harga:</small>
-                                            <p class="card-text">{{ $kuliner->harga }}</p>
+                                            <p class="card-text">Rp {{ $kuliner->harga }}</p>
                                         </label>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
 
+                             <!-- Paket Homestay -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
+                                @foreach ($homestays as $homestay)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $homestay->id }}" type="radio" name="homestay" id="homestay{{ $homestay->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="homestay{{ $homestay->id }}">
+                                            <h5 class="card-header fw-bold">{{ $homestay->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $homestay->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $homestay->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Homestay -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
+                                @foreach ($studiBandings as $studiBanding)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $studiBanding->id }}" type="radio" name="studiBanding" id="studiBanding{{ $studiBanding->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="studiBanding{{ $studiBanding->id }}">
+                                            <h5 class="card-header fw-bold">{{ $studiBanding->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $studiBanding->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $studiBanding->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                                {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                         </div>
                     </div>
                     

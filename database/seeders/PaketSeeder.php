@@ -17,10 +17,10 @@ class PaketSeeder extends Seeder
         Paket::create([
             'batik_id' => 2, 
             'kesenian_id' => 4, 
-            'study_banding' => 1, 
+            'study_banding_id' => 1, 
             'cocok_tanam_id' => 1, 
             'permainan_id' => 3, 
-            'homestay' => 1, 
+            'homestay_id' => 1, 
             'kuliner_id' => 3
         ]);
     }

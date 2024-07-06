@@ -12,7 +12,8 @@
     <p class=" d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class=" text-secondary fw-bold m-1 ms-3"><i class="bi bi-key me-2  ps-1 pe-1 rounded"></i> Dashboard </a></p>
     <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.kalender') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-person-fill-up  ps-1 pe-1 rounded"></i> Kalender </a></p>
     <p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-light m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key    ps-1 pe-1 rounded"></i> Booking </a> </p>
-@endsection
+<p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.laporan') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key ps-1 pe-1 rounded"></i> Laporan </a> </p>
+    @endsection
 
 @section('content')
 <div class="row p-4 mt-3" id="search">
@@ -42,7 +43,7 @@
 
 <div class="row justify-content-center rounded bg-white m-3 mt-0 mb-5" id="tabel-booking">
     <div class="col p-3">
-    <div class="table-responsive" >
+    <div class="table-responsive" style="overflow-x: auto;">
         <table class="table text-center ">
             <thead>
                 <tr>
@@ -55,23 +56,26 @@
                 <th scope="col">Jam Mulai</th>
                 <th scope="col">Jam Selesai</th>
                 <th scope="col">Detail</th>
+                <th scope="col">Tagihan</th>
                 <th scope="col">Guide</th>
                 <th scope="col">Status</th>
                 <th scope="col" style="width:10%;">Opsi</th>
                 </tr>
             </thead>
             <tbody >
+                @foreach ($bookings as $booking )
                 <tr>
                 <th scope="row"  class="pt-3">1</th>
-                <td class="pt-3">Iqbal</td>
-                <td class="pt-3">12</td>
-                <td class="pt-3">Pemda Sleman</td>
-                <td class="pt-3">085868144268</td>
-                <td class="pt-3">2024/10/11</td>
-                <td class="pt-3">07:00:00</td>
-                <td class="pt-3">16:00:00</td>
-                <th scope="col">detail</th>
-                <th scope="col">Hadi Suherman</th>
+                <td class="pt-3">{{ $booking->nama_pic }}</td>
+                <td class="pt-3">{{ $booking->noTelpPIC }}</td>
+                <td class="pt-3">{{ $booking->organisasi }}</td>
+                <td class="pt-3">{{ $booking->visitor }}</td>
+                <td class="pt-3">{{ $booking->tanggal }}</td>
+                <td class="pt-3">{{ $booking->jam_mulai }}</td>
+                <td class="pt-3">{{ $booking->jam_selesai }}</td>
+                <th scope="col"><a href="#">Detail</a></th>
+                <th scope="col">Rp {{ $booking->tagihan }}</th>
+                <th scope="col">{{ $booking->guide->name }}</th>
                 <td class="pt-3">
                     <select class="form-select btn btn-dark text-light" aria-label="Default select example">
                         <option value="1" >Belum ACC</option>
@@ -80,7 +84,7 @@
                 </td>
                 <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
-                
+                @endforeach
             </tbody>
         </table>
     </div>
