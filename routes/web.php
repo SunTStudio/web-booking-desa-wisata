@@ -26,6 +26,7 @@ Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.ka
 Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
 
 Route::get('/admin/booking',[AdminController::class, 'show'])->name('admin.booking');
+Route::get('/admin/detail/{id}',[AdminController::class, 'detail'])->name('admin.detail');
 
 Route::get('/testing', function () {
     return view('calendar');

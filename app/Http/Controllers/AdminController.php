@@ -180,6 +180,11 @@ class AdminController extends Controller
         //
     }
 
+    public function detail(Request $request, $id){
+        $detail = Booking::findOrFail($id);
+        return view('admin.detail',compact('detail'));
+    }
+
     // public function index(Request $request)
     // {
     //     $tanggalBooking = $request->input('tanggal-booking', '');

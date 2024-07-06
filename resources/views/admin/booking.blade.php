@@ -73,7 +73,7 @@
                 <td class="pt-3">{{ $booking->tanggal }}</td>
                 <td class="pt-3">{{ $booking->jam_mulai }}</td>
                 <td class="pt-3">{{ $booking->jam_selesai }}</td>
-                <th scope="col"><a href="#">Detail</a></th>
+                <th scope="col"><a href="{{ route('admin.detail', ['id' => $booking->id]) }}">Detail</a></th>
                 <th scope="col">Rp {{ $booking->tagihan }}</th>
                 <th scope="col">{{ $booking->guide->name }}</th>
                 <td class="pt-3">
