@@ -49,7 +49,7 @@
                 </div>
                 <div class="modal-body">
                     <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
-                    <div class="row justify-content-center border rounded p-4 m-3">
+                  <div class="row justify-content-center border rounded p-4 m-3">
                         <div class="col me-4">
                             <form method="GET" action="{{ route('admin.bookingProses') }}">
                                 <div class="mb-3">
@@ -236,7 +236,7 @@
                         </div>
                     </div>
 
-                </div>
+                  </div>
 
                 
 
@@ -292,99 +292,99 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
 <script src="/js/kalender.js"></script>
 
-<script>
-    var calendar; // Declare calendar variable in the global scope
+    <script>
+        var calendar; // Declare calendar variable in the global scope
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
 
-        if (calendarEl) {
-            calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'timeGridWeek',
-                selectable: true,
-                locale: 'id',
-                allDaySlot: false,
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'timeGridDay,timeGridWeek,dayGridMonth'
-                },
-                slotLabelFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                },
-                eventTimeFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                },
-                events: [
-                    @foreach ($bookings as $booking)
-                    {
-                        title: '{{ $booking->organisasi }}',
-                        start: '{{ $booking->tanggal }}T{{ $booking->jam_mulai }}',
-                        end: '{{ $booking->tanggal }}T{{ $booking->jam_selesai }}',
-                        extendedProps: {
-                            nama_pic: '{{ $booking->nama_pic }}',
-                            noTelpPIC: '{{ $booking->noTelpPIC }}',
-                            visitor: '{{ $booking->visitor }}',
-                            paket_id: '{{ $booking->paket_id }}',
-                            tagihan: '{{ $booking->tagihan }}',
-                            guide_id: '{{ $booking->guide_id }}',
-                            status: '{{ $booking->status }}',
-                        }
+            if (calendarEl) {
+                calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'timeGridWeek',
+                    selectable: true,
+                    locale: 'id',
+                    allDaySlot: false,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'timeGridDay,timeGridWeek,dayGridMonth'
                     },
-                    @endforeach
-                ],
-                eventClick: function(info) {
-                // Prevent the browser from following the URL
-                info.jsEvent.preventDefault();
+                    slotLabelFormat: {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                    },
+                    eventTimeFormat: {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                    },
+                    events: [
+                        @foreach ($bookings as $booking)
+                        {
+                            title: '{{ $booking->organisasi }}',
+                            start: '{{ $booking->tanggal }}T{{ $booking->jam_mulai }}',
+                            end: '{{ $booking->tanggal }}T{{ $booking->jam_selesai }}',
+                            extendedProps: {
+                                nama_pic: '{{ $booking->nama_pic }}',
+                                noTelpPIC: '{{ $booking->noTelpPIC }}',
+                                visitor: '{{ $booking->visitor }}',
+                                paket_id: '{{ $booking->paket_id }}',
+                                tagihan: '{{ $booking->tagihan }}',
+                                guide_id: '{{ $booking->guide_id }}',
+                                status: '{{ $booking->status }}',
+                            }
+                        },
+                        @endforeach
+                    ],
+                    eventClick: function(info) {
+                    // Prevent the browser from following the URL
+                    info.jsEvent.preventDefault();
 
-                // Extract data from the event
-                var event = info.event;
-                var eventData = {
-                    nama_pic: event.extendedProps.nama_pic,
-                    organisasi: event.title,
-                    noTelpPIC: event.extendedProps.noTelpPIC,
-                    visitor: event.extendedProps.visitor,
-                    tanggal: event.startStr,
-                    jam_mulai: event.extendedProps.jam_mulai,
-                    jam_selesai: event.extendedProps.jam_selesai,
-                    paket_id: event.extendedProps.paket_id,
-                    tagihan: event.extendedProps.tagihan,
-                    guide_id: event.extendedProps.guide_id,
-                    status: event.extendedProps.status
-                };
+                    // Extract data from the event
+                    var event = info.event;
+                    var eventData = {
+                        nama_pic: event.extendedProps.nama_pic,
+                        organisasi: event.title,
+                        noTelpPIC: event.extendedProps.noTelpPIC,
+                        visitor: event.extendedProps.visitor,
+                        tanggal: event.startStr,
+                        jam_mulai: event.extendedProps.jam_mulai,
+                        jam_selesai: event.extendedProps.jam_selesai,
+                        paket_id: event.extendedProps.paket_id,
+                        tagihan: event.extendedProps.tagihan,
+                        guide_id: event.extendedProps.guide_id,
+                        status: event.extendedProps.status
+                    };
 
-                // Update the modal's content
-                var modalBody = document.getElementById('modalBody');
-                modalBody.innerHTML = `
-                    <p><strong>PIC : </strong> ${eventData.nama_pic}</p>
-                    <p><strong>Organisasi : </strong> ${eventData.organisasi}</p>
-                    <p><strong>No. Telp PIC : </strong> ${eventData.noTelpPIC}</p>
-                    <p><strong>Visitor : </strong> ${eventData.visitor}</p>
-                    <p><strong>Tanggal : </strong> ${eventData.tanggal}</p>
-                    <p><strong>Jam Mulai : </strong> ${eventData.jam_mulai}</p>
-                    <p><strong>Jam Selesai : </strong> ${eventData.jam_selesai}</p>
-                    <p><strong>Paket ID : </strong> ${eventData.paket_id}</p>
-                    <p><strong>Tagihan : </strong> ${eventData.tagihan}</p>
-                    <p><strong>Guide ID : </strong> ${eventData.guide_id}</p>
-                    <p><strong>Status : </strong> ${eventData.status}</p>
-                `;
+                    // Update the modal's content
+                    var modalBody = document.getElementById('modalBody');
+                    modalBody.innerHTML = `
+                        <p><strong>PIC : </strong> ${eventData.nama_pic}</p>
+                        <p><strong>Organisasi : </strong> ${eventData.organisasi}</p>
+                        <p><strong>No. Telp PIC : </strong> ${eventData.noTelpPIC}</p>
+                        <p><strong>Visitor : </strong> ${eventData.visitor}</p>
+                        <p><strong>Tanggal : </strong> ${eventData.tanggal}</p>
+                        <p><strong>Jam Mulai : </strong> ${eventData.jam_mulai}</p>
+                        <p><strong>Jam Selesai : </strong> ${eventData.jam_selesai}</p>
+                        <p><strong>Paket ID : </strong> ${eventData.paket_id}</p>
+                        <p><strong>Tagihan : </strong> ${eventData.tagihan}</p>
+                        <p><strong>Guide ID : </strong> ${eventData.guide_id}</p>
+                        <p><strong>Status : </strong> ${eventData.status}</p>
+                    `;
 
-                // Show the modal
-                $('#eventModal').modal('show');
+                    // Show the modal
+                    $('#eventModal').modal('show');
+                }
+
+                });
+
+                calendar.render();
+            } else {
+                console.error("Element with id 'calendar' not found.");
             }
+        });
 
-            });
-
-            calendar.render();
-        } else {
-            console.error("Element with id 'calendar' not found.");
-        }
-    });
-
-</script>
+    </script>
 
 @endsection

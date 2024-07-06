@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminController;
@@ -37,6 +38,5 @@ Route::get('/form', function () {
     return view('form');
 })->name('admin.form');
 
-Route::get('/', function () {
-    return view('user/landingpage');
-})->name('user.landingpage');
+Route::get('/', [LandingPageController::class,'index'])->name('user.landingpage');
+Route::get('/booking/proses', [LandingPageController::class,'store'])->name('user.bookingProses');
