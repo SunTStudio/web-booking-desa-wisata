@@ -35,8 +35,8 @@ class AdminController extends Controller
         $kuliners = Kuliner::all();
         $homestays = Homestay::all();
         $studiBandings = StudyBanding::all();
-
-        return view('admin.kalender', compact('batiks','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
+        $bookings = Booking::all();
+        return view('admin.kalender', compact('batiks','bookings','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
             'namaBooking', 
             'noTelpPic', 
             'jamBookingMulai', 
@@ -45,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
-        $data = Booking::all();
+        $data = Booking::orderBy('id', 'desc')->take(2)->get();
         return view('admin/dashboard', compact('data'));
     }
 
@@ -183,6 +183,34 @@ class AdminController extends Controller
     public function detail(Request $request, $id){
         $detail = Booking::findOrFail($id);
         return view('admin.detail',compact('detail'));
+    }
+
+    public function searchPIC(Request $request){
+        $searchPIC = $request->namePIC;
+        $searchTanggal = $request->tanggal;
+
+        if($searchTanggal !== '' && $searchPIC !== '' ){
+            $bookings = Booking::where('nama_pic', 'LIKE', '%' . $searchPIC . '%')
+                   ->where('tanggal', 'LIKE', '%' . $searchTanggal . '%')
+                   ->get();
+
+                   session(['nama_pic' => $searchPIC]);
+                   session(['tanggal' => $searchTanggal]);
+            
+        }else if($searchTanggal == '' && $searchPIC !== ''  ){
+            $bookings = Booking::where('nama_pic','LIKE','%'.$searchPIC.'%')->get();
+            session(['nama_pic' => $searchPIC]);
+            
+        }else if($searchTanggal !== '' && $searchPIC == ''  ){
+            $bookings = Booking::where('tanggal','LIKE','%'.$searchTanggal.'%')->get();
+            session(['tanggal' => $searchTanggal]);
+        }else{
+            $bookings = Booking::all();
+            session(['nama_pic' => $searchPIC]);
+            session(['tanggal' => $searchTanggal]);
+        }
+
+        return view('admin.booking',compact('bookings'));
     }
 
     // public function index(Request $request)

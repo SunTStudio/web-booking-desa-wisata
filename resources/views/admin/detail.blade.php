@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,7 +20,7 @@
         }
 
         #booking-text p{
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
   </head>
@@ -48,7 +49,7 @@
                 <div class="col">
                     <div class="row mt-2 " id="booking-text">
                         <div class="col-4 border-end p-3 ps-4">
-                            <p class="fw-bold"><small>ID BOOKING : {{ $detail->id }}</small></p>
+                            <p class="fw-bold"><small>ID BOOKING : 00{{ $detail->id }}</small></p>
                             <p>Nama PIC : <span class="fw-bold">{{ $detail->nama_pic }}</span></p>
                             <p>Organisati : <span class="fw-bold">{{ $detail->organisasi }}</span></p>
                             <p>No Telp PIC : <span class="fw-bold">{{ $detail->noTelpPIC }}</span></p>
@@ -59,7 +60,7 @@
                             <a href="{{ route('admin.invoice', ['id' => $detail->id]) }}" class="btn btn-primary fw-bold mt-4" style="font-size: 0.8rem ;">Cetak Struck</a>
                         </div>
                         <div class="col-8 p-3 ps-5">
-                        <p class="fw-bold"><small>ID PAKET : {{ $detail->paket_id }}</small></p>
+                        <p class="fw-bold"><small>ID PAKET : 00{{ $detail->paket_id }}</small></p>
 
                         <!-- Paket Batik -->
                         <div class="batik justify-content-between d-flex pt-1">
