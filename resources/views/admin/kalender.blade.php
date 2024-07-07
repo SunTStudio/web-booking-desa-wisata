@@ -361,7 +361,7 @@
                     eventClick: function(info) {
                     // Prevent the browser from following the URL
                     info.jsEvent.preventDefault();
-
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };    
                     // Extract data from the event
                     var event = info.event;
                     var eventData = {
@@ -369,7 +369,7 @@
                         organisasi: event.title,
                         noTelpPIC: event.extendedProps.noTelpPIC,
                         visitor: event.extendedProps.visitor,
-                        tanggal: event.startStr,
+                        tanggal: event.start.toLocaleDateString('id-ID', options),
                         jam_mulai: event.extendedProps.jam_mulai,
                         jam_selesai: event.extendedProps.jam_selesai,
                         paket_id: event.extendedProps.paket_id,

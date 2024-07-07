@@ -6,7 +6,7 @@
     font-size: 0.9rem;
 }
 
-#tabel-booking  select{
+#tabel-booking  button{
     font-size: 0.6rem;
     font-weight: 800;
 }
@@ -15,10 +15,14 @@
     font-size: 0.8rem;
 }
 
+
+
 @media (max-width: 768px) {
 
 #tabel-col{
     margin-bottom: 5rem;
 }
+
+
 
 }

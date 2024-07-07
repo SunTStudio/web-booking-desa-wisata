@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<div class="row justify-content-center mt-3">
+<div class="row justify-content-center mt-3 mb-3">
     <div class="col-lg-5 col-12 informasi d-flex">
         <div class="row justify-content-between m-3 bg-white rounded p-4" id="menuCount">
             <div class="col-4 mt-2 mb-2">
@@ -56,7 +56,7 @@
             <p class=" m-0 fw-bold text-center text-secondary p-2">Kunjungan Terdekat</p>
             @foreach ($appoitments as $appoitment )
                 
-            <div class="col-5 bg-primary me-4 p-3 rounded">
+            <div class="col-5 bg-primary me-2 ms-2 p-3 rounded">
                 <div class="waktu-appointment text-white fw-medium">
                     <p class="m-0 pb-2"><strong>Tanggal : </strong><br> {{ $appoitment->tanggal }} </p>
                     <p class="m-0"><strong>Waktu : </strong><br> {{ $appoitment->jam_mulai }} - {{ $appoitment->jam_selesai }}</p>
@@ -75,8 +75,8 @@
     </div>
 </div>
 
-<div class="container-fluid  px-4">
-        <div class="row justify-content-center m-4 mt-0 g-4">
+<div class="container-fluid  px-4" id="grafik-main">
+        <div class="row justify-content-center g-4" id="grafik-konten">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-white text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -217,14 +217,36 @@
                         },
                         y: {
                             beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Pendapatan (IDR)'
+                            
+                            ticks: {
+                            callback: function(value, index, values) {
+                                // Fungsi untuk mengubah nominal menjadi format '1 juta', '750 ribu', dll.
+                                return formatCurrency(value);
+                             }
                             }
                         }
                     }
                 }
             });
+
+            // Fungsi untuk mengubah format nominal
+            function formatCurrency(value) {
+            if (value >= 1000000) {
+                var formattedValue = (value / 1000000).toFixed(1);
+                if (formattedValue.slice(-2) === '.0') {
+                    formattedValue = formattedValue.slice(0, -2); // Menghapus desimal nol
+                }
+                return formattedValue + ' juta';
+            } else if (value >= 1000) {
+                var formattedValue = (value / 1000).toFixed(1);
+                if (formattedValue.slice(-2) === '.0') {
+                    formattedValue = formattedValue.slice(0, -2); // Menghapus desimal nol
+                }
+                return formattedValue + ' ribu';
+            } else {
+                return value;
+            }
+        }
         });
     </script>
 @endsection
