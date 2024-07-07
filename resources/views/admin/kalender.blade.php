@@ -296,10 +296,16 @@
         <p>Dashboard</p>
     </a>
 </div>
-<div class="col text-center">
+<div class="col text-center border-start">
     <a href="{{ route('admin.booking') }}" class="text-secondary">
         <p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
         <p>Booking</p>
+    </a>
+</div>
+<div class="col text-center border-start">
+    <a href="{{ route('admin.laporan') }}" class="text-secondary">
+        <p><i class="fa-solid fa-file-lines m-0 p-0 pt-2"></i></p>
+        <p>Laporan</p>
     </a>
 </div>
 

@@ -152,7 +152,7 @@
 @endsection
 
 @section('menuHp')
-                <div class="col text-center ">
+                <div class="col text-center border-end">
                     <a href="{{ route('admin.kalender') }}" class="text-secondary"><p><i class="fa-regular fa-calendar-days m-0 p-0 pt-2"></i></p>
                     <p>Kalender</p></a>
                 </div>
@@ -163,6 +163,12 @@
                 <div class="col text-center rounded-top bg-secondary">
                     <a href="{{ route('admin.booking') }}" class="text-white"><p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
                     <p>Booking</p></a>
+                </div>
+                <div class="col text-center ">
+                    <a href="{{ route('admin.laporan') }}" class="text-secondary">
+                        <p><i class="fa-solid fa-file-lines m-0 p-0 pt-2"></i></p>
+                        <p>Laporan</p>
+                    </a>
                 </div>
 @endsection
 
