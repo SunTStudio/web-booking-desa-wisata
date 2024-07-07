@@ -51,7 +51,7 @@
             /* display: flex;
             justify-content: space-between; */
         }
-        
+
         .invoice .footer .tanda-tangan {
             width: 20rem;
         }
@@ -109,58 +109,76 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                $no = 1;
+                @endphp
+                @if ($data->paket->batik->nama != "Tidak Pesan")
                 <tr>
-                    <td>1</td>
-                    <td>PAKET LIVE IN 2D1N</td>
-                    <td>88</td>
-                    <td>285.000</td>
-                    <td>25.080.000</td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->batik->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->batik->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->batik->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->kesenian->nama != "Tidak Pesan")
                 <tr>
-                    <td>2</td>
-                    <td>PAKET GURU (MEMBATIK MAKAN DAN HOMESTAY)</td>
-                    <td>6</td>
-                    <td>165.000</td>
-                    <td>990.000</td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->kesenian->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->kesenian->harga_pementasan, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->kesenian->harga_pementasan * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->cocokTanam->nama != "Tidak Pesan")
                 <tr>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->cocokTanam->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->cocokTanam->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->cocokTanam->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->permainan->nama != "Tidak Pesan")
                 <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->permainan->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->permainan->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->permainan->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->kuliner->nama != "Tidak Pesan")
                 <tr>
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->kuliner->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->kuliner->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->kuliner->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->homestay->nama != "Tidak Pesan")
                 <tr>
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->homestay->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->homestay->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->homestay->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+                @if ($data->paket->study_banding->nama != "Tidak Pesan")
                 <tr>
-                    <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $data->paket->study_banding->nama }}</td>
+                    <td>{{ $data->visitor }}</td>
+                    <td>Rp. {{ number_format($data->paket->study_banding->harga, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($data->paket->study_banding->harga * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
+                @endif
+
                 <tr>
                     <td colspan="4" style="text-align: center;">TOTAL</td>
-                    <td>26.070.000</td>
+                    <td>Rp. {{ number_format($data->tagihan, 0, ',', '.') }}</td>
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;">DP</td>
@@ -168,7 +186,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" style="text-align: center;">SISA</td>
-                    <td>26.070.000</td>
+                    <td>Rp. {{ number_format($data->tagihan, 0, ',', '.') }}</td>
                 </tr>
             </tbody>
         </table>
@@ -178,9 +196,9 @@
                     <p>24 - 25 JUNI 2024</p>
                 </td>
                 <td class="tanda-tangan">
-                        <p style="text-align: center;">Hormat Kami,</p>
-                        <p style="padding: 2rem;"></p>
-                        <p style="text-align: center;">AGUSJATI KUMARA</p>
+                    <p style="text-align: center;">Hormat Kami,</p>
+                    <p style="padding: 2rem;"></p>
+                    <p style="text-align: center;">AGUSJATI KUMARA</p>
                 </td>
             </tr>
         </table>

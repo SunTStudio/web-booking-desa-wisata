@@ -4,7 +4,7 @@ use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PDFController;
 
 // Route::get('/admin', function () {
 //     return view('admin/dashboard');
@@ -19,9 +19,11 @@ Route::get('/laporan/search', [AdminController::class, 'laporanSearch'])->name('
 // Route::get('/admin/invoice', function () {
 //     return view('tagihan/invoice');
 // })->name('admin.invoice');
+Route::get('/laporan/report', [PDFController::class, 'laporan'])->name('admin.laporan.print');
+Route::get('/laporan/report/pdf', [PDFController::class, 'laporan_pdf'])->name('admin.laporan.pdf');
 
-Route::get('/admin/invoice{id}', [InvoiceController::class, 'pdf'])->name('admin.invoice');
-Route::get('/admin/invoice{id}?output=pdf', [InvoiceController::class, 'pdf'])->name('admin.invoice.pdf');
+Route::get('/admin/invoice{id}', [PDFController::class, 'invoice'])->name('admin.invoice');
+Route::get('/admin/invoice{id}?output=pdf', [PDFController::class, 'invoice'])->name('admin.invoice.pdf');
 
 Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.kalender');
 Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
