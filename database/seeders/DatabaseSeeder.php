@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             PermainanSeeder::class,
             KulinerSeeder::class,
             GuideSeeder::class,
+            HomestaySeeder::class,
+            StudyBandingSeeder::class,
         ]);
     }
 }

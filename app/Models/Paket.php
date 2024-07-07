@@ -11,10 +11,10 @@ class Paket extends Model
     protected $fillable = [
         'batik_id', 
         'kesenian_id', 
-        'study_banding', 
+        'study_banding_id', 
         'cocok_tanam_id', 
         'permainan_id', 
-        'homestay', 
+        'homestay_id', 
         'kuliner_id'
     ];
 
@@ -41,6 +41,16 @@ class Paket extends Model
     public function kuliner()
     {
         return $this->belongsTo(Kuliner::class, 'kuliner_id');
+    }
+
+    public function homestay()
+    {
+        return $this->belongsTo(Homestay::class, 'homestay_id');
+    }
+
+    public function study_banding()
+    {
+        return $this->belongsTo(StudyBanding::class, 'study_banding_id');
     }
 
     public function bookings()

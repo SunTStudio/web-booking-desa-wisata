@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\StudyBanding;
 use Illuminate\Http\Request;
 use App\Models\Batik;
 use App\Models\Booking;
 use App\Models\Kesenian;
 use App\Models\CocokTanam;
+use App\Models\Homestay;
 use App\Models\Permainan;
 use App\Models\Kuliner;
+use App\Models\Paket;
 
 class AdminController extends Controller
 {
@@ -30,8 +33,10 @@ class AdminController extends Controller
         $cocokTanams = CocokTanam::all();
         $permainans = Permainan::all();
         $kuliners = Kuliner::all();
-
-        return view('admin.kalender', compact('batiks', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
+        $homestays = Homestay::all();
+        $studiBandings = StudyBanding::all();
+        $bookings = Booking::all();
+        return view('admin.kalender', compact('batiks','bookings','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
             'namaBooking', 
             'noTelpPic', 
             'jamBookingMulai', 
@@ -40,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
-        $data = Booking::all();
+        $data = Booking::orderBy('id', 'desc')->take(2)->get();
         return view('admin/dashboard', compact('data'));
     }
 
@@ -109,15 +114,46 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        Paket::create([
+            'batik_id' => $request->batik,
+            'kesenian_id' => $request->kesenian,
+            'study_banding_id' => $request->studiBanding,
+            'cocok_tanam_id' => $request->cocokTanam,
+            'permainan_id' => $request->permainan,
+            'homestay_id' => $request->homestay,
+            'kuliner_id' => $request->kuliner,
+        ]);
+        
+        $paket = Paket::latest()->first();
+
+        Booking::create([
+            'nama_pic' => $request->nama_pic,
+            'organisasi' => $request->organisasi,
+            'noTelpPIC' => $request->notelppic,
+            'visitor' => $request->visitor,
+            'tanggal' => $request->tanggal,
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'paket_id' => $paket->id,
+            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'guide_id' => '1',
+            'status' => 'belum',
+        ]);
+
+        return redirect()->route('admin.booking');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show()
     {
-        //
+        $bookings = Booking::all();
+        return view('admin.booking',compact('bookings'));
     }
 
     /**
@@ -142,6 +178,39 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function detail(Request $request, $id){
+        $detail = Booking::findOrFail($id);
+        return view('admin.detail',compact('detail'));
+    }
+
+    public function searchPIC(Request $request){
+        $searchPIC = $request->namePIC;
+        $searchTanggal = $request->tanggal;
+
+        if($searchTanggal !== '' && $searchPIC !== '' ){
+            $bookings = Booking::where('nama_pic', 'LIKE', '%' . $searchPIC . '%')
+                   ->where('tanggal', 'LIKE', '%' . $searchTanggal . '%')
+                   ->get();
+
+                   session(['nama_pic' => $searchPIC]);
+                   session(['tanggal' => $searchTanggal]);
+            
+        }else if($searchTanggal == '' && $searchPIC !== ''  ){
+            $bookings = Booking::where('nama_pic','LIKE','%'.$searchPIC.'%')->get();
+            session(['nama_pic' => $searchPIC]);
+            
+        }else if($searchTanggal !== '' && $searchPIC == ''  ){
+            $bookings = Booking::where('tanggal','LIKE','%'.$searchTanggal.'%')->get();
+            session(['tanggal' => $searchTanggal]);
+        }else{
+            $bookings = Booking::all();
+            session(['nama_pic' => $searchPIC]);
+            session(['tanggal' => $searchTanggal]);
+        }
+
+        return view('admin.booking',compact('bookings'));
     }
 
     // public function index(Request $request)

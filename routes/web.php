@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminController;
@@ -22,11 +23,12 @@ Route::get('/laporan/search', [AdminController::class, 'laporanSearch'])->name('
 Route::get('/admin/invoice{id}', [InvoiceController::class, 'pdf'])->name('admin.invoice');
 Route::get('/admin/invoice{id}?output=pdf', [InvoiceController::class, 'pdf'])->name('admin.invoice.pdf');
 
-Route::get('/kalender', [AdminController::class, 'index'])->name('admin.kalender');
+Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.kalender');
+Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
 
-Route::get('/booking', function () {
-    return view('admin/booking');
-})->name('admin.booking');
+Route::get('/admin/booking',[AdminController::class, 'show'])->name('admin.booking');
+Route::get('/admin/booking/search-pic',[AdminController::class, 'searchPIC'])->name('admin.booking.pic.search');
+Route::get('/admin/detail/{id}',[AdminController::class, 'detail'])->name('admin.detail');
 
 Route::get('/testing', function () {
     return view('calendar');
@@ -36,6 +38,5 @@ Route::get('/form', function () {
     return view('form');
 })->name('admin.form');
 
-Route::get('/', function () {
-    return view('user/landingpage');
-})->name('user.landingpage');
+Route::get('/', [LandingPageController::class,'index'])->name('user.landingpage');
+Route::get('/booking/proses', [LandingPageController::class,'store'])->name('user.bookingProses');

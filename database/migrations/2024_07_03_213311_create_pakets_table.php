@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('batik_id')->constrained('batiks');
             $table->foreignId('kesenian_id')->constrained('kesenians');
-            $table->string('study_banding');
+            $table->foreignId('study_banding_id')->constrained('study_bandings');
             $table->foreignId('cocok_tanam_id')->constrained('cocok_tanams');
             $table->foreignId('permainan_id')->constrained('permainans');
-            $table->string('homestay');
+            $table->foreignId('homestay_id')->constrained('homestays');
             $table->foreignId('kuliner_id')->constrained('kuliners');
             $table->timestamps();
         });

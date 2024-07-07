@@ -10,12 +10,14 @@ class Booking extends Model
     use HasFactory;
      protected $fillable = [
         'nama_pic', 
-        'organisasi', 
+        'organisasi',
+        'noTelpPIC', 
         'visitor', 
         'tanggal', 
         'jam_mulai', 
         'jam_selesai', 
         'paket_id', 
+        'tagihan', 
         'guide_id', 
         'status'
     ];
