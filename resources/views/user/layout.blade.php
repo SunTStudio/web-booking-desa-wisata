@@ -18,12 +18,12 @@
 
 <body>
     <nav class="navbar bg-body-tertiary mb-5">
-        <div class="container">
+        <div class="container justify-content-sm-center justify-content-xl-between">
             <a class="navbar-brand" href="#">
                 <img src="/asset/Logo_Desa_Krebet.png" alt="Bootstrap" height="70">
             </a>
             <form class="d-flex m-0" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2 p-0" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <ul class="sosmed d-flex gap-2 m-0">
