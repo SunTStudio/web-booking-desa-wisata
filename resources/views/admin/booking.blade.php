@@ -81,7 +81,7 @@
                 <td class="pt-3">
                     <button class="btn btn-dark text-light">{{ $booking->status }}</button>
                 </td>
-                <td ><a href="{{ route('admin.edit.booking',['id' => $booking->id]) }}" class="btn btn-warning" style="font-size: 0.8rem ;"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
+                <td ><a href="{{ route('admin.edit.booking',['id' => $booking->id]) }}" class="btn btn-warning" style="font-size: 0.8rem ;"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="{{ route('admin.booking.delete',['id' => $booking->id]) }}" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
                 @endforeach
             </tbody>

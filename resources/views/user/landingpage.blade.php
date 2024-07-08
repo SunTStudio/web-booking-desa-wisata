@@ -347,7 +347,7 @@
                                 <hr>
                                 <div class="cekStatus text-center p-3">
                                     <p class="fw-bold">Periksa Status Booking ini lebih lanjut dengan menghubungi nomer Admin berikut :</p>
-                                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> 08734348343 </a>
+                                    <a href="https://wa.me/6285868144268" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> 08734348343 </a>
                                 </div>
                             </div>
                         </div>

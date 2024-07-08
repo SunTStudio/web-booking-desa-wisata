@@ -5,11 +5,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PDFController;
-
+use Illuminate\Support\Facades\Auth;
 // Route::get('/admin', function () {
 //     return view('admin/dashboard');
 // })->name('admin.dashboard');
 
+
+
+Route::get('/login-krebet', [AdminController::class, 'login'])->name('login');
+Route::post('/login-proses-krebet', [AdminController::class, 'loginProses'])->name('admin.login.proses');
+Route::get('/logout-krebet', [AdminController::class, 'logout'])->name('admin.logout');
+
+Route::middleware(['auth'])->group(function () {
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/laporan', [AdminController::class, 'laporan'])->name('admin.laporan');
 Route::get('/laporan/search', [AdminController::class, 'laporanSearch'])->name('admin.laporan.search');
@@ -33,7 +40,8 @@ Route::get('/admin/booking/search-pic',[AdminController::class, 'searchPIC'])->n
 Route::get('/admin/detail/{id}',[AdminController::class, 'detail'])->name('admin.detail');
 Route::get('/admin/edit/{id}',[AdminController::class, 'edit'])->name('admin.edit.booking');
 Route::get('/admin/update/{id}',[AdminController::class, 'update'])->name('admin.bookingUpdate');
-
+Route::get('/admin/delete/{id}',[AdminController::class, 'destroy'])->name('admin.booking.delete');
+});
 Route::get('/testing', function () {
     return view('calendar');
 })->name('admin.test');

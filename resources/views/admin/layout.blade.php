@@ -28,7 +28,7 @@
                                     <i class="bi bi-person-circle"></i>
                                 </a>
                                 <ul class="dropdown-menu p-0 position-absolute" id="drop-menu">
-                                    <li style="font-size:0.7rem;"><a class="dropdown-item p-2 rounded fw-bold" href="#"><i class="bi bi-door-open"></i> Keluar</a></li>
+                                    <li style="font-size:0.7rem;"><a class="dropdown-item p-2 rounded fw-bold" href="{{ route('admin.logout') }}"><i class="bi bi-door-open"></i> Keluar</a></li>
                                 </ul>
                             </div>
                         </li>
