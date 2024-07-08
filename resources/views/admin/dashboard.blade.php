@@ -55,7 +55,7 @@
         <div class="row justify-content-center m-3 bg-white rounded p-4 pt-2">
             <p class=" m-0 fw-bold text-center text-secondary p-2">Kunjungan Terdekat</p>
             @foreach ($appoitments as $appoitment )
-                
+
             <div class="col-5 bg-primary me-2 ms-2 p-3 rounded">
                 <div class="waktu-appointment text-white fw-medium">
                     <p class="m-0 pb-2"><strong>Tanggal : </strong><br> {{ $appoitment->tanggal }} </p>
@@ -70,31 +70,31 @@
                 </div>
             </div>
             @endforeach
-            
+
         </div>
     </div>
 </div>
 
 <div class="container-fluid  px-4" id="grafik-main">
-        <div class="row justify-content-center g-4" id="grafik-konten">
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-white text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0 fw-bold">Grafik Kunjungan Desa Krebet</h6>
-                    </div>
-                    <canvas id="kunjungan-trafik"></canvas>
+    <div class="row justify-content-center g-4" id="grafik-konten">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-white text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0 fw-bold">Grafik Kunjungan Desa Krebet</h6>
                 </div>
+                <canvas id="kunjungan-trafik"></canvas>
             </div>
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-white text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0 fw-bold">Grafik Pendapatan Desa Krebet</h6>
-                    </div>
-                    <canvas id="pendapatan-trafik"></canvas>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-white text-center rounded p-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0 fw-bold">Grafik Pendapatan Desa Krebet</h6>
                 </div>
+                <canvas id="pendapatan-trafik"></canvas>
             </div>
         </div>
     </div>
+</div>
 
 <div class="row justify-content-center mt-3 mx-3 mb-5" id="tabel-booking">
     <div class="col-11 bg-white rounded p-3 text-center">
@@ -126,7 +126,7 @@
                     <td><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;">Edit</a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;">Delete</a> | <a href="{{ route('admin.invoice', ['id' => $items->id]) }}" class="btn btn-info" style="font-size: 0.8rem ;">Cetak</a></td>
                 </tr>
                 @endforeach
-                
+
             </tbody>
         </table>
         <a href="#" style="text-decoration: none;">Selengkapnya <i class="fa-solid fa-caret-right"></i></a>
@@ -163,80 +163,80 @@
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('kunjungan-trafik').getContext('2d');
-            var trafficChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: @json($dates),
-                    datasets: [{
-                        label: 'Kunjungan Harian',
-                        data: @json($counts),
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 2,
-                        fill: false,
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tanggal'
-                            }
-                            },
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Jumlah Kunjungan'
-                            }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('kunjungan-trafik').getContext('2d');
+        var trafficChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @json($dates),
+                datasets: [{
+                    label: 'Kunjungan Harian',
+                    data: @json($counts),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Jumlah Kunjungan'
                         }
                     }
                 }
-            });
+            }
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var ctx = document.getElementById('pendapatan-trafik').getContext('2d');
-            var revenueChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: @json($dates),
-                    datasets: [{
-                        label: 'Pendapatan Harian',
-                        data: @json($totals),
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Tanggal'
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            
-                            ticks: {
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('pendapatan-trafik').getContext('2d');
+        var revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @json($dates),
+                datasets: [{
+                    label: 'Pendapatan Harian',
+                    data: @json($totals),
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tanggal'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+
+                        ticks: {
                             callback: function(value, index, values) {
                                 // Fungsi untuk mengubah nominal menjadi format '1 juta', '750 ribu', dll.
                                 return formatCurrency(value);
-                             }
                             }
                         }
                     }
                 }
-            });
+            }
+        });
 
-            // Fungsi untuk mengubah format nominal
-            function formatCurrency(value) {
+        // Fungsi untuk mengubah format nominal
+        function formatCurrency(value) {
             if (value >= 1000000) {
                 var formattedValue = (value / 1000000).toFixed(1);
                 if (formattedValue.slice(-2) === '.0') {
@@ -253,6 +253,6 @@
                 return value;
             }
         }
-        });
-    </script>
+    });
+</script>
 @endsection

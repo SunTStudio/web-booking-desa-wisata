@@ -14,8 +14,16 @@ class StudyBandingSeeder extends Seeder
     public function run(): void
     {
         DB::table('study_bandings')->insert([
-            ['nama' => 'Tidak Pesan', 'deskripsi' => 'Tidak Pesan', 'harga' => 0],
-            ['nama' => 'Paket Study Banding', 'deskripsi' => 'Deskripsi Paket Study Banding', 'harga' => 75000],
-         ]);
+            [
+                'nama' => 'Tidak Pesan',
+                'deskripsi' => 'Tidak Pesan',
+                'harga' => 0
+            ],
+            [
+                'nama' => 'Paket Study Banding',
+                'deskripsi' => 'Materi Desa Wisata Krebet, Diskusi dan tanya jawab, Melihat Proses produksi dan kerajinan, Membatik Batik Paket III',
+                'harga' => 75000
+            ],
+        ]);
     }
 }

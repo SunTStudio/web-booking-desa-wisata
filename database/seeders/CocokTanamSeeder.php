@@ -15,13 +15,25 @@ class CocokTanamSeeder extends Seeder
     {
         DB::table('cocok_tanams')->insert([
             [
-            'nama' => 'Tidak Pesan',
-            'deskripsi' => 'Tidak Pesan',
-            'harga' => 0
+                'nama' => 'Tidak Pesan',
+                'deskripsi' => 'Tidak Pesan',
+                'harga' => 0
             ],
-            ['nama' => 'pohon', 'deskripsi' => 'Deskripsi pohon', 'harga' => 30000],
-            ['nama' => 'Sayuran', 'deskripsi' => 'Deskripsi Sayuran', 'harga' => 30000],
-            ['nama' => 'Biji-bijian', 'deskripsi' => 'Deskripsi Biji-bijian', 'harga' => 30000],
+            [
+                'nama' => 'Pohon',
+                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
+                'harga' => 30000
+            ],
+            [
+                'nama' => 'Sayuran',
+                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
+                'harga' => 30000
+            ],
+            [
+                'nama' => 'Biji-bijian',
+                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
+                'harga' => 30000
+            ],
         ]);
     }
 }

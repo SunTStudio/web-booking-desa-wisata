@@ -5,9 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Bulanan</title>
-    <link rel="stylesheet" href="/css/laporan.css">
+    <!-- <link rel="stylesheet" href="/css/laporan.css"> -->
     <style>
+        .laporan {
+            margin: 2rem;
+        }
 
+        .laporan .detail {
+            width: 100%;
+            /* Mengatur tabel agar mengisi 100% lebar kontainer */
+            border-collapse: collapse;
+        }
+
+        .laporan .detail th,
+        .laporan .detail td {
+            border: 1px solid #dddddd;
+            /* Garis batas sel */
+            text-align: left;
+            /* Penyusunan teks */
+            padding: 8px;
+            /* Ruang isi dalam sel */
+            height: 1rem;
+        }
+
+        a {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.3rem;
+            background-color: green;
+            color: white;
+            margin-top: 3rem;
+        }
     </style>
 </head>
 
