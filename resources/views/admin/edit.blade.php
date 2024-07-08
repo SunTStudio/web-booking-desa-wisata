@@ -90,11 +90,44 @@
 
                         <!-- Paket Kesenian -->
                         <div class="mb-3">
-                            <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian</label>
-                            <select class="form-select" name="kesenian" id="paket-kesenian">
-                                <option value="{{ $data->paket->kesenian->id }}" selected>{{ $data->paket->kesenian->nama }}</option>
+                            <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar</label>
+                            <select class="form-select" name="kesenianBelajar" id="paket-kesenian">
+                                <option value="
+                                @if ($data->paket->ketKesenian == 'belajar')
+                                        {{$data->paket->kesenian->id}}.belajar
+                                    @elseif ($data->paket->ketKesenian == 'pementasan')
+                                        1.belajar
+                                    @endif
+                                " selected>
+                                @if ($data->paket->ketKesenian == 'belajar')
+                                    {{ $data->paket->kesenian->nama }}
+                                @endif
+                            
+                                </option>
                                 @foreach ($kesenians as $kesenian)
-                                <option value="{{ $kesenian->id }}">
+                                <option value="{{ $kesenian->id }}.belajar">
+                                    {{ $kesenian->nama }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar + Pementasan</label>
+                            <select class="form-select" name="kesenianPementasan" id="paket-kesenian">
+                                <option value="
+                                    @if ($data->paket->ketKesenian == 'pementasan')
+                                        {{$data->paket->kesenian->id}}.pementasan
+                                    @elseif ($data->paket->ketKesenian == 'belajar')
+                                        1.pementasan
+                                    @endif
+                                " selected>
+                                @if ($data->paket->ketKesenian == 'pementasan')
+                                    {{ $data->paket->kesenian->nama }}
+                                @endif
+                                </option>
+                                @foreach ($kesenians as $kesenian)
+                                <option value="{{ $kesenian->id }}.pementasan">
                                     {{ $kesenian->nama }}
                                 </option>
                                 @endforeach

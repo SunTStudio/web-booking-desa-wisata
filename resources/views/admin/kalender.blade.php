@@ -153,24 +153,57 @@
 
                             <!-- Paket Kesenian -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian</label>
+                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar (Rp40.000)</label>
                                 @foreach ($kesenians as $kesenian)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" value="{{ $kesenian->id }}" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <input class="form-check-input" value="{{ $kesenian->id}}.belajar" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
                                             <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
                                             <hr>
-                                            <small>Deskripsi:</small>
-                                            <p class="card-text">{{ $kesenian->deskripsi }}</p>
                                             <small>Harga Belajar:</small>
                                             <p class="card-text">{{ $kesenian->harga_belajar }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <hr>
+                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar dan Pementasan (Rp150.000)</label>
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id }}.pementasan" type="radio" name="kesenian" id="kesenian2{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kesenian2{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
+                                            <hr>
                                             <small>Harga Pementasan:</small>
                                             <p class="card-text">Rp {{ $kesenian->harga_pementasan }}</p>
                                         </label>
                                     </div>
                                 </div>
                                 @endforeach
+                                <hr class="mt-3">
+                                <div class="col-lg-12">
+                                    <div class="row p-3">
+                                        <div class="col-6">
+                                            <p class="fw-medium h6">Keterangan Paket Kesenian :</p>
+                                            <ul>
+                                                <li>Biaya Belajar Rp 40.000/orang</li>
+                                                <li>Biaya Belajar & Pementasan Rp 150.000/orang</li>
+                                                <li>Minimal Peserta 10 orang</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="fw-medium h6">Fasilitas :</p>
+                                            <ul>
+                                                <li>Foto Kegiatan</li>
+                                                <li>Pakaian Tradisional dan Make Up</li>
+                                                <li>Tempat Pertunjukan</li>
+                                                <li>Air Minum Kemasan</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Paket Cocok Tanam -->

@@ -29,19 +29,24 @@ class LandingPageController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
+        list($kesenianID,$ketKesenian) = explode('.',$request->kesenian);
         Paket::create([
             'batik_id' => $request->batik,
-            'kesenian_id' => $request->kesenian,
+            'kesenian_id' => $kesenianID,
             'study_banding_id' => $request->studiBanding,
             'cocok_tanam_id' => $request->cocokTanam,
             'permainan_id' => $request->permainan,
             'homestay_id' => $request->homestay,
             'kuliner_id' => $request->kuliner,
+            'ketKesenian' => $ketKesenian,
         ]);
         
         $paket = Paket::latest()->first();
+        if($ketKesenian == 'pementasan'){
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }else{
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }
 
         Booking::create([
             'nama_pic' => $request->nama_pic,
@@ -52,8 +57,7 @@ class LandingPageController extends Controller
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'paket_id' => $paket->id,
-            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
-            // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'tagihan' => $tagihan,
             'guide_id' => '1',
             'status' => 'belum',
         ]);

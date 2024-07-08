@@ -12,13 +12,21 @@ class PDFController extends Controller
     public function invoice($id)
     {
         $data = Booking::findOrFail($id);
+        if($data->paket->ketKesenian == 'pementasan'){
+            $tagihanKesenian = 150000;
+        }else{
+            $tagihanKesenian = 40000;
+        }
+
         if (request("output") == "pdf") {
-            $pdf = Pdf::loadView('tagihan.invoice_pdf', compact('data'))->setPaper('a4', 'landscape');
+            $pdf = Pdf::loadView('tagihan.invoice_pdf', compact('data','tagihanKesenian'))->setPaper('a4', 'landscape');
             // Storage::put('public/invoice/invoice.pdf', $pdf->output());
             return $pdf->stream('invoice.pdf');
         }
 
-        return view('tagihan/invoice', compact('data'));
+        
+
+        return view('tagihan/invoice', compact('data','tagihanKesenian'));
     }
     public function laporan(Request $request)
     {

@@ -15,7 +15,8 @@ class Paket extends Model
         'cocok_tanam_id', 
         'permainan_id', 
         'homestay_id', 
-        'kuliner_id'
+        'kuliner_id',
+        'ketKesenian'
     ];
 
     public function batik()
