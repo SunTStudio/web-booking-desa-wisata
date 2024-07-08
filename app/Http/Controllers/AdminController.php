@@ -273,9 +273,13 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy(Admin $admin, $id)
     {
-        //
+        $dataDelete = Booking::findOrFail($id);
+        $paketDelete = Paket::findOrFail($dataDelete->paket_id);
+        $dataDelete->delete();
+        $paketDelete->delete();
+        return redirect()->route('admin.booking');
     }
 
     public function detail(Request $request, $id)

@@ -40,6 +40,7 @@ Route::get('/admin/booking/search-pic',[AdminController::class, 'searchPIC'])->n
 Route::get('/admin/detail/{id}',[AdminController::class, 'detail'])->name('admin.detail');
 Route::get('/admin/edit/{id}',[AdminController::class, 'edit'])->name('admin.edit.booking');
 Route::get('/admin/update/{id}',[AdminController::class, 'update'])->name('admin.bookingUpdate');
+Route::get('/admin/delete/{id}',[AdminController::class, 'destroy'])->name('admin.booking.delete');
 });
 Route::get('/testing', function () {
     return view('calendar');
