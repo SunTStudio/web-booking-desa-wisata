@@ -31,6 +31,8 @@ Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('ad
 Route::get('/admin/booking',[AdminController::class, 'show'])->name('admin.booking');
 Route::get('/admin/booking/search-pic',[AdminController::class, 'searchPIC'])->name('admin.booking.pic.search');
 Route::get('/admin/detail/{id}',[AdminController::class, 'detail'])->name('admin.detail');
+Route::get('/admin/edit/{id}',[AdminController::class, 'edit'])->name('admin.edit.booking');
+Route::get('/admin/update/{id}',[AdminController::class, 'update'])->name('admin.bookingUpdate');
 
 Route::get('/testing', function () {
     return view('calendar');

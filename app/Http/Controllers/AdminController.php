@@ -9,6 +9,7 @@ use App\Models\Batik;
 use App\Models\Booking;
 use App\Models\Kesenian;
 use App\Models\CocokTanam;
+use App\Models\Guide;
 use App\Models\Homestay;
 use App\Models\Permainan;
 use App\Models\Kuliner;
@@ -196,14 +197,14 @@ class AdminController extends Controller
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'paket_id' => $paket->id,
-            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga,
-            // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
             'guide_id' => '1',
             'status' => 'Belum ACC',
         ]);
 
         return redirect()->route('admin.booking');
     }
+            // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
 
     /**
      * Display the specified resource.
@@ -217,17 +218,54 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(Request $request, $id)
     {
-        //
+        $batiks = Batik::all();
+        $kesenians = Kesenian::all();
+        $cocokTanams = CocokTanam::all();
+        $permainans = Permainan::all();
+        $kuliners = Kuliner::all();
+        $homestays = Homestay::all();
+        $studiBandings = StudyBanding::all();
+        $data = Booking::findOrFail($id);
+        $guides = Guide::all();
+        return view('admin.edit',compact('data','guides','batiks','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, $id)
     {
-        //
+        $bookingID = Booking::findOrFail($id);
+        $paketID = Paket::findOrFail($bookingID->paket_id);
+        
+        $paketID->update([
+            'batik_id' => $request->batik,
+            'kesenian_id' => $request->kesenian,
+            'study_banding_id' => $request->studiBanding,
+            'cocok_tanam_id' => $request->cocokTanam,
+            'permainan_id' => $request->permainan,
+            'homestay_id' => $request->homestay,
+            'kuliner_id' => $request->kuliner,
+        ]);
+
+        $paket = $paketID;
+
+        $bookingID->update([
+            'nama_pic' => $request->nama_pic,
+            'organisasi' => $request->organisasi,
+            'noTelpPIC' => $request->notelppic,
+            'visitor' => $request->visitor,
+            'tanggal' => $request->tanggal,
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'paket_id' => $paket->id,
+            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'guide_id' => $request->guide,
+            'status' => $request->status,
+        ]);
+        return redirect()->route('admin.booking');
     }
 
     /**

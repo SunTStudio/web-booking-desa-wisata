@@ -57,7 +57,9 @@
                             <p>Tanggal Booking : <span class="fw-bold">{{ $detail->tanggal }}</span></p>
                             <p>Jam Mulai : <span class="fw-bold">{{ $detail->jam_mulai }}</span></p>
                             <p>Jam Selesai : <span class="fw-bold">{{ $detail->jam_selesai }}</span></p>
-                            <a href="{{ route('admin.invoice', ['id' => $detail->id]) }}" class="btn btn-primary fw-bold mt-4" style="font-size: 0.8rem ;">Cetak Struck</a>
+                            <p>Penanggung Jawab : <span class="fw-bold">{{ $detail->guide->name }}</span></p>
+                            <p>Status Booking : <span class="fw-bold btn btn-info text-white">{{ $detail->status }}</span></p>
+                            <a href="{{ route('admin.invoice', ['id' => $detail->id]) }}" class="btn btn-primary fw-bold " style="font-size: 0.8rem ;">Cetak Struck</a>
                         </div>
                         <div class="col-8 p-3 ps-5">
                             <p class="fw-bold"><small>ID PAKET : 00{{ $detail->paket_id }}</small></p>

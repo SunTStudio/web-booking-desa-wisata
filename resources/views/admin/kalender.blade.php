@@ -376,6 +376,8 @@
                             jam_mulai: '{{ $booking->jam_mulai }}',
                             jam_selesai: '{{ $booking->jam_selesai }}',
                             paket_id: '{{ $booking->paket_id }}',
+                            jam_mulai: '{{ $booking->jam_mulai }}',
+                            jam_selesai: '{{ $booking->jam_selesai }}',
                             tagihan: '{{ $booking->tagihan }}',
                             guide_id: '{{ $booking->guide_id }}',
                             status: '{{ $booking->status }}',
