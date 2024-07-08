@@ -6,7 +6,7 @@
 
 @section('css')
 
-<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/laporan.css">
 @endsection
 
 @section('menu')
@@ -17,8 +17,8 @@
 @endsection
 
 @section('content')
-<div class="row justify-content-center m-3 mt-5" id="tabel-booking">
-    <div class="d-flex justify-content-between px-5">
+<div class="row justify-content-center m-3 mt-5" id="tabel-laporan">
+    <div class="d-flex justify-content-between px-5 px-sm-1 gap-2">
         <form action="{{ route('admin.laporan.search') }}" class="d-flex gap-4">
             @csrf
             <div class="form-group">
@@ -54,20 +54,21 @@
     <div class="row justify-content-center rounded bg-white mt-4 mb-5 mx" id="tabel-laporan">
         <div class="col p-3">
             <div class="table-responsive" style="overflow-x: auto;">
-                <table class="table text-center">
+                <table class="table text-start">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama PIC</th>
-                            <th scope="col">No Telpon</th>
-                            <th scope="col">Nama Organisasi</th>
-                            <th scope="col">Jumlah Visitor</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Jam Mulai</th>
-                            <th scope="col">Jam Selesai</th>
-                            <th scope="col">Guide</th>
-                            <th scope="col">Tagihan</th>
-                            <th scope="col">Detail</th>
+                            <th scope="col" style="vertical-align: top">No</th>
+                            <th scope="col" style="vertical-align: top">Nama PIC</th>
+                            <th scope="col" style="vertical-align: top">No Telpon</th>
+                            <th scope="col" style="vertical-align: top">Nama Organisasi</th>
+                            <th scope="col" style="vertical-align: top">Jumlah Visitor</th>
+                            <th scope="col" style="vertical-align: top">Tanggal</th>
+                            <th scope="col" style="vertical-align: top">Jam Mulai</th>
+                            <th scope="col" style="vertical-align: top">Jam Selesai</th>
+                            <th scope="col" style="vertical-align: top">Guide</th>
+                            <th scope="col" style="vertical-align: top">Tagihan</th>
+                            <th scope="col" style="vertical-align: top">Detail</th>
+                            <th scope="col" style="vertical-align: top">Cetak</th>
                             <!-- <th scope="col">Status</th> -->
                             <!-- <th scope="col" style="width:10%;">Opsi</th> -->
                         </tr>
@@ -85,15 +86,17 @@
                             <td class="pt-3">{{ $laporan->jam_selesai }}</td>
                             <th scope="col">{{ $laporan->guide->name }}</th>
                             <th scope="col">Rp {{ number_format($laporan->tagihan, 0, ',', '.') }}</th>
-                            <th scope="col"><a href="{{ route('admin.detail', ['id' => $laporan->id]) }}">Detail</a></th>
+                            <th scope="col" class="text-center"><a href="{{ route('admin.detail', ['id' => $laporan->id]) }}" style="text-decoration: none; color:rgb(2, 77, 2); font-size:1.5rem;"><i class="fa-solid fa-file-invoice"></i></a></th>
+                            <th><a href="{{ route('admin.invoice', ['id' => $laporan->id]) }}" class="btn btn-info" style="font-size: 0.8rem ;">Cetak</a></th>
+
                             <!-- <td><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td> -->
                         </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="9">Total Pendapatan</td>
-                            <td>Rp {{ number_format($totalPendapatan, 0, ',', '.') }}</td>
+                            <th colspan="9">Total Pendapatan</th>
+                            <th>Rp {{ number_format($totalPendapatan, 0, ',', '.') }}</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -116,24 +119,30 @@
 @endsection
 
 @section('menuHp')
-                <div class="col text-center border-end">
-                    <a href="{{ route('admin.kalender') }}" class="text-secondary"><p><i class="fa-regular fa-calendar-days m-0 p-0 pt-2"></i></p>
-                    <p>Kalender</p></a>
-                </div>
-                <div class="col text-center border-end">
-                    <a href="{{ route('admin.dashboard') }}" class="text-secondary"><p><i class="fa-solid fa-globe m-0 p-0 pt-2"></i></p>
-                    <p>Dashboard</p></a>
-                </div>
-                <div class="col text-center ">
-                    <a href="{{ route('admin.booking') }}" class="text-white"><p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
-                    <p>Booking</p></a>
-                </div>
-                <div class="col text-center rounded-top bg-secondary">
-                    <a href="{{ route('admin.laporan') }}" class="text-secondary">
-                        <p><i class="fa-solid fa-file-lines m-0 p-0 pt-2"></i></p>
-                        <p>Laporan</p>
-                    </a>
-                </div>
+<div class="col text-center border-end">
+    <a href="{{ route('admin.kalender') }}" class="text-secondary">
+        <p><i class="fa-regular fa-calendar-days m-0 p-0 pt-2"></i></p>
+        <p>Kalender</p>
+    </a>
+</div>
+<div class="col text-center border-end">
+    <a href="{{ route('admin.dashboard') }}" class="text-secondary">
+        <p><i class="fa-solid fa-globe m-0 p-0 pt-2"></i></p>
+        <p>Dashboard</p>
+    </a>
+</div>
+<div class="col text-center ">
+    <a href="{{ route('admin.booking') }}" class="text-secondary">
+        <p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
+        <p>Booking</p>
+    </a>
+</div>
+<div class="col text-center rounded-top bg-secondary">
+    <a href="{{ route('admin.laporan') }}" class="text-white">
+        <p><i class="bi bi-journal m-0 p-0 pt-2"></i></p>
+        <p>Laporan</p>
+    </a>
+</div>
 @endsection
 
 @section('scripts')

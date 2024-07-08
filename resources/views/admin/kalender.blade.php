@@ -235,7 +235,7 @@
 
                             <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Homestay</label>
                                 @foreach ($homestays as $homestay)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
@@ -255,7 +255,7 @@
 
                             <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Study Banding</label>
                                 @foreach ($studiBandings as $studiBanding)
                                 <div class="col-3 border p-3 m-3">
                                     <div class="form-check">
@@ -373,6 +373,8 @@
                             nama_pic: '{{ $booking->nama_pic }}',
                             noTelpPIC: '{{ $booking->noTelpPIC }}',
                             visitor: '{{ $booking->visitor }}',
+                            jam_mulai: '{{ $booking->jam_mulai }}',
+                            jam_selesai: '{{ $booking->jam_selesai }}',
                             paket_id: '{{ $booking->paket_id }}',
                             jam_mulai: '{{ $booking->jam_mulai }}',
                             jam_selesai: '{{ $booking->jam_selesai }}',

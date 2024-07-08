@@ -310,16 +310,17 @@
                     // Prevent the browser from following the URL
                     info.jsEvent.preventDefault();
 
-                    // Extract data from the event
+                    // Extract data from the eventinfo.jsEvent.preventDefault();
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };    
                     var event = info.event;
                     var eventData = {
                         nama_pic: event.extendedProps.nama_pic,
                         organisasi: event.title,
                         noTelpPIC: event.extendedProps.noTelpPIC,
                         visitor: event.extendedProps.visitor,
-                        tanggal: event.startStr,
-                        jam_mulai: event.start,
-                        jam_selesai: event.end,
+                        tanggal: event.start.toLocaleDateString('id-ID', options),
+                        jam_mulai: event.extendedProps.jam_mulai,
+                        jam_selesai: event.extendedProps.jam_selesai,
                         paket_id: event.extendedProps.paket_id,
                         tagihan: event.extendedProps.tagihan,
                         guide_id: event.extendedProps.guide_id,

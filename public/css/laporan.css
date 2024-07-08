@@ -1,23 +1,28 @@
-.laporan {
-    margin: 2rem;
+/* #search {
+    font-size: 0.9rem;
 }
 
-.laporan .detail {
-    width: 100%; /* Mengatur tabel agar mengisi 100% lebar kontainer */
-    border-collapse: collapse;
+.table{
+    font-size: 0.9rem;
 }
 
-.laporan .detail th, .laporan .detail td {
-    border: 1px solid #dddddd; /* Garis batas sel */
-    text-align: left; /* Penyusunan teks */
-    padding: 8px; /* Ruang isi dalam sel */
-    height: 1rem;
+#tabel-booking  button{
+    font-size: 0.6rem;
+    font-weight: 800;
+} */
+
+#tabel-laporan table{
+    font-size: 0.8rem;
 }
 
-a {
-    padding: 0.8rem 1.5rem;
-    border-radius: 0.3rem;
-    background-color: green;
-    color: white;
-    margin-top: 3rem;
+
+
+/* @media (max-width: 768px) {
+
+#tabel-col{
+    margin-bottom: 5rem;
 }
+
+
+
+} */
