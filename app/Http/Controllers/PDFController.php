@@ -43,10 +43,10 @@ class PDFController extends Controller
     $token = 'h4HE!u#hhpf+9Ywbz1Pb';
 
     // Path to your generated PDF invoice
-    $pdfPath = public_path('invoice.invoice.pdf');
+    // $pdfPath = public_path('invoice.invoice.pdf');
 
     // Example WhatsApp message with PDF link
-    $message = "Invoice Anda terlampir. Silakan unduh: " . url('invoice/invoice.pdf');
+    $message = "Invoice Anda terlampir. Silakan unduh: " . url('/admin/invoice' . $data->id );
 
     // Initialize CURL
     $curl = curl_init();
@@ -74,7 +74,7 @@ class PDFController extends Controller
     curl_close($curl);
 
     // Delete PDF file after sending (optional)
-    unlink($pdfPath);
+    // unlink($pdfPath);
 
     // Redirect back with success message
     return Redirect::back()->with('success', 'Invoice terkirim ke WhatsApp');
