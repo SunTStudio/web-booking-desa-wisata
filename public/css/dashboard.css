@@ -58,6 +58,14 @@ hr {
     font-size: 0.8rem;
 }
 
+
+@media (min-width: 1024px) {
+    #grafik-konten{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+}
 @media (max-width: 768px) {
     #tabel-booking{
         display: none;
@@ -89,7 +97,11 @@ hr {
         font-size: 0.5rem;
         letter-spacing: 1px;
     }
-    #appointment{
-        margin-bottom: 5rem;
+
+    #grafik-main{
+        margin-bottom: 7rem;
+        margin-left: 0rem;
+        margin-right: 0rem;
     }
+    
 }

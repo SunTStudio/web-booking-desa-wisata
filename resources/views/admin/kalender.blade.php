@@ -316,10 +316,16 @@
         <p>Dashboard</p>
     </a>
 </div>
-<div class="col text-center">
+<div class="col text-center border-start">
     <a href="{{ route('admin.booking') }}" class="text-secondary">
         <p><i class="fa-solid fa-house-lock m-0 p-0 pt-2"></i></p>
         <p>Booking</p>
+    </a>
+</div>
+<div class="col text-center border-start">
+    <a href="{{ route('admin.laporan') }}" class="text-secondary">
+        <p><i class="fa-solid fa-file-lines m-0 p-0 pt-2"></i></p>
+        <p>Laporan</p>
     </a>
 </div>
 
@@ -379,7 +385,7 @@
 
                     // Prevent the browser from following the URL
                     info.jsEvent.preventDefault();
-
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };    
                     // Extract data from the event
                     var event = info.event;
                     var eventData = {
@@ -387,7 +393,7 @@
                         organisasi: event.title,
                         noTelpPIC: event.extendedProps.noTelpPIC,
                         visitor: event.extendedProps.visitor,
-                        tanggal: event.startStr,
+                        tanggal: event.start.toLocaleDateString('id-ID', options),
                         jam_mulai: event.extendedProps.jam_mulai,
                         jam_selesai: event.extendedProps.jam_selesai,
                         paket_id: event.extendedProps.paket_id,

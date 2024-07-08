@@ -13,6 +13,8 @@ use App\Models\Homestay;
 use App\Models\Permainan;
 use App\Models\Kuliner;
 use App\Models\Paket;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -54,10 +56,35 @@ class AdminController extends Controller
         ));
     }
 
-    public function dashboard()
-    {
-        $data = Booking::orderBy('id', 'desc')->take(2)->get();
-        return view('admin/dashboard', compact('data'));
+    public function dashboard() {
+        $oneMonth = Carbon::today()->subMonth()->format('Y-m-d');
+        $today = Carbon::today('Asia/Jakarta')->format('Y-m-d');
+        $kunjunganHarian = Booking::where('tanggal',Carbon::today('Asia/Jakarta'))->count();
+        $kunjunganBulanan = Booking::whereBetween('tanggal',[$oneMonth ,$today])->count();
+        $totalKunjungan = Booking::count('id');
+        $data = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
+        $appoitments = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
+        // dd($oneMonth);
+
+        $trafikKunjungan = Booking::select(DB::raw('DATE(tanggal) as date'), DB::raw('count(*) as count'))
+        ->groupBy('date')
+        ->orderBy('date', 'asc')
+        ->get();
+
+        // Format data untuk Chart.js
+        $dates = $trafikKunjungan->pluck('date');
+        $counts = $trafikKunjungan->pluck('count');
+
+         // Kumpulkan data pendapatan harian
+        $revenueData = Booking::select(DB::raw('tanggal, sum(tagihan) as total'))
+            ->groupBy('tanggal')
+            ->orderBy('tanggal', 'asc')
+            ->get();
+
+        // Pisahkan tanggal dan total pendapatan untuk Chart.js
+        $totals = $revenueData->pluck('total');
+        
+        return view('admin/dashboard', compact('data','dates','totals','counts','appoitments','kunjunganHarian','kunjunganBulanan','totalKunjungan'));
     }
 
     public function laporan(Request $request)
@@ -172,7 +199,7 @@ class AdminController extends Controller
             'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga,
             // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
             'guide_id' => '1',
-            'status' => 'belum',
+            'status' => 'Belum ACC',
         ]);
 
         return redirect()->route('admin.booking');
