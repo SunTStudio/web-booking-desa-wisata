@@ -5,14 +5,14 @@
 @section('titleNav', 'Booking')
 
 @section('css')
-    <link rel="stylesheet" href="/css/booking.css">
+<link rel="stylesheet" href="/css/booking.css">
 @endsection
 
 @section('menu')
-    <p class=" d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class=" text-secondary fw-bold m-1 ms-3"><i class="bi bi-view-list me-2  ps-1 pe-1 rounded"></i> Dashboard </a></p>
-    <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.kalender') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-person-fill-up  ps-1 pe-1 rounded"></i> Kalender </a></p>
-    <p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-light m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key    ps-1 pe-1 rounded"></i> Booking </a> </p>
-    <p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.laporan') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-journal ps-1 pe-1 rounded"></i> Laporan </a> </p>
+<p class=" d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.dashboard') }}" class=" text-secondary fw-bold m-1 ms-3"><i class="bi bi-view-list me-2  ps-1 pe-1 rounded"></i> Dashboard </a></p>
+<p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.kalender') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-person-fill-up  ps-1 pe-1 rounded"></i> Kalender </a></p>
+<p class="btn btn-secondary text-light d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.booking') }}" class="text-light m-1 ms-3 fw-bold"><i class=" me-2 bi bi-key    ps-1 pe-1 rounded"></i> Booking </a> </p>
+<p class="d-flex justify-content-between align-items-center me-3 "><a href="{{ route('admin.laporan') }}" class="text-secondary m-1 ms-3 fw-bold"><i class=" me-2 bi bi-journal ps-1 pe-1 rounded"></i> Laporan </a> </p>
 @endsection
 
 @section('content')
@@ -22,24 +22,24 @@
             <form action="{{ route('admin.booking.pic.search') }}">
                 <div class="form-floating mb-3 d-flex">
                     <input type="text" class="form-control" id="floatingInput" name="namePIC" @if (session()->has('nama_pic')) value=" {{ session('nama_pic') }} "
-                        @else
-                        value="" @endif placeholder="Nama PIC">
+                    @else
+                    value="" @endif placeholder="Nama PIC">
                     <label for="floatingInput">Nama Pembooking..</label>
                     <button type="submit" class="btn btn-secondary fw-bold ms-3 w-50"><small>Cari Nama</small></button>
                 </div>
-            
+
         </div>
     </div>
     <div class="col-lg-4 col-12">
         <div class="search-tanggal">
-                <div class="form-floating mb-3 d-flex">
-                    <input type="date" class="form-control" id="floatingInput" name="tanggal" @if (session()->has('tanggal')) value=" {{ session('tanggal') }} "
-                        @else
-                        value="" @endif placeholder="name@example.com">
-                    
-                    <label for="floatingInput">Cari Tanggal..</label>
-                    <button type="submit" class="btn btn-secondary fw-bold ms-3 w-75"><small>Cari Tanggal</small></button>
-                </div>
+            <div class="form-floating mb-3 d-flex">
+                <input type="date" class="form-control" id="floatingInput" name="tanggal" @if (session()->has('tanggal')) value=" {{ session('tanggal') }} "
+                @else
+                value="" @endif placeholder="name@example.com">
+
+                <label for="floatingInput">Cari Tanggal..</label>
+                <button type="submit" class="btn btn-secondary fw-bold ms-3 w-75"><small>Cari Tanggal</small></button>
+            </div>
             </form>
         </div>
     </div>
@@ -98,10 +98,9 @@
             </ul>
         </nav>
 
-        
+
     </div>
 </div>
-
 @endsection
 
 @section('menuHp')

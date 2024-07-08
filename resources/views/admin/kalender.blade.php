@@ -62,51 +62,71 @@
     </div>
 </div> --}}
 
-    <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
-                  <div class="row justify-content-center border rounded p-4 m-3">
-                        <div class="col me-4">
-                            <form method="GET" action="{{ route('admin.bookingProses') }}">
-                                <div class="mb-3">
-                                    <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                    <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                    <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                    <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                    <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
-                                </div>
-                                
-                               
-                        </div>
-                        <div class="col">
+<div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
+                <div class="row justify-content-center border rounded p-4 m-3">
+                    <div class="col me-4">
+                        <form method="GET" action="{{ route('admin.bookingProses') }}">
                             <div class="mb-3">
-                                    <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                                    <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                                    <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                                    <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                                <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
                             </div>
-                
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                            </div>
+
+
+                    </div>
+                    <!-- <div class="col">
+                            <div class="mb-3">
+                                <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                            </div>
+
+
+                    </div> -->
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                        </div>
+
                     </div>
 
                     <h5 class="fw-bold m-3 mt-5">Pilih Paket-Paket Desa Wisata</h5>
@@ -213,7 +233,7 @@
                                 @endforeach
                             </div>
 
-                             <!-- Paket Homestay -->
+                            <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
                                 @foreach ($homestays as $homestay)
@@ -252,15 +272,15 @@
                                 </div>
                                 @endforeach
                             </div>
-                                {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                            {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
                     </div>
 
-                  </div>
+                </div>
 
-                
+
 
             </div>
         </div>
@@ -270,7 +290,7 @@
 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
             <div class="modal-body" id="modalBody">
                 <!-- Event information will be injected here -->
             </div>
@@ -317,54 +337,52 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
 <script src="/js/kalender.js"></script>
 
-    <script>
-        var calendar; // Declare calendar variable in the global scope
+<script>
+    var calendar; // Declare calendar variable in the global scope
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
 
-            if (calendarEl) {
-                calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'timeGridWeek',
-                    selectable: true,
-                    locale: 'id',
-                    allDaySlot: false,
-                    headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'timeGridDay,timeGridWeek,dayGridMonth'
+        if (calendarEl) {
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                selectable: true,
+                locale: 'id',
+                allDaySlot: false,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridDay,timeGridWeek,dayGridMonth'
+                },
+                slotLabelFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                },
+                eventTimeFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                },
+                events: [
+                    @foreach($bookings as $booking) {
+                        title: '{{ $booking->organisasi }}',
+                        start: '{{ $booking->tanggal }}T{{ $booking->jam_mulai }}',
+                        end: '{{ $booking->tanggal }}T{{ $booking->jam_selesai }}',
+                        extendedProps: {
+                            nama_pic: '{{ $booking->nama_pic }}',
+                            noTelpPIC: '{{ $booking->noTelpPIC }}',
+                            visitor: '{{ $booking->visitor }}',
+                            paket_id: '{{ $booking->paket_id }}',
+                            tagihan: '{{ $booking->tagihan }}',
+                            guide_id: '{{ $booking->guide_id }}',
+                            status: '{{ $booking->status }}',
+                        }
                     },
-                    slotLabelFormat: {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: false
-                    },
-                    eventTimeFormat: {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: false
-                    },
-                    events: [
-                        @foreach ($bookings as $booking)
-                        {
-                            title: '{{ $booking->organisasi }}',
-                            start: '{{ $booking->tanggal }}T{{ $booking->jam_mulai }}',
-                            end: '{{ $booking->tanggal }}T{{ $booking->jam_selesai }}',
-                            extendedProps: {
-                                nama_pic: '{{ $booking->nama_pic }}',
-                                noTelpPIC: '{{ $booking->noTelpPIC }}',
-                                visitor: '{{ $booking->visitor }}',
-                                jam_mulai: '{{ $booking->jam_mulai }}',
-                                jam_selesai: '{{ $booking->jam_selesai }}',
-                                paket_id: '{{ $booking->paket_id }}',
-                                tagihan: '{{ $booking->tagihan }}',
-                                guide_id: '{{ $booking->guide_id }}',
-                                status: '{{ $booking->status }}',
-                            }
-                        },
-                        @endforeach
-                    ],
-                    eventClick: function(info) {
+                    @endforeach
+                ],
+                eventClick: function(info) {
+
                     // Prevent the browser from following the URL
                     info.jsEvent.preventDefault();
                     var options = { year: 'numeric', month: 'long', day: 'numeric' };    
@@ -414,14 +432,13 @@
                     $('#eventModal').modal('show');
                 }
 
-                });
+            });
 
-                calendar.render();
-            } else {
-                console.error("Element with id 'calendar' not found.");
-            }
-        });
-
-    </script>
+            calendar.render();
+        } else {
+            console.error("Element with id 'calendar' not found.");
+        }
+    });
+</script>
 
 @endsection

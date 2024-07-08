@@ -39,12 +39,22 @@ class AdminController extends Controller
         $homestays = Homestay::all();
         $studiBandings = StudyBanding::all();
         $bookings = Booking::all();
-        return view('admin.kalender', compact('batiks','bookings','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners','tanggalBooking', 
-            'namaBooking', 
-            'noTelpPic', 
-            'jamBookingMulai', 
-            'jamBookingSelesai', 
-            'jumlahVisitor')); 
+        return view('admin.kalender', compact(
+            'batiks',
+            'bookings',
+            'homestays',
+            'studiBandings',
+            'kesenians',
+            'cocokTanams',
+            'permainans',
+            'kuliners',
+            'tanggalBooking',
+            'namaBooking',
+            'noTelpPic',
+            'jamBookingMulai',
+            'jamBookingSelesai',
+            'jumlahVisitor'
+        ));
     }
 
     public function dashboard() {
@@ -78,51 +88,72 @@ class AdminController extends Controller
         return view('admin/dashboard', compact('data','dates','totals','counts','appoitments','kunjunganHarian','kunjunganBulanan','totalKunjungan'));
     }
 
-    public function laporan(Request $request) {
-        $data = Booking::get();
-        return view('admin/laporan', compact('data', 'request'));
+    public function laporan(Request $request)
+    {
+        $laporans = Booking::get();
+        $totalPendapatan = $laporans->sum('tagihan');
+
+        return view('admin/laporan', compact('laporans', 'request', 'totalPendapatan'));
     }
 
-    public function laporanSearch(Request $request) {
-        $searchTerm = $request->search;
-    
-        // Cek apakah $searchTerm adalah kata kunci bulan
-        $isMonth = false;
-        $monthNumber = null;
-    
-        $months = [
-            'januari' => '01',
-            'februari' => '02',
-            'maret' => '03',
-            'april' => '04',
-            'mei' => '05',
-            'juni' => '06',
-            'juli' => '07',
-            'agustus' => '08',
-            'september' => '09',
-            'oktober' => '10',
-            'november' => '11',
-            'desember' => '12',
-        ];
-    
-        foreach ($months as $monthName => $monthNum) {
-            if (strtolower($searchTerm) == $monthName) {
-                $isMonth = true;
-                $monthNumber = $monthNum;
-                break;
-            }
+    public function laporanSearch(Request $request)
+    {
+        $data = Booking::query();
+
+        // Filter berdasarkan bulan dan tahun jika ada input dari form
+        if ($request->filled('bulan') && $request->filled('tahun')) {
+            $bulan = $request->bulan;
+            $tahun = $request->tahun;
+            $data->whereMonth('tanggal', $bulan)
+                 ->whereYear('tanggal', $tahun);
         }
+
+        $laporans = $data->orderBy('tanggal', 'desc')->get();
+
+        // Menghitung total tagihan untuk semua data yang terfilter
+        $totalPendapatan = $data->sum('tagihan');
+
+        return view('admin.laporan', compact('laporans', 'totalPendapatan', 'request'));
     
-        // Jika $searchTerm adalah nama bulan, ubah menjadi rentang tanggal
-        if ($isMonth) {
-            // Misalnya, ubah pencarian menjadi bulan Agustus
-            $data = Booking::whereMonth('tanggal', $monthNumber)->get();
-        } else {
-            // Jika bukan, lakukan pencarian berdasarkan input seperti sebelumnya
-            $data = Booking::where('tanggal', 'LIKE', '%' . $searchTerm . '%')->get();
-        }
-    
-        return view('admin/laporan', compact('data', 'request'));
+        // $searchTerm = $request->search;
+
+        // // Cek apakah $searchTerm adalah kata kunci bulan
+        // $isMonth = false;
+        // $monthNumber = null;
+
+        // $months = [
+        //     'januari' => '01',
+        //     'februari' => '02',
+        //     'maret' => '03',
+        //     'april' => '04',
+        //     'mei' => '05',
+        //     'juni' => '06',
+        //     'juli' => '07',
+        //     'agustus' => '08',
+        //     'september' => '09',
+        //     'oktober' => '10',
+        //     'november' => '11',
+        //     'desember' => '12',
+        // ];
+
+        // foreach ($months as $monthName => $monthNum) {
+        //     if (strtolower($searchTerm) == $monthName) {
+        //         $isMonth = true;
+        //         $monthNumber = $monthNum;
+        //         break;
+        //     }
+        // }
+
+        // // Jika $searchTerm adalah nama bulan, ubah menjadi rentang tanggal
+        // if ($isMonth) {
+        //     // Misalnya, ubah pencarian menjadi bulan Agustus
+        //     $data = Booking::whereMonth('tanggal', $monthNumber)->get();
+        // } else {
+        //     // Jika bukan, lakukan pencarian berdasarkan input seperti sebelumnya
+        //     $data = Booking::where('tanggal', 'LIKE', '%' . $searchTerm . '%')->get();
+        // }
+
+        // return view('admin/laporan', compact('data', 'request'));
     }
 
     // public function laporanSearch(Request $request) {
@@ -154,7 +185,7 @@ class AdminController extends Controller
             'homestay_id' => $request->homestay,
             'kuliner_id' => $request->kuliner,
         ]);
-        
+
         $paket = Paket::latest()->first();
 
         Booking::create([
@@ -172,7 +203,6 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.booking');
-
     }
             // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
 
@@ -182,7 +212,7 @@ class AdminController extends Controller
     public function show()
     {
         $bookings = Booking::all();
-        return view('admin.booking',compact('bookings'));
+        return view('admin.booking', compact('bookings'));
     }
 
     /**
@@ -246,37 +276,37 @@ class AdminController extends Controller
         //
     }
 
-    public function detail(Request $request, $id){
+    public function detail(Request $request, $id)
+    {
         $detail = Booking::findOrFail($id);
-        return view('admin.detail',compact('detail'));
+        return view('admin.detail', compact('detail'));
     }
 
-    public function searchPIC(Request $request){
+    public function searchPIC(Request $request)
+    {
         $searchPIC = $request->namePIC;
         $searchTanggal = $request->tanggal;
 
-        if($searchTanggal !== '' && $searchPIC !== '' ){
+        if ($searchTanggal !== '' && $searchPIC !== '') {
             $bookings = Booking::where('nama_pic', 'LIKE', '%' . $searchPIC . '%')
-                   ->where('tanggal', 'LIKE', '%' . $searchTanggal . '%')
-                   ->get();
+                ->where('tanggal', 'LIKE', '%' . $searchTanggal . '%')
+                ->get();
 
-                   session(['nama_pic' => $searchPIC]);
-                   session(['tanggal' => $searchTanggal]);
-            
-        }else if($searchTanggal == '' && $searchPIC !== ''  ){
-            $bookings = Booking::where('nama_pic','LIKE','%'.$searchPIC.'%')->get();
             session(['nama_pic' => $searchPIC]);
-            
-        }else if($searchTanggal !== '' && $searchPIC == ''  ){
-            $bookings = Booking::where('tanggal','LIKE','%'.$searchTanggal.'%')->get();
             session(['tanggal' => $searchTanggal]);
-        }else{
+        } else if ($searchTanggal == '' && $searchPIC !== '') {
+            $bookings = Booking::where('nama_pic', 'LIKE', '%' . $searchPIC . '%')->get();
+            session(['nama_pic' => $searchPIC]);
+        } else if ($searchTanggal !== '' && $searchPIC == '') {
+            $bookings = Booking::where('tanggal', 'LIKE', '%' . $searchTanggal . '%')->get();
+            session(['tanggal' => $searchTanggal]);
+        } else {
             $bookings = Booking::all();
             session(['nama_pic' => $searchPIC]);
             session(['tanggal' => $searchTanggal]);
         }
 
-        return view('admin.booking',compact('bookings'));
+        return view('admin.booking', compact('bookings'));
     }
 
     // public function index(Request $request)

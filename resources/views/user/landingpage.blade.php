@@ -48,42 +48,42 @@
             </div>
             <div class="modal-body">
                 <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
-                  <div class="row justify-content-center border rounded p-4 m-3">
-                        <div class="col me-4">
-                            <form method="GET" action="{{ route('user.bookingProses') }}">
-                                <div class="mb-3">
-                                    <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                    <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                    <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                    <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                    <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
-                                </div>
-                                
-                               
-                        </div>
-                        <div class="col">
+                <div class="row justify-content-center border rounded p-4 m-3">
+                    <div class="col me-4">
+                        <form method="GET" action="{{ route('user.bookingProses') }}">
                             <div class="mb-3">
-                                    <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                                    <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                                    <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                                    <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                                <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
                             </div>
-                
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                            </div>
+
+
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                        </div>
+
                     </div>
 
                     <h5 class="fw-bold m-3 mt-5">Pilih Paket-Paket Desa Wisata</h5>
@@ -190,7 +190,7 @@
                                 @endforeach
                             </div>
 
-                             <!-- Paket Homestay -->
+                            <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
                                 @foreach ($homestays as $homestay)
@@ -229,13 +229,13 @@
                                 </div>
                                 @endforeach
                             </div>
-                                {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                            {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
                     </div>
 
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -288,8 +288,7 @@
                     hour12: false
                 },
                 events: [
-                    @foreach ($bookings as $booking)
-                    {
+                    @foreach($bookings as $booking) {
                         title: '{{ $booking->organisasi }}',
                         start: '{{ $booking->tanggal }}T{{ $booking->jam_mulai }}',
                         end: '{{ $booking->tanggal }}T{{ $booking->jam_selesai }}',
@@ -308,24 +307,24 @@
                     @endforeach
                 ],
                 eventClick: function(info) {
-                // Prevent the browser from following the URL
-                info.jsEvent.preventDefault();
+                    // Prevent the browser from following the URL
+                    info.jsEvent.preventDefault();
 
-                // Extract data from the event
-                var event = info.event;
-                var eventData = {
-                    nama_pic: event.extendedProps.nama_pic,
-                    organisasi: event.title,
-                    noTelpPIC: event.extendedProps.noTelpPIC,
-                    visitor: event.extendedProps.visitor,
-                    tanggal: event.startStr,
-                    jam_mulai: event.extendedProps.jam_mulai,
-                    jam_selesai: event.extendedProps.jam_selesai,
-                    paket_id: event.extendedProps.paket_id,
-                    tagihan: event.extendedProps.tagihan,
-                    guide_id: event.extendedProps.guide_id,
-                    status: event.extendedProps.status
-                };
+                    // Extract data from the event
+                    var event = info.event;
+                    var eventData = {
+                        nama_pic: event.extendedProps.nama_pic,
+                        organisasi: event.title,
+                        noTelpPIC: event.extendedProps.noTelpPIC,
+                        visitor: event.extendedProps.visitor,
+                        tanggal: event.startStr,
+                        jam_mulai: event.start,
+                        jam_selesai: event.end,
+                        paket_id: event.extendedProps.paket_id,
+                        tagihan: event.extendedProps.tagihan,
+                        guide_id: event.extendedProps.guide_id,
+                        status: event.extendedProps.status
+                    };
 
                 // Update the modal's content
                 var modalBody = document.getElementById('modalBody');
@@ -353,9 +352,9 @@
                         </div>
                 `;
 
-                // Show the modal
-                $('#eventModal').modal('show');
-            }
+                    // Show the modal
+                    $('#eventModal').modal('show');
+                }
 
             });
 
@@ -364,7 +363,6 @@
             console.error("Element with id 'calendar' not found.");
         }
     });
-
 </script>
 @endsection
 

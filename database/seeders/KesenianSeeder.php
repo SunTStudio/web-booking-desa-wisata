@@ -15,14 +15,14 @@ class KesenianSeeder extends Seeder
     {
         DB::table('kesenians')->insert([
             ['nama' => 'Tidak Pesan', 'deskripsi' => 'Tidak Pesan', 'harga_belajar' => 0, 'harga_pementasan' => 0],
-            ['nama' => 'tari', 'deskripsi' => 'Deskripsi Tari', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'kethoprak', 'deskripsi' => 'Deskripsi Kethoprak', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'jathilan', 'deskripsi' => 'Deskripsi Jathilan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'karawitan', 'deskripsi' => 'Deskripsi Karawitan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'gendring', 'deskripsi' => 'Deskripsi Gendring', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'macapat', 'deskripsi' => 'Deskripsi Macapat', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'hadroh', 'deskripsi' => 'Deskripsi Hadroh', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'sholawatan', 'deskripsi' => 'Deskripsi Sholawatan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Tari', 'deskripsi' => 'Deskripsi Tari', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Kethoprak', 'deskripsi' => 'Deskripsi Kethoprak', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Jathilan', 'deskripsi' => 'Deskripsi Jathilan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Karawitan', 'deskripsi' => 'Deskripsi Karawitan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Gendring', 'deskripsi' => 'Deskripsi Gendring', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Macapat', 'deskripsi' => 'Deskripsi Macapat', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Hadroh', 'deskripsi' => 'Deskripsi Hadroh', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
+            ['nama' => 'Sholawatan', 'deskripsi' => 'Deskripsi Sholawatan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
         ]);
     }
 }
