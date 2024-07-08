@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('batik_id')->constrained('batiks');
             $table->foreignId('kesenian_id')->constrained('kesenians');
+            $table->string('ketKesenian')->nullable();
             $table->foreignId('study_banding_id')->constrained('study_bandings');
             $table->foreignId('cocok_tanam_id')->constrained('cocok_tanams');
             $table->foreignId('permainan_id')->constrained('permainans');

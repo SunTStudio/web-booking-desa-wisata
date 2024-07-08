@@ -177,19 +177,25 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        list($kesenianID,$ketKesenian) = explode('.',$request->kesenian);
 
         Paket::create([
             'batik_id' => $request->batik,
-            'kesenian_id' => $request->kesenian,
+            'kesenian_id' => $kesenianID,
             'study_banding_id' => $request->studiBanding,
             'cocok_tanam_id' => $request->cocokTanam,
             'permainan_id' => $request->permainan,
             'homestay_id' => $request->homestay,
             'kuliner_id' => $request->kuliner,
+            'ketKesenian' => $ketKesenian,
         ]);
 
         $paket = Paket::latest()->first();
-
+        if($ketKesenian == 'pementasan'){
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }else{
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }
         Booking::create([
             'nama_pic' => $request->nama_pic,
             'organisasi' => $request->organisasi,
@@ -199,7 +205,7 @@ class AdminController extends Controller
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'paket_id' => $paket->id,
-            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'tagihan' => $tagihan,
             'guide_id' => '1',
             'status' => 'Belum ACC',
         ]);
@@ -239,20 +245,33 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->kesenianBelajar == "1.belajar"){
+            list($kesenianID,$ketKesenian) = explode('.',$request->kesenianPementasan);
+
+        }else if($request->kesenianPementasan == "1.pementasan"){
+            list($kesenianID,$ketKesenian) = explode('.',$request->kesenianBelajar);
+
+        }
         $bookingID = Booking::findOrFail($id);
         $paketID = Paket::findOrFail($bookingID->paket_id);
         
         $paketID->update([
             'batik_id' => $request->batik,
-            'kesenian_id' => $request->kesenian,
+            'kesenian_id' => $kesenianID,
             'study_banding_id' => $request->studiBanding,
             'cocok_tanam_id' => $request->cocokTanam,
             'permainan_id' => $request->permainan,
             'homestay_id' => $request->homestay,
             'kuliner_id' => $request->kuliner,
+            'ketKesenian' => $ketKesenian,
         ]);
 
         $paket = $paketID;
+        if($ketKesenian == 'pementasan'){
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }else{
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        }
 
         $bookingID->update([
             'nama_pic' => $request->nama_pic,
@@ -263,7 +282,7 @@ class AdminController extends Controller
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'paket_id' => $paket->id,
-            'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
+            'tagihan' => $tagihan,
             'guide_id' => $request->guide,
             'status' => $request->status,
         ]);
@@ -285,7 +304,12 @@ class AdminController extends Controller
     public function detail(Request $request, $id)
     {
         $detail = Booking::findOrFail($id);
-        return view('admin.detail', compact('detail'));
+        if($detail->paket->ketKesenian == 'pementasan'){
+            $tagihanKesenian = 150000;
+        }else{
+            $tagihanKesenian = 40000;
+        } 
+        return view('admin.detail', compact('detail','tagihanKesenian'));
     }
 
     public function searchPIC(Request $request)

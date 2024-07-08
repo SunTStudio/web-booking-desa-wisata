@@ -72,8 +72,8 @@
 
                             <!-- Paket Kesenian -->
                             <div class="kesenian justify-content-between d-flex  pt-1">
-                                <p>Paket Kesenian : <span class="fw-bold">{{ $detail->paket->kesenian->nama }}</span></p>
-                                <p>Rp {{ $detail->paket->kesenian->harga_pementasan }} X {{ $detail->visitor }} org = Rp {{ number_format($detail->paket->kesenian->harga_pementasan * $detail->visitor, 0, ',', '.') }},-</p>
+                                <p>Paket Kesenian : <span class="fw-bold">{{ $detail->paket->kesenian->nama }} ({{ $detail->paket->ketKesenian }})</span></p>
+                                <p>Rp {{ $tagihanKesenian }} X {{ $detail->visitor }} org = Rp {{ number_format($tagihanKesenian * $detail->visitor, 0, ',', '.') }},-</p>
                             </div>
 
                             <!-- Paket Cocok Tanam -->

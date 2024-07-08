@@ -127,8 +127,8 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $data->paket->kesenian->nama }}</td>
                     <td>{{ $data->visitor }}</td>
-                    <td>Rp. {{ number_format($data->paket->kesenian->harga_pementasan, 0, ',', '.') }}</td>
-                    <td>Rp. {{ number_format($data->paket->kesenian->harga_pementasan * $data->visitor, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($tagihanKesenian, 0, ',', '.') }}</td>
+                    <td>Rp. {{ number_format($tagihanKesenian * $data->visitor, 0, ',', '.') }}</td>
                 </tr>
                 @endif
                 @if ($data->paket->cocokTanam->nama != "Tidak Pesan")
