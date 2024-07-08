@@ -15,6 +15,7 @@ use App\Models\Permainan;
 use App\Models\Kuliner;
 use App\Models\Paket;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -58,10 +59,11 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
-        $oneMonth = Carbon::today()->subMonth()->format('Y-m-d');
+        $StartMonth = Carbon::now()->startOfMonth();
+        $EndMonth = Carbon::now()->endOfMonth();
         $today = Carbon::today('Asia/Jakarta')->format('Y-m-d');
         $kunjunganHarian = Booking::where('tanggal',Carbon::today('Asia/Jakarta'))->count();
-        $kunjunganBulanan = Booking::whereBetween('tanggal',[$oneMonth ,$today])->count();
+        $kunjunganBulanan = Booking::whereBetween('tanggal',[$StartMonth ,$EndMonth])->count();
         $totalKunjungan = Booking::count('id');
         $data = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
         $appoitments = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
@@ -307,6 +309,26 @@ class AdminController extends Controller
         }
 
         return view('admin.booking', compact('bookings'));
+    }
+
+    public function login(){
+        return view('admin.login');
+    }
+
+    public function loginProses(Request $request){
+
+       if(Auth::attempt(['name' => $request->name , 'password' => $request->password])){
+            
+            return redirect()->route('admin.dashboard');
+       }else{
+            return back()->with('error','Periksa Kembali Nim atau Password Anda!');
+        }
+
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        return view('login');
     }
 
     // public function index(Request $request)
