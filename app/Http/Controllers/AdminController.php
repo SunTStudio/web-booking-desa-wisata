@@ -254,7 +254,7 @@ class AdminController extends Controller
         }
         $bookingID = Booking::findOrFail($id);
         $paketID = Paket::findOrFail($bookingID->paket_id);
-        
+         
         $paketID->update([
             'batik_id' => $request->batik,
             'kesenian_id' => $kesenianID,
