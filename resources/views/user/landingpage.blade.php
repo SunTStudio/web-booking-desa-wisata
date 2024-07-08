@@ -244,10 +244,7 @@
 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="eventModalLabel">Info Kunjungan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+            
             <div class="modal-body" id="modalBody">
                 <!-- Event information will be injected here -->
             </div>
@@ -299,6 +296,8 @@
                             nama_pic: '{{ $booking->nama_pic }}',
                             noTelpPIC: '{{ $booking->noTelpPIC }}',
                             visitor: '{{ $booking->visitor }}',
+                            jam_mulai: '{{ $booking->jam_mulai }}',
+                            jam_selesai: '{{ $booking->jam_selesai }}',
                             paket_id: '{{ $booking->paket_id }}',
                             tagihan: '{{ $booking->tagihan }}',
                             guide_id: '{{ $booking->guide_id }}',
@@ -327,20 +326,30 @@
                         status: event.extendedProps.status
                     };
 
-                    // Update the modal's content
-                    var modalBody = document.getElementById('modalBody');
-                    modalBody.innerHTML = `
-                    <p><strong>PIC : </strong> ${eventData.nama_pic}</p>
-                    <p><strong>Organisasi : </strong> ${eventData.organisasi}</p>
-                    <p><strong>No. Telp PIC : </strong> ${eventData.noTelpPIC}</p>
-                    <p><strong>Visitor : </strong> ${eventData.visitor}</p>
-                    <p><strong>Tanggal : </strong> ${eventData.tanggal}</p>
-                    <p><strong>Jam Mulai : </strong> ${eventData.jam_mulai}</p>
-                    <p><strong>Jam Selesai : </strong> ${eventData.jam_selesai}</p>
-                    <p><strong>Paket ID : </strong> ${eventData.paket_id}</p>
-                    <p><strong>Tagihan : </strong> ${eventData.tagihan}</p>
-                    <p><strong>Guide ID : </strong> ${eventData.guide_id}</p>
-                    <p><strong>Status : </strong> ${eventData.status}</p>
+                // Update the modal's content
+                var modalBody = document.getElementById('modalBody');
+                modalBody.innerHTML = `
+                        <div class="row justify-content-center">
+                            <div class="col m-3 border rounded p-0">
+                                <div class="bg-secondary rounded">
+                                <p class="h5 fw-bold p-2 text-white">Status Booking</p>
+                                </div>
+                                <div class="ps-3 mb-3">
+                                    <p class="mt-3">Nama Pembooking : <strong> ${eventData.nama_pic} </strong></p>
+                                    <p>Organisasi :<strong> ${eventData.organisasi} </strong> </p>
+                                    <p>Visitor :<strong> ${eventData.visitor} </strong> </p>
+                                    <p>Tanggal :<strong> ${eventData.tanggal} </strong> </p>
+                                    <p>Jam Mulai :<strong> ${eventData.jam_mulai} </strong> </p>
+                                    <p>Jam Selesai :<strong> ${eventData.jam_selesai} </strong> </p>
+                                    <p>Status : <button class="btn btn-secondary"> ${eventData.status} </button>  </p>
+                                </div>
+                                <hr>
+                                <div class="cekStatus text-center p-3">
+                                    <p class="fw-bold">Periksa Status Booking ini lebih lanjut dengan menghubungi nomer Admin berikut :</p>
+                                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> 08734348343 </a>
+                                </div>
+                            </div>
+                        </div>
                 `;
 
                     // Show the modal
