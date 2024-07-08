@@ -61,7 +61,7 @@ class PDFController extends Controller
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('target' => '089603336375', 'message' => $message),
+        CURLOPT_POSTFIELDS => array('target' => $no_telp, 'message' => $message),
         CURLOPT_HTTPHEADER => array(
             'Authorization: ' . $token
         ),
