@@ -60,6 +60,8 @@
                             <p>Penanggung Jawab : <span class="fw-bold">{{ $detail->guide->name }}</span></p>
                             <p>Status Booking : <span class="fw-bold btn btn-info text-white">{{ $detail->status }}</span></p>
                             <a href="{{ route('admin.invoice', ['id' => $detail->id]) }}" class="btn btn-primary fw-bold " style="font-size: 0.8rem ;">Cetak Struck</a>
+                            <a href="{{ route('admin.invoice.send', ['id' => $detail->id]) }}" target="_blank" class="btn btn-warning fw-bold" style="font-size: 0.8rem ;">Kirim Struck ke PIC</a>
+
                         </div>
                         <div class="col-8 p-3 ps-5">
                             <p class="fw-bold"><small>ID PAKET : 00{{ $detail->paket_id }}</small></p>
