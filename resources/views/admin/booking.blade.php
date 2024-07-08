@@ -81,7 +81,7 @@
                 <td class="pt-3">
                     <button class="btn btn-dark text-light">{{ $booking->status }}</button>
                 </td>
-                <td ><a href="#" class="btn btn-warning" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#tambahModal"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
+                <td ><a href="{{ route('admin.edit.booking',['id' => $booking->id]) }}" class="btn btn-warning" style="font-size: 0.8rem ;"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="#" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -102,53 +102,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Booking</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Nama PIC</label>
-                        <input type="text" placeholder="Masukan Nama" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">No. Telp PIC</label>
-                        <input type="text" placeholder="Masukan No. Telp" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Jumlah Visitor</label>
-                        <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Tanggal Visitor</label>
-                        <input type="text" placeholder="Masukan tanggal YYYY-MM-DD" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Jam Mulai</label>
-                        <input type="time" placeholder="Masukan Jam Mulai" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Jam Selesai</label>
-                        <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Detail</label>
-                        <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="mb-2">Guide</label>
-                        <input type="time" placeholder="Masukan Jam Selesai" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Edit Booking</button>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('menuHp')
