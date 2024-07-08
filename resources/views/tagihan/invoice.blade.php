@@ -72,6 +72,7 @@
 <body>
     <center>
         <a href="{{ route('admin.invoice.pdf', ['id' => $data->id]) }}" target="_blank">cetak</a>
+        <a href="{{ route('admin.invoice.send', ['id' => $data->id]) }}" target="_blank">kirim</a>
     </center>
     <section class="invoice">
         <table class="navbar">

@@ -30,6 +30,7 @@ Route::get('/laporan/report', [PDFController::class, 'laporan'])->name('admin.la
 Route::get('/laporan/report/pdf', [PDFController::class, 'laporan_pdf'])->name('admin.laporan.pdf');
 
 Route::get('/admin/invoice{id}', [PDFController::class, 'invoice'])->name('admin.invoice');
+Route::get('/admin/invoice{id}/send', [PDFController::class, 'send'])->name('admin.invoice.send');
 Route::get('/admin/invoice{id}?output=pdf', [PDFController::class, 'invoice'])->name('admin.invoice.pdf');
 
 Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.kalender');
