@@ -44,7 +44,7 @@
         </div>
         <div class="row justify-content-center m-3 bg-white rounded px-3 py-4">
             <div class="col text-center">
-                <a href="" class="btn btn-primary fw-bold p-3"><span><i class="fa-regular fa-square-plus fs-1 p-2"></i></span><br>Buat Booking</a>
+                <a href="{{ route('admin.kalender') }}" class="btn btn-primary fw-bold p-3"><span><i class="fa-regular fa-square-plus fs-1 p-2"></i></span><br>Buat Booking</a>
             </div>
             <div class="col text-center">
                 <a href="{{ route('admin.laporan') }}" class="btn btn-danger fw-bold p-3 "><span><i class="fa-solid fa-print fs-1 p-2"></i></span><br>Cetak Laporan</a>
