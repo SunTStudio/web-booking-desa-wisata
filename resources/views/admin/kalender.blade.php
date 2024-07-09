@@ -76,19 +76,19 @@
                         <form method="GET" action="{{ route('admin.bookingProses') }}">
                             <div class="mb-3">
                                 <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="" required>
                             </div>
 
 
@@ -116,15 +116,15 @@
                     <div class="col">
                         <div class="mb-3">
                             <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
                         </div>
 
                     </div>
@@ -306,7 +306,9 @@
                                 @endforeach
                             </div>
                             {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            <button type="text" class="btn btn-warning mt-3" data-bs-dismiss="modal">Batal</button>
+
                             </form>
                         </div>
                     </div>

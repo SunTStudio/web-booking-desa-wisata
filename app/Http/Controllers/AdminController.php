@@ -59,6 +59,15 @@ class AdminController extends Controller
     }
 
     public function dashboard() {
+        $batiks = Batik::all();
+        $kesenians = Kesenian::all();
+        $cocokTanams = CocokTanam::all();
+        $permainans = Permainan::all();
+        $kuliners = Kuliner::all();
+        $homestays = Homestay::all();
+        $studiBandings = StudyBanding::all();
+
+
         $StartMonth = Carbon::now()->startOfMonth();
         $EndMonth = Carbon::now()->endOfMonth();
         $today = Carbon::today('Asia/Jakarta')->format('Y-m-d');
@@ -87,7 +96,13 @@ class AdminController extends Controller
         // Pisahkan tanggal dan total pendapatan untuk Chart.js
         $totals = $revenueData->pluck('total');
         
-        return view('admin/dashboard', compact('data','dates','totals','counts','appoitments','kunjunganHarian','kunjunganBulanan','totalKunjungan'));
+        return view('admin/dashboard', compact('batiks',
+            'homestays',
+            'studiBandings',
+            'kesenians',
+            'cocokTanams',
+            'permainans',
+            'kuliners','data','dates','totals','counts','appoitments','kunjunganHarian','kunjunganBulanan','totalKunjungan'));
     }
 
     public function laporan(Request $request)

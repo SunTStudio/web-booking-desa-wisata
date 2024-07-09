@@ -53,19 +53,19 @@
                         <form method="GET" action="{{ route('user.bookingProses') }}">
                             <div class="mb-3">
                                 <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="" required>
                             </div>
 
 
@@ -73,15 +73,15 @@
                     <div class="col">
                         <div class="mb-3">
                             <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
                         </div>
 
                     </div>
@@ -109,7 +109,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Keterangan Paket Membatik :</p>
                                             <ul>
                                                 <li>Hasil Karya Milik Peserta</li>
@@ -117,7 +117,7 @@
                                                 <li>Durasi 2 Jam</li>
                                             </ul>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Fasilitas :</p>
                                             <ul>
                                                 <li>Sertifikat</li>
@@ -162,7 +162,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Keterangan Paket Kesenian :</p>
                                             <ul>
                                                 <li>Biaya Belajar Rp 40.000/orang</li>
@@ -170,7 +170,7 @@
                                                 <li>Minimal Peserta 10 orang</li>
                                             </ul>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Fasilitas :</p>
                                             <ul>
                                                 <li>Foto Kegiatan</li>
@@ -336,7 +336,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Keterangan Paket Study Banding :</p>
                                             <ul>
                                                 <li>Mendapat Materi Desa Wisata Krebet</li>
@@ -345,7 +345,7 @@
                                                 <li>Membatik Batik Paket III</li>
                                             </ul>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-lg-6 col">
                                             <p class="fw-medium h6">Fasilitas :</p>
                                             <ul>
                                                 <li>Sertifikat</li>
@@ -356,7 +356,8 @@
                                 </div>
                             </div>
                             {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
-                            <button type="submit" class="btn btn-primary">Booking Sekarang</button>
+                            <button type="submit" class="btn btn-primary mt-3">Booking Sekarang</button>
+                            <button type="text" class="btn btn-warning mt-3" data-bs-dismiss="modal">Batal</button>
                             </form>
                         </div>
                     </div>

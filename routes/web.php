@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 //     return view('admin/dashboard');
 // })->name('admin.dashboard');
 
-
+ 
 
 Route::get('/login-krebet', [AdminController::class, 'login'])->name('login');
 Route::post('/login-proses-krebet', [AdminController::class, 'loginProses'])->name('admin.login.proses');
