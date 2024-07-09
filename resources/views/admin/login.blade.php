@@ -29,7 +29,6 @@
                     </div>
                     <form action="{{ route('admin.login.proses') }}" method="POST" style="color: #969AB8;">
                         @csrf
-                        @method('POST')
                         <div class="form-floating mb-3">
                         <input type="text" name="name" class="form-control" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput"><i class="fa-regular fa-envelope"></i> Username</label>
