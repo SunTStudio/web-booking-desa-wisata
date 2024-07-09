@@ -92,7 +92,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-batik" class="form-label fw-bold">Paket Batik</label>
                                 @foreach ($batiks as $batik)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $batik->id }}" type="radio" name="batik" id="batik{{ $batik->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="batik{{ $batik->id }}">
@@ -132,7 +132,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar (Rp40.000)</label>
                                 @foreach ($kesenians as $kesenian)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kesenian->id}}.belajar" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
@@ -147,7 +147,7 @@
                                 <hr>
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar dan Pementasan (Rp150.000)</label>
                                 @foreach ($kesenians as $kesenian)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kesenian->id }}.pementasan" type="radio" name="kesenian" id="kesenian2{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian2{{ $kesenian->id }}">
@@ -187,7 +187,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-cocok-tanam" class="form-label fw-bold">Paket Cocok Tanam</label>
                                 @foreach ($cocokTanams as $cocokTanam)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $cocokTanam->id }}" type="radio" name="cocokTanam" id="cocokTanam{{ $cocokTanam->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
@@ -222,7 +222,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-permainan" class="form-label fw-bold">Paket Permainan</label>
                                 @foreach ($permainans as $permainan)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $permainan->id }}" type="radio" name="permainan" id="permainan{{ $permainan->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="permainan{{ $permainan->id }}">
@@ -256,7 +256,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
                                 @foreach ($kuliners as $kuliner)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kuliner->id }}" type="radio" name="kuliner" id="kuliner{{ $kuliner->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
@@ -288,7 +288,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Homestay</label>
                                 @foreach ($homestays as $homestay)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $homestay->id }}" type="radio" name="homestay" id="homestay{{ $homestay->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="homestay{{ $homestay->id }}">
@@ -319,7 +319,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Study Banding</label>
                                 @foreach ($studiBandings as $studiBanding)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $studiBanding->id }}" type="radio" name="studiBanding" id="studiBanding{{ $studiBanding->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="studiBanding{{ $studiBanding->id }}">
