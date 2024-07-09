@@ -185,7 +185,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        <div class="col-lg-3 col">
+                                        <div class="col-6">
                                             <p class="fw-medium h6">Keterangan Paket Kesenian :</p>
                                             <ul>
                                                 <li>Biaya Belajar Rp 40.000/orang</li>
