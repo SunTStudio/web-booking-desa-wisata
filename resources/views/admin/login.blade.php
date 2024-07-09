@@ -27,7 +27,7 @@
                         <img src="/asset/Logo_Desa_Krebet.png" alt="" class="img-fluid p-4">
                         <p class="fw-bold h5 p-3 mb-4">Login Web Desa Wisata Krebet</p>
                     </div>
-                    <form action="{{ route('admin.login.proses') }}" method="POST" style="color: #969AB8;">
+                    <form action="https://web-booking-desa-wisata-production.up.railway.app/login-proses-krebet" method="POST" style="color: #969AB8;">
                         @csrf
                         <div class="form-floating mb-3">
                         <input type="text" name="name" class="form-control" id="floatingInput" placeholder="name@example.com">
