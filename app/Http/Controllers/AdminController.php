@@ -362,9 +362,9 @@ class AdminController extends Controller
 
        if(Auth::attempt(['name' => $request->name , 'password' => $request->password])){
             
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('success','Anda berhasil login!');
        }else{
-            return back()->with('error','Periksa Kembali Nim atau Password Anda!');
+            return back()->with('error','Periksa Kembali Username atau Password Anda!');
         }
 
     }

@@ -421,6 +421,16 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (SESSION('success'))
+<script>
+    Swal.fire({
+        icon: "success",
+        title: "Berhasil",
+        text: "{{ SESSION('success') }}",
+    });
+</script>
+@endif
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
