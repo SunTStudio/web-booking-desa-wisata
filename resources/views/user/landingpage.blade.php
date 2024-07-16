@@ -204,7 +204,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        
+
                                         <div class="col">
                                             <p class="fw-medium h6">Fasilitas Paket Cocok Tanam :</p>
                                             <ul>
@@ -239,7 +239,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        
+
                                         <div class="col">
                                             <p class="fw-medium h6">Keterangan Paket Permainan :</p>
                                             <ul>
@@ -273,7 +273,7 @@
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
-                                        
+
                                         <div class="col">
                                             <p class="fw-medium h6">Keterangan Paket Kuliner :</p>
                                             <ul>
@@ -357,6 +357,7 @@
                             </div>
                             {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
                             <button type="submit" class="btn btn-primary">Booking Sekarang</button>
+                            <a href="{{ route('user.chat.send', ['id' => $detail->id]) }}" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> 089603336375 </a>
                             </form>
                         </div>
                     </div>
@@ -370,7 +371,7 @@
 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
             <div class="modal-body" id="modalBody">
                 <!-- Event information will be injected here -->
             </div>
@@ -437,7 +438,11 @@
                     info.jsEvent.preventDefault();
 
                     // Extract data from the eventinfo.jsEvent.preventDefault();
-                    var options = { year: 'numeric', month: 'long', day: 'numeric' };    
+                    var options = {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    };
                     var event = info.event;
                     var eventData = {
                         nama_pic: event.extendedProps.nama_pic,
@@ -453,9 +458,9 @@
                         status: event.extendedProps.status
                     };
 
-                // Update the modal's content
-                var modalBody = document.getElementById('modalBody');
-                modalBody.innerHTML = `
+                    // Update the modal's content
+                    var modalBody = document.getElementById('modalBody');
+                    modalBody.innerHTML = `
                         <div class="row justify-content-center">
                             <div class="col m-3 border rounded p-0">
                                 <div class="bg-secondary rounded">

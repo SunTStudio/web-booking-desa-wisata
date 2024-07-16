@@ -12,10 +12,14 @@ use App\Models\Kuliner;
 use App\Models\Paket;
 use App\Models\StudyBanding;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\RedirectResponse;
+
 
 class LandingPageController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $batiks = Batik::all();
         $kesenians = Kesenian::all();
         $cocokTanams = CocokTanam::all();
@@ -24,12 +28,12 @@ class LandingPageController extends Controller
         $homestays = Homestay::all();
         $studiBandings = StudyBanding::all();
         $bookings = Booking::all();
-        return view('user/landingpage',compact('batiks','bookings','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
+        return view('user/landingpage', compact('batiks', 'bookings', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
     }
 
     public function store(Request $request)
     {
-        list($kesenianID,$ketKesenian) = explode('.',$request->kesenian);
+        list($kesenianID, $ketKesenian) = explode('.', $request->kesenian);
         Paket::create([
             'batik_id' => $request->batik,
             'kesenian_id' => $kesenianID,
@@ -40,12 +44,12 @@ class LandingPageController extends Controller
             'kuliner_id' => $request->kuliner,
             'ketKesenian' => $ketKesenian,
         ]);
-        
+
         $paket = Paket::latest()->first();
-        if($ketKesenian == 'pementasan'){
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
-        }else{
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        if ($ketKesenian == 'pementasan') {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
+        } else {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
         }
 
         Booking::create([
@@ -63,6 +67,49 @@ class LandingPageController extends Controller
         ]);
 
         return redirect()->route('user.landingpage');
+    }
 
+    public function send(Request $request, $id): RedirectResponse
+    {
+        $data = Booking::findOrFail($id);
+        $no_telp = $data->noTelpPIC;
+        $token = 'h4HE!u#hhpf+9Ywbz1Pb';
+
+        // Path to your generated PDF invoice
+        // $pdfPath = public_path('invoice.invoice.pdf');
+
+        // Example WhatsApp message with PDF link
+        $message = "Invoice Anda terlampir. Silakan unduh: " . url('/admin/invoice' . $data->id);
+
+        // Initialize CURL
+        $curl = curl_init();
+
+        // Set CURL options
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array('target' => $no_telp, 'message' => $message),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: ' . $token
+            ),
+        ));
+
+        // Execute CURL request
+        $response = curl_exec($curl);
+
+        // Close CURL
+        curl_close($curl);
+
+        // Delete PDF file after sending (optional)
+        // unlink($pdfPath);
+
+        // Redirect back with success message
+        return Redirect::back()->with('success', 'Invoice terkirim ke WhatsApp');
     }
 }

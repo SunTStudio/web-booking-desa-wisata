@@ -56,3 +56,5 @@ Route::get('/form', function () {
 
 Route::get('/', [LandingPageController::class, 'index'])->name('user.landingpage');
 Route::get('/booking/proses', [LandingPageController::class, 'store'])->name('user.bookingProses');
+Route::get('/booking/proses{id}/send', [LandingPageController::class, 'send'])->name('user.chat.send');
+
