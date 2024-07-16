@@ -81,7 +81,27 @@
                 <td class="pt-3">
                     <button class="btn btn-dark text-light">{{ $booking->status }}</button>
                 </td>
-                <td ><a href="{{ route('admin.edit.booking',['id' => $booking->id]) }}" class="btn btn-warning" style="font-size: 0.8rem ;"><i class="fa-solid fa-pen-to-square"></i></a> | <a href="{{ route('admin.booking.delete',['id' => $booking->id]) }}" class="btn btn-danger" style="font-size: 0.8rem ;"><i class="fa-solid fa-trash-can"></i></a></td>
+                <td ><a href="{{ route('admin.edit.booking',['id' => $booking->id]) }}" class="btn btn-warning" style="font-size: 0.8rem ;"><i class="fa-solid fa-pen-to-square"></i></a> | <a  class="btn btn-danger" style="font-size: 0.8rem ;" data-bs-toggle="modal" data-bs-target="#target{{ $booking->id }}"><i class="fa-solid fa-trash-can"></i></a>
+                
+                    <div class="modal fade" id="target{{ $booking->id }}" tabindex="-1" aria-labelledby="target{{ $booking->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="h5 fw-bold">Yakin Menghapus Data ini?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</a>
+                                <a class="btn btn-danger" href="{{ route('admin.booking.delete',['id' => $booking->id]) }}" >Hapus</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </td>
                 </tr>
                 @endforeach
             </tbody>

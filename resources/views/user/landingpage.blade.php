@@ -429,7 +429,8 @@
                             tagihan: '{{ $booking->tagihan }}',
                             guide_id: '{{ $booking->guide_id }}',
                             status: '{{ $booking->status }}',
-                        }
+                        },
+                        backgroundColor: '{{ $booking->status === "Sudah ACC" ? "#5cb85c" : "#0275d8" }}', // Conditional color
                     },
                     @endforeach
                 ],

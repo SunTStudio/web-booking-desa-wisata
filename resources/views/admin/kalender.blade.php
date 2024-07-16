@@ -124,7 +124,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
+                            <input type="text" onchange="validateVisitorCount()" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
                         </div>
 
                     </div>
@@ -416,7 +416,9 @@
                             tagihan: '{{ $booking->tagihan }}',
                             guide_id: '{{ $booking->guide_id }}',
                             status: '{{ $booking->status }}',
-                        }
+                        },
+                        backgroundColor: '{{ $booking->status === "Sudah ACC" ? "#5cb85c" : "#0275d8" }}', // Conditional color
+
                     },
                     @endforeach
                 ],
@@ -475,5 +477,15 @@
         }
     });
 </script>
-
+<script>
+function validateVisitorCount() {
+    var visitor = document.getElementById("jumlah-visitor");
+    var visitorValue = visitor.value;
+    // console.log(arr_email);
+    if (visitorValue < 1) {
+        alert("Visitor harus lebih dari 0 !!");
+        visitor.value = "";
+    }
+}
+</script>
 @endsection
