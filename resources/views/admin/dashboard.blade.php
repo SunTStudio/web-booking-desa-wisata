@@ -44,7 +44,7 @@
         </div>
         <div class="row justify-content-center m-3 bg-white rounded px-3 py-4">
             <div class="col text-center">
-                <a href="" class="btn btn-primary fw-bold p-3"><span><i class="fa-regular fa-square-plus fs-1 p-2"></i></span><br>Buat Booking</a>
+                <a href="#" class="btn btn-primary fw-bold p-3"><span><i class="fa-regular fa-square-plus fs-1 p-2" data-bs-toggle="modal" data-bs-target="#tambahModal"></i></span><br>Buat Booking</a>
             </div>
             <div class="col text-center">
                 <a href="{{ route('admin.laporan') }}" class="btn btn-danger fw-bold p-3 "><span><i class="fa-solid fa-print fs-1 p-2"></i></span><br>Cetak Laporan</a>
@@ -132,6 +132,265 @@
         <a href="#" style="text-decoration: none;">Selengkapnya <i class="fa-solid fa-caret-right"></i></a>
     </div>
 </div>
+
+<div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Booking</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
+                <div class="row justify-content-center border rounded p-4 m-3">
+                    <div class="col me-4">
+                        <form method="GET" action="{{ route('admin.bookingProses') }}">
+                            <div class="mb-3">
+                                <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="" required>
+                            </div>
+
+
+                    </div>
+                    <!-- <div class="col">
+                            <div class="mb-3">
+                                <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                            </div>
+
+
+                    </div> -->
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
+                        </div>
+
+                    </div>
+
+                    <h5 class="fw-bold m-3 mt-5">Pilih Paket-Paket Desa Wisata</h5>
+                    <div class="row justify-content-center m-3">
+                        <div class="col">
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-batik" class="form-label fw-bold">Paket Batik</label>
+                                @foreach ($batiks as $batik)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $batik->id }}" type="radio" name="batik" id="batik{{ $batik->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="batik{{ $batik->id }}">
+                                            <h5 class="card-header fw-bold">{{ $batik->nama }}</h5>
+                                            <hr>
+                                            <small>Souvenir yang didapat:</small>
+                                            <p class="card-text">{{ $batik->deskripsi }}</p>
+                                            <small>Harga Paket:</small>
+                                            <p class="card-text">Rp {{ $batik->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Kesenian -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar (Rp40.000)</label>
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id}}.belajar" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
+                                            <hr>
+                                            <small>Harga Belajar:</small>
+                                            <p class="card-text">{{ $kesenian->harga_belajar }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <hr>
+                                <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar dan Pementasan (Rp150.000)</label>
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id }}.pementasan" type="radio" name="kesenian" id="kesenian2{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kesenian2{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
+                                            <hr>
+                                            <small>Harga Pementasan:</small>
+                                            <p class="card-text">Rp {{ $kesenian->harga_pementasan }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                                <hr class="mt-3">
+                                <div class="col-lg-12">
+                                    <div class="row p-3">
+                                        <div class="col-6">
+                                            <p class="fw-medium h6">Keterangan Paket Kesenian :</p>
+                                            <ul>
+                                                <li>Biaya Belajar Rp 40.000/orang</li>
+                                                <li>Biaya Belajar & Pementasan Rp 150.000/orang</li>
+                                                <li>Minimal Peserta 10 orang</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="fw-medium h6">Fasilitas :</p>
+                                            <ul>
+                                                <li>Foto Kegiatan</li>
+                                                <li>Pakaian Tradisional dan Make Up</li>
+                                                <li>Tempat Pertunjukan</li>
+                                                <li>Air Minum Kemasan</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paket Cocok Tanam -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-cocok-tanam" class="form-label fw-bold">Paket Cocok Tanam</label>
+                                @foreach ($cocokTanams as $cocokTanam)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="radio" name="cocokTanam" id="cocokTanam{{ $cocokTanam->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
+                                            <h5 class="card-header fw-bold">{{ $cocokTanam->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $cocokTanam->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $cocokTanam->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Permainan -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-permainan" class="form-label fw-bold">Paket Permainan</label>
+                                @foreach ($permainans as $permainan)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $permainan->id }}" type="radio" name="permainan" id="permainan{{ $permainan->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="permainan{{ $permainan->id }}">
+                                            <h5 class="card-header fw-bold">{{ $permainan->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $permainan->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $permainan->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Kuliner -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
+                                @foreach ($kuliners as $kuliner)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="radio" name="kuliner" id="kuliner{{ $kuliner->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kuliner->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $kuliner->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $kuliner->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Homestay -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Homestay</label>
+                                @foreach ($homestays as $homestay)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $homestay->id }}" type="radio" name="homestay" id="homestay{{ $homestay->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="homestay{{ $homestay->id }}">
+                                            <h5 class="card-header fw-bold">{{ $homestay->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $homestay->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $homestay->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                            <!-- Paket Homestay -->
+                            <div class="row border rounded p-4 mb-3">
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Study Banding</label>
+                                @foreach ($studiBandings as $studiBanding)
+                                <div class="col-lg-3 col border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $studiBanding->id }}" type="radio" name="studiBanding" id="studiBanding{{ $studiBanding->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="studiBanding{{ $studiBanding->id }}">
+                                            <h5 class="card-header fw-bold">{{ $studiBanding->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $studiBanding->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $studiBanding->harga }}</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            <button type="text" class="btn btn-warning mt-3" data-bs-dismiss="modal">Batal</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('menuHp')
@@ -162,6 +421,16 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (SESSION('success'))
+<script>
+    Swal.fire({
+        icon: "success",
+        title: "Berhasil",
+        text: "{{ SESSION('success') }}",
+    });
+</script>
+@endif
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

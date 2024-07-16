@@ -76,19 +76,19 @@
                         <form method="GET" action="{{ route('admin.bookingProses') }}">
                             <div class="mb-3">
                                 <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
-                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
+                                <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Pembooking</label>
-                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="">
+                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
-                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="">
+                                <input type="text" placeholder="Masukan No. Telp" class="form-control" name="notelppic" id="no-telp-pic" value="" required>
                             </div>
 
 
@@ -116,15 +116,15 @@
                     <div class="col">
                         <div class="mb-3">
                             <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="">
+                            <input type="time" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
-                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="">
+                            <input type="time" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="" required>
                         </div>
                         <div class="mb-3">
                             <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                            <input type="text" onchange="validateVisitorCount()" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" required>
                         </div>
 
                     </div>
@@ -135,7 +135,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-batik" class="form-label fw-bold">Paket Batik</label>
                                 @foreach ($batiks as $batik)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $batik->id }}" type="radio" name="batik" id="batik{{ $batik->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="batik{{ $batik->id }}">
@@ -155,7 +155,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar (Rp40.000)</label>
                                 @foreach ($kesenians as $kesenian)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kesenian->id}}.belajar" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
@@ -170,7 +170,7 @@
                                 <hr>
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar dan Pementasan (Rp150.000)</label>
                                 @foreach ($kesenians as $kesenian)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kesenian->id }}.pementasan" type="radio" name="kesenian" id="kesenian2{{ $kesenian->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kesenian2{{ $kesenian->id }}">
@@ -210,7 +210,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-cocok-tanam" class="form-label fw-bold">Paket Cocok Tanam</label>
                                 @foreach ($cocokTanams as $cocokTanam)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $cocokTanam->id }}" type="radio" name="cocokTanam" id="cocokTanam{{ $cocokTanam->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
@@ -230,7 +230,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-permainan" class="form-label fw-bold">Paket Permainan</label>
                                 @foreach ($permainans as $permainan)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $permainan->id }}" type="radio" name="permainan" id="permainan{{ $permainan->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="permainan{{ $permainan->id }}">
@@ -250,7 +250,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
                                 @foreach ($kuliners as $kuliner)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $kuliner->id }}" type="radio" name="kuliner" id="kuliner{{ $kuliner->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
@@ -270,7 +270,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Homestay</label>
                                 @foreach ($homestays as $homestay)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $homestay->id }}" type="radio" name="homestay" id="homestay{{ $homestay->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="homestay{{ $homestay->id }}">
@@ -290,7 +290,7 @@
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Study Banding</label>
                                 @foreach ($studiBandings as $studiBanding)
-                                <div class="col-3 border p-3 m-3">
+                                <div class="col-lg-3 col border p-3 m-3">
                                     <div class="form-check">
                                         <input class="form-check-input" value="{{ $studiBanding->id }}" type="radio" name="studiBanding" id="studiBanding{{ $studiBanding->id }}" @if ($loop->first) checked @endif>
                                         <label class="form-check-label" for="studiBanding{{ $studiBanding->id }}">
@@ -306,7 +306,9 @@
                                 @endforeach
                             </div>
                             {{-- <button type="submit" class="btn btn-primary" onclick="tambahBooking(event)">Submit</button> --}}
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            <button type="text" class="btn btn-warning mt-3" data-bs-dismiss="modal">Batal</button>
+
                             </form>
                         </div>
                     </div>
@@ -414,7 +416,9 @@
                             tagihan: '{{ $booking->tagihan }}',
                             guide_id: '{{ $booking->guide_id }}',
                             status: '{{ $booking->status }}',
-                        }
+                        },
+                        backgroundColor: '{{ $booking->status === "Sudah ACC" ? "#5cb85c" : "#0275d8" }}', // Conditional color
+
                     },
                     @endforeach
                 ],
@@ -473,5 +477,15 @@
         }
     });
 </script>
-
+<script>
+function validateVisitorCount() {
+    var visitor = document.getElementById("jumlah-visitor");
+    var visitorValue = visitor.value;
+    // console.log(arr_email);
+    if (visitorValue < 1) {
+        alert("Visitor harus lebih dari 0 !!");
+        visitor.value = "";
+    }
+}
+</script>
 @endsection
