@@ -112,7 +112,6 @@
                                 <p class="fw-bold">Rp {{ number_format($detail->tagihan, 0, ',', '.') }},-</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
