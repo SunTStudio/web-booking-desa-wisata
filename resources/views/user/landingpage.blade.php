@@ -166,6 +166,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- <div class="h-5">Hall0000o</div> -->
                             </div>
 
                             <!-- Paket Kesenian -->
@@ -545,38 +546,57 @@
 
         }
 
+        // if (visitorValue < 10) {
+        //     var batik = document.getElementsByClassName("batik");
+
+        //     for (let index = 0; index < batik.length; index++) {
+        //         // const element = array[index];
+        //         batik[index].disabled = true;
+        //     }
+        //     // console.log(batik[0]);
+        // } else if (visitorValue > 10) {
+        //     var batik = document.getElementsByClassName("batik");
+
+        //     for (let index = 0; index < batik.length; index++) {
+        //         // const element = array[index];
+        //         batik[index].disabled = false;
+        //     }
+        // } else {
+
+        // }
+
+        // if (visitorValue < 10) {
+        //     var kesenian = document.getElementsByClassName("kesenian");
+
+        //     for (let index = 0; index < kesenian.length; index++) {
+        //         // const element = array[index];
+        //         kesenian[index].disabled = true;
+        //     }
+        //     // console.log(kesenian[0]);
+        // } else if (visitorValue > 10) {
+        //     var kesenian = document.getElementsByClassName("kesenian");
+
+        //     for (let index = 0; index < kesenian.length; index++) {
+        //         // const element = array[index];
+        //         kesenian[index].disabled = false;
+        //     }
+        // } else {
+
+        // }
         if (visitorValue < 10) {
-            var batik = document.getElementsByClassName("batik");
+            var cocokTanam = document.getElementsByClassName("cocokTanam");
 
-            for (let index = 0; index < batik.length; index++) {
+            for (let index = 0; index < cocokTanam.length; index++) {
                 // const element = array[index];
-                batik[index].disabled = true;
+                cocokTanam[index].disabled = true;
             }
-            // console.log(batik[0]);
+            // console.log(cocokTanam[0]);
         } else if (visitorValue > 10) {
-            var batik = document.getElementsByClassName("batik");
+            var cocokTanam = document.getElementsByClassName("cocokTanam");
 
-            for (let index = 0; index < batik.length; index++) {
+            for (let index = 0; index < cocokTanam.length; index++) {
                 // const element = array[index];
-                batik[index].disabled = false;
-            }
-        } else {
-
-        }
-        if (visitorValue < 10) {
-            var batik = document.getElementsByClassName("batik");
-
-            for (let index = 0; index < batik.length; index++) {
-                // const element = array[index];
-                batik[index].disabled = true;
-            }
-            // console.log(batik[0]);
-        } else if (visitorValue > 10) {
-            var batik = document.getElementsByClassName("batik");
-
-            for (let index = 0; index < batik.length; index++) {
-                // const element = array[index];
-                batik[index].disabled = false;
+                cocokTanam[index].disabled = false;
             }
         } else {
 
