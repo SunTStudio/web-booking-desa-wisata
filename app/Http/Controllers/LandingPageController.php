@@ -18,7 +18,7 @@ use Illuminate\Http\RedirectResponse;
 
 class LandingPageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $batiks = Batik::all();
         $kesenians = Kesenian::all();
@@ -28,7 +28,7 @@ class LandingPageController extends Controller
         $homestays = Homestay::all();
         $studiBandings = StudyBanding::all();
         $bookings = Booking::all();
-        return view('user/landingpage', compact('batiks', 'bookings', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
+        return view('user/landingpage', compact('batiks', 'bookings', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners', 'request'));
     }
 
     public function store(Request $request)

@@ -60,8 +60,8 @@
                                 <input type="text" class="form-control" name="nama_pic" id="nama-pembooking" value="" required>
                             </div>
                             <div class="mb-3">
-                                <label for="nama-pembooking" class="form-label">Nama Organisasi</label>
-                                <input type="text" class="form-control" name="organisasi" id="nama-pembooking" value="" required>
+                                <label for="organisasi" class="form-label">Nama Organisasi</label>
+                                <input type="text" class="form-control" name="organisasi" id="organisasi" value="" required>
                             </div>
                             <div class="mb-3">
                                 <label for="no-telp-pic" class="mb-2">No. Telp PIC</label>
@@ -69,14 +69,16 @@
                             </div>
 
 
+
+
                     </div>
                     <div class="col">
                         <div class="mb-3">
                             <label for="jam-booking-mulai" class="form-label">Jam Booking Mulai</label>
-                            <input type="time" min="08:00" max="16:00" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required onchange="waktuAwal()">
+                            <input type="time" min="08:00" max="16:00" step="3600" class="form-control" name="jam_mulai" id="jam-booking-mulai" value="" required onchange="waktuAwal()">
                         </div>
-                        <div class="mb-3">
-                            <label for="jam-booking-selesai" class="form-label">Jam Booking Selesai</label>
+                        <div class="mb-3" style="visibility: hidden;">
+                            <label for="jam-booking-selesai" class="form-label" sty>Jam Booking Selesai</label>
                             <input type="hidden" class="form-control" name="jam_selesai" id="jam-booking-selesai" value="" required>
                         </div>
                         <div class="mb-3">
@@ -85,6 +87,14 @@
                         </div>
 
                     </div>
+                    <!-- Input hidden untuk menyimpan nilai yang akan ditampilkan sebelum dikirim -->
+                    <input type="hidden" name="organisasi" id="organisasi-hidden">
+                    <input type="hidden" name="visitor" id="visitor-hidden">
+                    <input type="hidden" name="tanggal" id="tanggal-hidden">
+                    <input type="hidden" name="jam_mulai" id="jam-mulai-hidden">
+                    <input type="hidden" name="jam_selesai" id="jam-selesai-hidden">
+                    <input type="hidden" name="status" id="status-hidden">
+                    <input type="hidden" name="nama_pic_hidden" id="nama-pembooking-hidden">
 
                     <h5 class="fw-bold m-3 mt-5">Pilih Paket-Paket Desa Wisata</h5>
                     <div class="row justify-content-center m-3">
@@ -378,10 +388,31 @@
 
             <div class="modal-body" id="detailJam">
                 <!-- Event information will be injected here -->
+                <div class="row justify-content-center">
+                    <div class="col m-3 border rounded p-0">
+                        <div class="bg-secondary rounded">
+                            <p class="h5 fw-bold p-2 text-white">Status Booking</p>
+                        </div>
+                        <div class="ps-3 mb-3">
+                            <p class="mt-3">Nama Pembooking : <strong id="nama-pembooking-display"></strong></p>
+                            <p>Organisasi :<strong id="organisasi-display"></strong> </p>
+                            <p>Visitor :<strong id="visitor-display"></strong> </p>
+                            <p>Tanggal :<strong id="tanggal-display"></strong> </p>
+                            <p>Jam Mulai :<strong id="jam-mulai-display"></strong> </p>
+                            <p>Jam Selesai :<strong id="jam-selesai-display"></strong> </p>
+                            <p>Status : <button class="btn btn-secondary" id="status-display"></button> </p>
+                        </div>
+                        <hr>
+                        <div class="cekStatus text-center p-3">
+                            <p class="fw-bold">Periksa Status Booking ini lebih lanjut dengan menghubungi nomer Admin berikut :</p>
+                            <a href="https://wa.me/6285868144268" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> 08734348343 </a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
-                <button href="" type="submit" class="btn btn-warning mt-3">Submit</button>
+                <button href="" type="submit" class="btn btn-warning">Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
@@ -405,10 +436,11 @@
 @endsection
 
 @section('script')
-
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>></script>
+<script type="text/javascript" src="/js/landingpage.js"></script>
 <script>
+ 
     var calendar; // Declare calendar variable in the global scope
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -534,167 +566,7 @@
         }
     });
 </script>
-<script>
-    function validateVisitorCount() {
-        var visitor = document.getElementById("jumlah-visitor");
-        var visitorValue = visitor.value;
-        // console.log(arr_email);
-        if (visitorValue < 1) {
-            alert("Visitor harus lebih dari 0 !!");
-            visitor.value = "";
-        }else {
 
-        }
-
-        // if (visitorValue < 10) {
-        //     var batik = document.getElementsByClassName("batik");
-
-        //     for (let index = 0; index < batik.length; index++) {
-        //         // const element = array[index];
-        //         batik[index].disabled = true;
-        //     }
-        //     // console.log(batik[0]);
-        // } else if (visitorValue > 10) {
-        //     var batik = document.getElementsByClassName("batik");
-
-        //     for (let index = 0; index < batik.length; index++) {
-        //         // const element = array[index];
-        //         batik[index].disabled = false;
-        //     }
-        // } else {
-
-        // }
-
-        // if (visitorValue < 10) {
-        //     var kesenian = document.getElementsByClassName("kesenian");
-
-        //     for (let index = 0; index < kesenian.length; index++) {
-        //         // const element = array[index];
-        //         kesenian[index].disabled = true;
-        //     }
-        //     // console.log(kesenian[0]);
-        // } else if (visitorValue > 10) {
-        //     var kesenian = document.getElementsByClassName("kesenian");
-
-        //     for (let index = 0; index < kesenian.length; index++) {
-        //         // const element = array[index];
-        //         kesenian[index].disabled = false;
-        //     }
-        // } else {
-
-        // }
-        if (visitorValue < 10) {
-            var cocokTanam = document.getElementsByClassName("cocokTanam");
-
-            for (let index = 0; index < cocokTanam.length; index++) {
-                // const element = array[index];
-                cocokTanam[index].disabled = true;
-            }
-            // console.log(cocokTanam[0]);
-        } else if (visitorValue > 10) {
-            var cocokTanam = document.getElementsByClassName("cocokTanam");
-
-            for (let index = 0; index < cocokTanam.length; index++) {
-                // const element = array[index];
-                cocokTanam[index].disabled = false;
-            }
-        } else {
-
-        }
-    }
-</script>
-<script>
-    // var waktu = document.getElementsByClassName("batik");
-    // var waktuValue = waktu.getAttribute('alt');
-    // console.log(waktuValue); 
-    // Output the value of the 'alt' attribute
-    var wStudy = 0;
-    var wBatik = 0;
-    var wKesenian = 0;
-    var wCocokTanam = 0;
-    var wPermainan = 0;
-    var wKuliner = 0;
-    var wHomestay = 0;
-
-    var semuaWaktu;
-
-    function waktuStudy(data) {
-        wStudy = data;
-        console.log(wStudy);
-    }
-
-    function waktuBatik(data) {
-        wBatik = data;
-        console.log(wBatik);
-    }
-
-    function waktuKesenian(data) {
-        wKesenian = data;
-        console.log(wKesenian);
-    }
-
-    function waktuCocokTanam(data) {
-        wCocokTanam = data;
-        console.log(wCocokTanam);
-    }
-
-    function waktuPermainan(data) {
-        wPermainan = data;
-        console.log(wPermainan);
-    }
-
-    function waktuKuliner(data) {
-        wKuliner = data;
-        console.log(wKuliner);
-    }
-
-    function waktuHomestay(data) {
-        wHomestay = data;
-        console.log(wHomestay);
-
-    }
-
-    function waktuAkhir() {
-        var waktuAwal = document.getElementById('jam-booking-mulai');
-        var waktuAwalValue = waktuAwal.value;
-        // console.log(waktuAwal.value);
-        var waktuAwalSplit = waktuAwalValue.split(':');
-        var awalJam = parseInt(waktuAwalSplit[0], 10);
-        var awalMenit = parseInt(waktuAwalSplit[1], 10);
-        // var awalWaktu = 11;
-        // var tambah = 2;
-        // console.log(awalJam);
-        // console.log(awalMenit);
-        // console.log(wBatik + wCocokTanam + wHomestay + wKesenian + wKuliner + wPermainan + wStudy + awalJam + awalMenit);
-        var totalWaktu = (wBatik + wCocokTanam + wHomestay + wKesenian + wKuliner + wPermainan + wStudy + awalJam + awalMenit) % 24;
-        // Calculate the total time in hours and use modulo 24 to wrap around if it exceeds 24 hours
-        // var totalWaktu = (awalWaktu + tambah) % 24;
-
-        // Format the result as "HH:MM"
-        var totalWaktuFormatted = totalWaktu.toString().padStart(2, '0') + ":00";
-        // totalWaktuFormatted += waktuAwal;
-        // console.log(totalWaktuFormatted); // Output the formatted time
-        var formWaktuAkhir = document.getElementById('jam-booking-selesai');
-        formWaktuAkhir.setAttribute('value', totalWaktuFormatted);
-    }
-</script>
-<!-- <script>
-    document.getElementById('jam-booking-mulai').addEventListener('input', function(event) {
-        let timeValue = event.target.value;
-        let [hours, minutes] = timeValue.split(':').map(Number);
-
-        if (hours < 8 || (hours >= 16 && minutes > 0)) {
-            event.target.setCustomValidity('Waktu harus antara 08:00 dan 16:00');
-        } else {
-            event.target.setCustomValidity('');
-        }
-    });
-
-    document.getElementById('jam-booking-mulai').addEventListener('focus', function(event) {
-        event.target.setAttribute('min', '08:00');
-        event.target.setAttribute('max', '16:00');
-    });
-</script> -->
 @endsection
 
 
