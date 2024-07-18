@@ -82,7 +82,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="jumlah-visitor" class="mb-2">Jumlah Visitor</label>
-                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="">
+                            <input type="text" placeholder="Masukan Jumlah Visitor" class="form-control" name="visitor" id="jumlah-visitor" value="" onchange="validateVisitorCount()">
                         </div>
 
                     </div>
@@ -391,6 +391,17 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script type="text/javascript" src="/js/landingpage.js"></script> -->
 <script>
+    function validateVisitorCount() {
+        var visitor = document.getElementById("jumlah-visitor");
+        var visitorValue = visitor.value;
+        // console.log(arr_email);
+        if (visitorValue < 1) {
+            alert("Visitor harus lebih dari 0 !!");
+            visitor.value = "";
+        } else {}
+    }
+</script>
+<script>
     $(document).ready(function() {
         $('#bookingForm').on('submit', function(e) {
             e.preventDefault(); // Mencegah pengiriman formulir default
@@ -405,9 +416,9 @@
                         icon: "success",
                         title: "Booking berhasil dilakukan!",
                         showConfirmButton: false,
-                        timer: 1500 
+                        timer: 1500
                     }).then(function() {
-                        window.location.href = '/'; 
+                        window.location.href = '/';
                         $('#eventModal').modal('hide'); // Sembunyikan modal jika perlu
                     });
                 },
@@ -424,6 +435,7 @@
         });
     });
 </script>
+
 <script>
     var calendar; // Declare calendar variable in the global scope
 
