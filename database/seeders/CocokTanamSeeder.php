@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\CocokTanam;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class CocokTanamSeeder extends Seeder
 {
@@ -13,27 +15,17 @@ class CocokTanamSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('cocok_tanams')->insert([
-            [
-                'nama' => 'Tidak Pesan',
-                'deskripsi' => 'Tidak Pesan',
-                'harga' => 0
-            ],
-            [
-                'nama' => 'Pohon',
-                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
-                'harga' => 30000
-            ],
-            [
-                'nama' => 'Sayuran',
-                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
-                'harga' => 30000
-            ],
-            [
-                'nama' => 'Biji-bijian',
-                'deskripsi' => 'Bibit dan alat dan bahan tanaman, Pendamping (Petani), Tanaman menjadi milik/hak pemilik lahan',
-                'harga' => 30000
-            ],
-        ]);
+
+        $client = new Client();
+        $response = $client->get('https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json');
+        $data = json_decode($response->getBody());
+
+        foreach ($data->cocokTanam as $item) {
+            CocokTanam::create([
+                'nama' => $item->nama,
+                'deskripsi' => $item->deskripsi,
+                'harga' => $item->harga,
+            ]);
+        }
     }
 }

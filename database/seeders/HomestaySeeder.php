@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Homestay;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class HomestaySeeder extends Seeder
 {
@@ -13,9 +15,18 @@ class HomestaySeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('homestays')->insert([
-            ['nama' => 'Tidak Pesan', 'deskripsi' => 'Tidak Pesan', 'harga' => 0],
-            ['nama' => 'Homestay', 'deskripsi' => '1 kamar untuk 2 orang', 'harga' => 200000],
-         ]);
+
+
+        $client = new Client();
+        $response = $client->get('https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json');
+        $data = json_decode($response->getBody());
+
+        foreach ($data->homestay as $item) {
+            Homestay::create([
+                'nama' => $item->nama,
+                'deskripsi' => $item->deskripsi,
+                'harga' => $item->harga,
+            ]);
+        }
     }
 }

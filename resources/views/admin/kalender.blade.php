@@ -73,7 +73,8 @@
                 <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
                 <div class="row justify-content-center border rounded p-4 m-3">
                     <div class="col me-4">
-                        <form method="GET" action="{{ route('admin.bookingProses') }}">
+                        <form id="bookingForm" method="POST" action="{{ route('admin.bookingProses') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
                                 <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
@@ -369,7 +370,43 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
 <script src="/js/kalender.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    $(document).ready(function() {
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault(); // Mencegah pengiriman formulir default
+            var formData = $(this).serialize(); // Serialize data formulir
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'), // URL aksi formulir
+                data: formData,
+                success: function(response) {
+                    // Tangani respons sukses di sini
+                    Swal.fire({
+                        icon: "success",
+                        title: "Booking berhasil dilakukan!",
+                        showConfirmButton: false,
+                        timer: 1500 
+                    }).then(function() {
+                        window.location.href = '/admin/kalender'; 
+                        $('#eventModal').modal('hide'); // Sembunyikan modal jika perlu
+                    });
+                },
+                error: function(error) {
+                    // alert('Terjadi kesalahan: ' + error.responseJSON.message);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Terjadi kesalahan: " + error.responseJSON.message,
+                        // footer: '<a href="#">Why do I have this issue?</a>'
+                    });
+                }
+            });
+        });
+    });
+</script>
 <script>
     var calendar; // Declare calendar variable in the global scope
 
@@ -378,7 +415,7 @@
 
         if (calendarEl) {
             calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'timeGridWeek',
+                initialView: 'dayGridMonth',
                 selectable: true,
                 locale: 'id',
                 allDaySlot: false,
@@ -422,7 +459,11 @@
 
                     // Prevent the browser from following the URL
                     info.jsEvent.preventDefault();
-                    var options = { year: 'numeric', month: 'long', day: 'numeric' };    
+                    var options = {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    };
                     // Extract data from the event
                     var event = info.event;
                     var eventData = {

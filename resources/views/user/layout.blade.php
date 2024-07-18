@@ -22,10 +22,6 @@
             <a class="navbar-brand" href="#">
                 <img src="/asset/Logo_Desa_Krebet.png" alt="Bootstrap" height="70">
             </a>
-            <form class="d-flex m-0" role="search">
-                <input class="form-control me-2 p-0" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
             <ul class="sosmed d-flex gap-2 m-0">
                 <li class="shadow rounded d-flex align-items-center"><a href="https://www.facebook.com/profile.php?id=100078985543662&mibextid=kFxxJD" target="_blank" class="px-3 py-2"><i class="fa-brands fa-facebook-f"></i></a></li>
 

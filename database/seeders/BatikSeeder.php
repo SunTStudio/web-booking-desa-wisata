@@ -6,6 +6,7 @@ use App\Models\Batik;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class BatikSeeder extends Seeder
 {
@@ -14,37 +15,17 @@ class BatikSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('batiks')->insert([
-            [
-            'nama' => 'Tidak Pesan',
-            'deskripsi' => 'Tidak Pesan',
-            'harga' => 0
-            ],
-            [
-            'nama' => 'Paket Batik Satu',
-            'deskripsi' => 'Gantungan Kunci',
-            'harga' => 20000
-            ],
-            [
-            'nama' => 'Paket Batik Dua',
-            'deskripsi' => 'Centong, Solet',
-            'harga' => 30000
-            ],
-            [
-            'nama' => 'Paket Batik Tiga',
-            'deskripsi' => 'Topeng S, Wayang Mini, Tempat Pensil, Telenan',
-            'harga' => 40000
-            ],
-            [
-            'nama' => 'Paket Batik Empat',
-            'deskripsi' => 'Topeng M, Box Tissue, Wayang S',
-            'harga' => 60000
-            ],
-            [
-            'nama' => 'Paket Batik Lima',
-            'deskripsi' => 'Topeng L, Wayang M, Nampan S',
-            'harga' => 75000
-            ],
-        ]);
+
+        $client = new Client();
+        $response = $client->get('https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json');
+        $data = json_decode($response->getBody());
+
+        foreach ($data->batik as $item) {
+            Batik::create([
+                'nama' => $item->nama,
+                'deskripsi' => $item->deskripsi,
+                'harga' => $item->harga,
+            ]);
+        }
     }
 }

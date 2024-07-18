@@ -50,7 +50,8 @@
                 <h5 class="fw-bold m-3">Isi Data Diri Booking</h5>
                 <div class="row justify-content-center border rounded p-4 m-3">
                     <div class="col me-4">
-                        <form method="GET" action="{{ route('user.bookingProses') }}">
+                        <form id="bookingForm" method="POST" action="{{ route('user.bookingProses') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="tanggal-booking" class="form-label">Tanggal Visitor</label>
                                 <input type="date" class="form-control" name="tanggal" id="tanggal-booking" placeholder="Masukan tanggal YYYY-MM-DD" value="">
@@ -91,9 +92,21 @@
                         <div class="col">
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-batik" class="form-label fw-bold">Paket Batik</label>
-                                <div id="batik" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($batiks as $batik)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $batik->id }}" type="radio" name="batik" id="batik{{ $batik->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="batik{{ $batik->id }}">
+                                            <h5 class="card-header fw-bold">{{ $batik->nama }}</h5>
+                                            <hr>
+                                            <small>Souvenir yang didapat:</small>
+                                            <p class="card-text">{{ $batik->deskripsi }}</p>
+                                            <small>Harga Paket:</small>
+                                            <p class="card-text">Rp {{ $batik->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -119,16 +132,34 @@
                             <!-- Paket Kesenian -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar (Rp40.000)</label>
-                                <div id="kesenian" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id}}.belajar" type="radio" name="kesenian" id="kesenian{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kesenian{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
+                                            <hr>
+                                            <small>Harga Belajar:</small>
+                                            <p class="card-text">{{ $kesenian->harga_belajar }}</p>
+                                        </label>
+                                    </div>
                                 </div>
-
+                                @endforeach
                                 <hr>
                                 <label for="paket-kesenian" class="form-label fw-bold">Paket Kesenian Belajar dan Pementasan (Rp150.000)</label>
-                                <div id="kesenian2" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($kesenians as $kesenian)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kesenian->id }}.pementasan" type="radio" name="kesenian" id="kesenian2{{ $kesenian->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kesenian2{{ $kesenian->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kesenian->nama }}</h5>
+                                            <hr>
+                                            <small>Harga Pementasan:</small>
+                                            <p class="card-text">Rp {{ $kesenian->harga_pementasan }}</p>
+                                        </label>
+                                    </div>
                                 </div>
-
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -156,9 +187,21 @@
                             <!-- Paket Cocok Tanam -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-cocok-tanam" class="form-label fw-bold">Paket Cocok Tanam</label>
-                                <div id="cocokTanam" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($cocokTanams as $cocokTanam)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $cocokTanam->id }}" type="radio" name="cocokTanam" id="cocokTanam{{ $cocokTanam->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="cocokTanam{{ $cocokTanam->id }}">
+                                            <h5 class="card-header fw-bold">{{ $cocokTanam->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $cocokTanam->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $cocokTanam->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -179,10 +222,21 @@
                             <!-- Paket Permainan -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-permainan" class="form-label fw-bold">Paket Permainan</label>
-                                <div id="permainan" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($permainans as $permainan)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $permainan->id }}" type="radio" name="permainan" id="permainan{{ $permainan->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="permainan{{ $permainan->id }}">
+                                            <h5 class="card-header fw-bold">{{ $permainan->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $permainan->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $permainan->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
-
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -202,9 +256,21 @@
                             <!-- Paket Kuliner -->
                             <div class="row border rounded p-4 mb-3">
                                 <label for="paket-kuliner" class="form-label fw-bold">Paket Kuliner</label>
-                                <div id="kuliner" class="col-lg-12 d-flex flex-wrap">
-
+                                @foreach ($kuliners as $kuliner)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $kuliner->id }}" type="radio" name="kuliner" id="kuliner{{ $kuliner->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="kuliner{{ $kuliner->id }}">
+                                            <h5 class="card-header fw-bold">{{ $kuliner->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $kuliner->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $kuliner->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -221,10 +287,22 @@
 
                             <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-homestay" class="form-label fw-bold">Paket Homestay</label>
-                                <div id="homestay" class="col-lg-12 d-flex flex-wrap">
-
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Homestay</label>
+                                @foreach ($homestays as $homestay)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $homestay->id }}" type="radio" name="homestay" id="homestay{{ $homestay->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="homestay{{ $homestay->id }}">
+                                            <h5 class="card-header fw-bold">{{ $homestay->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $homestay->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $homestay->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -238,12 +316,24 @@
                                 </div>
                             </div>
 
-                            <!-- Paket Study Banding -->
+                            <!-- Paket Homestay -->
                             <div class="row border rounded p-4 mb-3">
-                                <label for="paket-studi-banding" class="form-label fw-bold">Paket Study Banding</label>
-                                <div id="studyBanding" class="col-lg-12 d-flex flex-wrap">
-
+                                <label for="paket-kuliner" class="form-label fw-bold">Paket Study Banding</label>
+                                @foreach ($studiBandings as $studiBanding)
+                                <div class="col-3 border p-3 m-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" value="{{ $studiBanding->id }}" type="radio" name="studiBanding" id="studiBanding{{ $studiBanding->id }}" @if ($loop->first) checked @endif>
+                                        <label class="form-check-label" for="studiBanding{{ $studiBanding->id }}">
+                                            <h5 class="card-header fw-bold">{{ $studiBanding->nama }}</h5>
+                                            <hr>
+                                            <small>Deskripsi:</small>
+                                            <p class="card-text">{{ $studiBanding->deskripsi }}</p>
+                                            <small>Harga:</small>
+                                            <p class="card-text">Rp {{ $studiBanding->harga }}</p>
+                                        </label>
+                                    </div>
                                 </div>
+                                @endforeach
                                 <hr class="mt-3">
                                 <div class="col-lg-12">
                                     <div class="row p-3">
@@ -298,203 +388,40 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script type="text/javascript" src="/js/landingpage.js"></script> -->
 <script>
     $(document).ready(function() {
-        var data;
-
-        // Memanggil AJAX untuk mengambil data pertama kali
-        fetchData();
-
-        function fetchData() {
+        $('#bookingForm').on('submit', function(e) {
+            e.preventDefault(); // Mencegah pengiriman formulir default
+            var formData = $(this).serialize(); // Serialize data formulir
             $.ajax({
-                url: 'https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json',
-                type: 'GET',
-                dataType: 'json',
+                type: 'POST',
+                url: $(this).attr('action'), // URL aksi formulir
+                data: formData,
                 success: function(response) {
-                    console.log(response);
-                    data = response;
-                    displayData(data);
+                    // Tangani respons sukses di sini
+                    Swal.fire({
+                        icon: "success",
+                        title: "Booking berhasil dilakukan!",
+                        showConfirmButton: false,
+                        timer: 1500 
+                    }).then(function() {
+                        window.location.href = '/'; 
+                        $('#eventModal').modal('hide'); // Sembunyikan modal jika perlu
+                    });
                 },
-                error: function(xhr, status, error) {
-                    console.error('AJAX request error:', error);
+                error: function(error) {
+                    // alert('Terjadi kesalahan: ' + error.responseJSON.message);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Terjadi kesalahan: " + error.responseJSON.message,
+                        // footer: '<a href="#">Why do I have this issue?</a>'
+                    });
                 }
             });
-        }
-
-        function displayData(data) {
-            var batikData = data.batik;
-            var kesenianData = data.kesenian;
-            var cocokTanamData = data.cocokTanam;
-            var permainanData = data.permainan;
-            var kulinerData = data.kuliner;
-            var homestayData = data.homestay;
-            var studyBandingData = data.studyBanding;
-
-            var batik = $('#batik');
-            var kesenian = $('#kesenian');
-            var kesenian2 = $('#kesenian2');
-            var cocokTanam = $('#cocokTanam');
-            var permainan = $('#permainan');
-            var kuliner = $('#kuliner');
-            var homestay = $('#homestay');
-            var studyBanding = $('#studyBanding');
-
-            batik.empty(); // Kosongkan kontainer sebelum menambahkan data baru
-            kesenian.empty();
-            kesenian2.empty();
-            cocokTanam.empty();
-            permainan.empty();
-            kuliner.empty();
-            homestay.empty();
-            studyBanding.empty();
-
-            batikData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}" type="radio" name="batik" id="batik${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="batik${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                <small>Souvenir yang didapat:</small>
-                                <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga Paket:</small>
-                                <p class="card-text">Rp. ${item.harga}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                batik.append(dataCard);
-            });
-            kesenianData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}.belajar" type="radio" name="kesenian" id="kesenian${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="kesenian${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                    <small>Deskripsi:</small>
-                                    <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga Belajar:</small>
-                                <p class="card-text">Rp. ${item.harga_belajar}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                kesenian.append(dataCard);
-            });
-            kesenianData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                            <div class="form-check">
-                                <input class="form-check-input" value="${item.id}.pementasan" type="radio" name="kesenian" id="kesenian2${item.id}" ${isChecked}>
-                                <label class="form-check-label" for="kesenian2${item.id}">
-                                    <h5 class="card-header fw-bold">${item.nama}</h5>
-                                    <hr>
-                                    <small>Deskripsi:</small>
-                                    <p class="card-text">${item.deskripsi}</p>
-                                    <small>Harga Pementasan:</small>
-                                    <p class="card-text">Rp. ${item.harga_pementasan}</p>
-                                </label>
-                            </div>
-                        </div>`;
-                kesenian2.append(dataCard);
-            });
-            cocokTanamData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                            <div class="form-check">
-                                <input class="form-check-input" value="${item.id}" type="radio" name="cocokTanam" id="cocokTanam${item.id}" ${isChecked}>
-                                <label class="form-check-label" for="cocokTanam${item.id}">
-                                    <h5 class="card-header fw-bold">${item.nama}</h5>
-                                    <hr>
-                                    <small>Deskripsi:</small>
-                                    <p class="card-text">${item.deskripsi}</p>
-                                    <small>Harga Pementasan:</small>
-                                    <p class="card-text">Rp. ${item.harga}</p>
-                                </label>
-                            </div>
-                        </div>`;
-                cocokTanam.append(dataCard);
-            });
-            permainanData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}" type="radio" name="permainan" id="permainan${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="permainan${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                <small>Deskripsi:</small>
-                                <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga:</small>
-                                <p class="card-text">Rp ${item.harga}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                permainan.append(dataCard);
-            });
-            kulinerData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}" type="radio" name="kuliner" id="kuliner${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="kuliner${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                <small>Deskripsi:</small>
-                                <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga:</small>
-                                <p class="card-text">Rp ${item.harga}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                kuliner.append(dataCard);
-            });
-            homestayData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}" type="radio" name="homestay" id="homestay${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="homestay${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                <small>Deskripsi:</small>
-                                <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga:</small>
-                                <p class="card-text">Rp ${item.harga}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                homestay.append(dataCard);
-            });
-            studyBandingData.forEach((item, index) => {
-                const isChecked = index === 0 ? 'checked' : '';
-                const dataCard =
-                    `<div class="col-3 border p-3 m-3">
-                        <div class="form-check">
-                            <input class="form-check-input" value="${item.id}" type="radio" name="studiBanding" id="studiBanding${item.id}" ${isChecked}>
-                            <label class="form-check-label" for="studiBanding${item.id}">
-                                <h5 class="card-header fw-bold">${item.nama}</h5>
-                                <hr>
-                                <small>Deskripsi:</small>
-                                <p class="card-text">${item.deskripsi}</p>
-                                <small>Harga:</small>
-                                <p class="card-text">Rp ${item.harga}</p>
-                            </label>
-                        </div>
-                    </div>`;
-                studyBanding.append(dataCard);
-            });
-
-
-        }
+        });
     });
 </script>
 <script>
@@ -505,7 +432,7 @@
 
         if (calendarEl) {
             calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'timeGridWeek',
+                initialView: 'dayGridMonth',
                 selectable: true,
                 locale: 'id',
                 allDaySlot: false,

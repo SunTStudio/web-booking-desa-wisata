@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/invoice{id}/send', [PDFController::class, 'send'])->name('admin.invoice.send');
 
     Route::get('/admin/kalender', [AdminController::class, 'index'])->name('admin.kalender');
-    Route::get('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
+    Route::post('/admin-booking-proses', [AdminController::class, 'store'])->name('admin.bookingProses');
 
     Route::get('/admin/booking', [AdminController::class, 'show'])->name('admin.booking');
     Route::get('/admin/booking/search-pic', [AdminController::class, 'searchPIC'])->name('admin.booking.pic.search');
@@ -55,4 +55,4 @@ Route::get('/form', function () {
 })->name('admin.form');
 
 Route::get('/', [LandingPageController::class, 'index'])->name('user.landingpage');
-Route::get('/booking/proses', [LandingPageController::class, 'store'])->name('user.bookingProses');
+Route::post('/booking/proses', [LandingPageController::class, 'store'])->name('user.bookingProses');

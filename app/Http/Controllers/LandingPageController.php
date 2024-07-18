@@ -12,6 +12,8 @@ use App\Models\Kuliner;
 use App\Models\Paket;
 use App\Models\StudyBanding;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Facade;
+
 
 class LandingPageController extends Controller
 {
@@ -25,6 +27,7 @@ class LandingPageController extends Controller
         $studiBandings = StudyBanding::all();
         $bookings = Booking::all();
         return view('user/landingpage',compact('batiks','bookings','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
+        // return view('user/landingpage', compact('bookings'));
     }
 
     public function store(Request $request)

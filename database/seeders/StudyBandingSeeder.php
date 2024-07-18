@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\StudyBanding;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class StudyBandingSeeder extends Seeder
 {
@@ -13,17 +15,17 @@ class StudyBandingSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('study_bandings')->insert([
-            [
-                'nama' => 'Tidak Pesan',
-                'deskripsi' => 'Tidak Pesan',
-                'harga' => 0
-            ],
-            [
-                'nama' => 'Paket Study Banding',
-                'deskripsi' => 'Materi Desa Wisata Krebet, Diskusi dan tanya jawab, Melihat Proses produksi dan kerajinan, Membatik Batik Paket III',
-                'harga' => 75000
-            ],
-        ]);
+        $client = new Client();
+        $response = $client->get('https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json');
+        $data = json_decode($response->getBody());
+
+        foreach ($data->studyBanding as $item) {
+            StudyBanding::create([
+                'nama' => $item->nama,
+                'deskripsi' => $item->deskripsi,
+                'harga' => $item->harga,
+            ]);
+            
+        }
     }
 }

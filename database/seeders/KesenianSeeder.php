@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kesenian;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
 
 class KesenianSeeder extends Seeder
 {
@@ -13,16 +15,19 @@ class KesenianSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('kesenians')->insert([
-            ['nama' => 'Tidak Pesan', 'deskripsi' => 'Tidak Pesan', 'harga_belajar' => 0, 'harga_pementasan' => 0],
-            ['nama' => 'Tari', 'deskripsi' => 'Deskripsi Tari', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Kethoprak', 'deskripsi' => 'Deskripsi Kethoprak', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Jathilan', 'deskripsi' => 'Deskripsi Jathilan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Karawitan', 'deskripsi' => 'Deskripsi Karawitan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Gendring', 'deskripsi' => 'Deskripsi Gendring', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Macapat', 'deskripsi' => 'Deskripsi Macapat', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Hadroh', 'deskripsi' => 'Deskripsi Hadroh', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-            ['nama' => 'Sholawatan', 'deskripsi' => 'Deskripsi Sholawatan', 'harga_belajar' => 40000, 'harga_pementasan' => 150000],
-        ]);
+
+        $client = new Client();
+        $response = $client->get('https://gist.githubusercontent.com/Yagamoo/ca3b1e232f57c3a9172029f64d01daf4/raw/1e971c95a1525cdad39f75f22a1ddc8076806f70/data.json');
+        $data = json_decode($response->getBody());
+
+        foreach ($data->kesenian as $item) {
+            Kesenian::create([
+                'nama' => $item->nama,
+                'deskripsi' => $item->deskripsi,
+                'harga_belajar' => $item->harga_belajar,
+                'harga_pementasan' => $item->harga_pementasan
+            ]);
+
+        }
     }
 }
