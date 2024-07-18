@@ -46,6 +46,9 @@
             <div class="d-flex align-items-end">
                 <button type="submit" class="btn btn-primary px-4">Filter</button>
             </div>
+            <div class="d-flex align-items-end">
+                <a href="{{ route('admin.laporan') }}" class="btn btn-secondary">Hapus Filter</a>
+            </div>
         </form>
         <div class="d-flex align-items-end">
             <a href="{{ route('admin.laporan.print', ['bulan' => request('bulan'), 'tahun' => request('tahun')]) }}" class="btn btn-danger">Cetak PDF</a>
@@ -146,5 +149,31 @@
 @endsection
 
 @section('scripts')
+<script>
+    // Set value from sessionStorage if exists
+    document.addEventListener('DOMContentLoaded', function() {
+        var selectedMonth = sessionStorage.getItem('selectedMonth');
+        if (selectedMonth) {
+            document.getElementById('bulan').value = selectedMonth;
+        }
+
+        var selectedYear = sessionStorage.getItem('selectedYear');
+        if (selectedYear) {
+            document.getElementById('tahun').value = selectedYear;
+        }
+    });
+
+    // Update sessionStorage when value changes
+    document.getElementById('bulan').addEventListener('change', function() {
+        var selectedValue = this.value;
+        sessionStorage.setItem('selectedMonth', selectedValue);
+    });
+
+    document.getElementById('tahun').addEventListener('input', function() {
+        var selectedValue = this.value;
+        sessionStorage.setItem('selectedYear', selectedValue);
+    });
+
+</script>
 
 @endsection
