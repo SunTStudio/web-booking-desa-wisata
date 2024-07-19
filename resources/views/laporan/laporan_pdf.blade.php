@@ -11,6 +11,11 @@
             margin: 2rem;
         }
 
+        .laporan .navbar {
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+
         .laporan .detail {
             width: 100%;
             /* Mengatur tabel agar mengisi 100% lebar kontainer */
@@ -32,7 +37,22 @@
 
 <body>
     <section class="laporan">
-        <h2 style="text-align: center;">Pendapatan Bulan </h2>
+        <table class="navbar">
+            <tr>
+                <td>
+                    <img src="{{ public_path("/asset/Logo_Desa_Krebet.png") }}" alt="Logo Desa Krebet" style="width: 70%; max-width: 250px">
+                </td>
+                <td>
+                    <h2 style="text-align: right;">
+                        @if(request('bulan') && request('tahun'))
+                        Laporan Bulan {{ \Carbon\Carbon::create(request('tahun'), request('bulan'), 1)->translatedFormat('F Y') }}
+                        @else
+                        Laporan Keseluruhan
+                        @endif
+                    </h2>
+                </td>
+            </tr>
+        </table>
         <table class="detail">
             <thead>
                 <th>No</th>

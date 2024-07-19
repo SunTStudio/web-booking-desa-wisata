@@ -107,7 +107,7 @@ class AdminController extends Controller
 
     public function laporan(Request $request)
     {
-        $laporans = Booking::get();
+        $laporans = Booking::orderBy('tanggal', 'asc')->get();
         $totalPendapatan = $laporans->sum('tagihan');
 
         return view('admin/laporan', compact('laporans', 'request', 'totalPendapatan'));
@@ -132,51 +132,7 @@ class AdminController extends Controller
 
         return view('admin.laporan', compact('laporans', 'totalPendapatan', 'request'));
     
-        // $searchTerm = $request->search;
-
-        // // Cek apakah $searchTerm adalah kata kunci bulan
-        // $isMonth = false;
-        // $monthNumber = null;
-
-        // $months = [
-        //     'januari' => '01',
-        //     'februari' => '02',
-        //     'maret' => '03',
-        //     'april' => '04',
-        //     'mei' => '05',
-        //     'juni' => '06',
-        //     'juli' => '07',
-        //     'agustus' => '08',
-        //     'september' => '09',
-        //     'oktober' => '10',
-        //     'november' => '11',
-        //     'desember' => '12',
-        // ];
-
-        // foreach ($months as $monthName => $monthNum) {
-        //     if (strtolower($searchTerm) == $monthName) {
-        //         $isMonth = true;
-        //         $monthNumber = $monthNum;
-        //         break;
-        //     }
-        // }
-
-        // // Jika $searchTerm adalah nama bulan, ubah menjadi rentang tanggal
-        // if ($isMonth) {
-        //     // Misalnya, ubah pencarian menjadi bulan Agustus
-        //     $data = Booking::whereMonth('tanggal', $monthNumber)->get();
-        // } else {
-        //     // Jika bukan, lakukan pencarian berdasarkan input seperti sebelumnya
-        //     $data = Booking::where('tanggal', 'LIKE', '%' . $searchTerm . '%')->get();
-        // }
-
-        // return view('admin/laporan', compact('data', 'request'));
     }
-
-    // public function laporanSearch(Request $request) {
-    //     $data = Booking::where('tanggal', 'LIKE', '%' . $request->search . '%')->get();
-    //     return view('admin/laporan', compact('data', 'request'));
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -227,7 +183,6 @@ class AdminController extends Controller
 
         return redirect()->route('admin.booking');
     }
-            // 'tagihan' => (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga,
 
     /**
      * Display the specified resource.

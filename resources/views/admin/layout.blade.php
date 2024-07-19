@@ -18,7 +18,7 @@
     <section id="nav">
         <nav class="navbar navbar-expand-lg bg-white">
             <div class="container-fluid">
-                <img src="\img\desa-krebet.png" alt="" class="img-fluid navbar-brand ps-4" id="logo">
+                <img src="\img\desa-krebet.png" alt="Logo Desa Krebet" class="img-fluid navbar-brand ps-4" id="logo" style="width: 15%;">
                 <div>
                     <ul class="navbar-nav d-flex  text-center mb-2 mb-lg-0">
                         <li class="nav-item d-flex me-4">

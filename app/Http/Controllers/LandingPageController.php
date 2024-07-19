@@ -18,7 +18,7 @@ use Illuminate\Http\RedirectResponse;
 
 class LandingPageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $batiks = Batik::all();
         $kesenians = Kesenian::all();
@@ -28,11 +28,12 @@ class LandingPageController extends Controller
         $homestays = Homestay::all();
         $studiBandings = StudyBanding::all();
         $bookings = Booking::all();
-        return view('user/landingpage', compact('batiks', 'bookings', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
+        return view('user/landingpage', compact('batiks', 'bookings', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners', 'request'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         list($kesenianID, $ketKesenian) = explode('.', $request->kesenian);
         Paket::create([
             'batik_id' => $request->batik,
@@ -69,6 +70,16 @@ class LandingPageController extends Controller
         return redirect()->route('user.landingpage');
     }
 
+    // public function detail(Request $request, $id) {
+    //     $detail = Booking::findOrFail($id);
+    //     if($detail->paket->ketKesenian == 'pementasan'){
+    //         $tagihanKesenian = 150000;
+    //     }else{
+    //         $tagihanKesenian = 40000;
+    //     } 
+    //     return view('user.detail', compact('detail','tagihanKesenian'));
+    // }
+
     public function send(Request $request, $id): RedirectResponse
     {
         $data = Booking::findOrFail($id);
@@ -79,7 +90,7 @@ class LandingPageController extends Controller
         // $pdfPath = public_path('invoice.invoice.pdf');
 
         // Example WhatsApp message with PDF link
-        $message = "Invoice Anda terlampir. Silakan unduh: " . url('/admin/invoice' . $data->id);
+        $message = "Hallo, saya sudah melakukan booking via website. </br> Silakan unduh: " . url('/admin/invoice' . $data->id);
 
         // Initialize CURL
         $curl = curl_init();
@@ -94,7 +105,7 @@ class LandingPageController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('target' => $no_telp, 'message' => $message),
+            CURLOPT_POSTFIELDS => array('target' => '081946988634', 'message' => $message),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: ' . $token
             ),

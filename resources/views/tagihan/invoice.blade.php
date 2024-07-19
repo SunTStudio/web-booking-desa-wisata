@@ -54,6 +54,8 @@
 
         .invoice .footer .tanda-tangan {
             width: 20rem;
+            vertical-align: middle;
+            text-align: center;
         }
 
         center {
@@ -193,11 +195,12 @@
         <table class="footer">
             <tr>
                 <td style="vertical-align: top">
-                    <p>24 - 25 JUNI 2024</p>
+                    <p> </p>
                 </td>
                 <td class="tanda-tangan">
                     <p style="text-align: center;">Hormat Kami,</p>
-                    <p style="padding: 2rem;"></p>
+                    <!-- <p style="padding: 2rem;"></p> -->
+                    <img src="/asset/desa-krebet-logo.png" alt="Logo Desa Krebet" style="width: 50%; max-width: 250px">
                     <p style="text-align: center;">AGUSJATI KUMARA</p>
                 </td>
             </tr>

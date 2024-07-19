@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <!-- Bootstrap Timepicker CSS -->
@@ -22,10 +23,6 @@
             <a class="navbar-brand" href="#">
                 <img src="/asset/Logo_Desa_Krebet.png" alt="Bootstrap" height="70">
             </a>
-            <form class="d-flex m-0" role="search">
-                <input class="form-control me-2 p-0" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
             <ul class="sosmed d-flex gap-2 m-0">
                 <li class="shadow rounded d-flex align-items-center"><a href="https://www.facebook.com/profile.php?id=100078985543662&mibextid=kFxxJD" target="_blank" class="px-3 py-2"><i class="fa-brands fa-facebook-f"></i></a></li>
 
