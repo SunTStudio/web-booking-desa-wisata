@@ -20,6 +20,11 @@
         <!-- Navbar Start -->
         <!-- Hero End -->
         <!-- Calendar Start -->
+        <div class="row justify-content-center m-lg-1 m-1 mt-5">
+            <div class="col bg-white p-lg-1 p-2 rounded text-center">
+                <button class="btn btn-primary mb-3 w-80" data-bs-toggle="modal" data-bs-target="#tambahModal">Booking Tanggal Sekarang</button>
+            </div>
+        </div>
         <div class="col-lg-10 col-sm-12 mb-4">
             <section class="pemesanan">
                 <h2 class="text-center mb-5 rounded py-2">Pemesanan Tanggal</h2>
@@ -29,11 +34,6 @@
             </section>
         </div>
 
-        <div class="row justify-content-center m-lg-1 m-1 mt-5">
-            <div class="col bg-white p-lg-1 p-2 rounded text-center">
-                <button class="btn btn-primary mb-3 w-80" data-bs-toggle="modal" data-bs-target="#tambahModal">Booking Tanggal Sekarang</button>
-            </div>
-        </div>
         <!-- Calendar End -->
     </div>
 
@@ -452,6 +452,12 @@
                     left: 'prev,next today',
                     center: 'title',
                     right: 'timeGridDay,timeGridWeek,dayGridMonth'
+                },
+                buttonText: {
+                    today: 'Hari ini',
+                    month: 'Bulan',
+                    week: 'Minggu',
+                    day: 'Hari'
                 },
                 slotLabelFormat: {
                     hour: '2-digit',
