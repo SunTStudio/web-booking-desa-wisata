@@ -412,7 +412,7 @@
 
             </div>
             <div class="modal-footer">
-                <button href="" type="submit" class="btn btn-warning">Submit</button>
+                <button type="submit" class="btn btn-warning">Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
@@ -440,7 +440,6 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js'></script>></script>
 <script type="text/javascript" src="/js/landingpage.js"></script>
 <script>
- 
     var calendar; // Declare calendar variable in the global scope
 
     document.addEventListener('DOMContentLoaded', function() {
