@@ -51,6 +51,23 @@ footer {
     color: black;
 }
 
+#progress p{
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+#progress .box{
+    height: 0.5rem;
+    width:100%;
+    background-color:rgb(197, 197, 197);
+}
+
+#progress .box-active{
+    height: 0.5rem;
+    width:100%; 
+    background-color:blue;
+}
+
 @media (max-width: 768px) {
     .fc .fc-toolbar-title {
         font-size: 1.5rem;
