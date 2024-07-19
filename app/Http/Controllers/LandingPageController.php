@@ -63,7 +63,7 @@ class LandingPageController extends Controller
             'paket_id' => $paket->id,
             'tagihan' => $tagihan,
             'guide_id' => '1',
-            'status' => 'belum',
+            'status' => 'Belum ACC',
         ]);
 
         return redirect()->route('user.landingpage');

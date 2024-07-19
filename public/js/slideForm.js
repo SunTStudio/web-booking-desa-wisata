@@ -29,6 +29,7 @@ function batal() {
         permainan.style.display = "none";
         kuliner.style.display = "none";
         homestay.style.display = "none";
+        kirimData.style.display = "none";
     }
 
     if (pageSlide === 1) {
