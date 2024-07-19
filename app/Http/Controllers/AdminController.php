@@ -58,7 +58,8 @@ class AdminController extends Controller
         ));
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         $batiks = Batik::all();
         $kesenians = Kesenian::all();
         $cocokTanams = CocokTanam::all();
@@ -71,23 +72,23 @@ class AdminController extends Controller
         $StartMonth = Carbon::now()->startOfMonth();
         $EndMonth = Carbon::now()->endOfMonth();
         $today = Carbon::today('Asia/Jakarta')->format('Y-m-d');
-        $kunjunganHarian = Booking::where('tanggal',Carbon::today('Asia/Jakarta'))->count();
-        $kunjunganBulanan = Booking::whereBetween('tanggal',[$StartMonth ,$EndMonth])->count();
+        $kunjunganHarian = Booking::where('tanggal', Carbon::today('Asia/Jakarta'))->count();
+        $kunjunganBulanan = Booking::whereBetween('tanggal', [$StartMonth, $EndMonth])->count();
         $totalKunjungan = Booking::count('id');
         $data = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
         $appoitments = Booking::where('tanggal', '>=', $today)->orderBy('tanggal', 'asc')->take(2)->get();
         // dd($oneMonth);
 
         $trafikKunjungan = Booking::select(DB::raw('DATE(tanggal) as date'), DB::raw('count(*) as count'))
-        ->groupBy('date')
-        ->orderBy('date', 'asc')
-        ->get();
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
 
         // Format data untuk Chart.js
         $dates = $trafikKunjungan->pluck('date');
         $counts = $trafikKunjungan->pluck('count');
 
-         // Kumpulkan data pendapatan harian
+        // Kumpulkan data pendapatan harian
         $revenueData = Booking::select(DB::raw('tanggal, sum(tagihan) as total'))
             ->groupBy('tanggal')
             ->orderBy('tanggal', 'asc')
@@ -95,14 +96,24 @@ class AdminController extends Controller
 
         // Pisahkan tanggal dan total pendapatan untuk Chart.js
         $totals = $revenueData->pluck('total');
-        
-        return view('admin/dashboard', compact('batiks',
+
+        return view('admin/dashboard', compact(
+            'batiks',
             'homestays',
             'studiBandings',
             'kesenians',
             'cocokTanams',
             'permainans',
-            'kuliners','data','dates','totals','counts','appoitments','kunjunganHarian','kunjunganBulanan','totalKunjungan'));
+            'kuliners',
+            'data',
+            'dates',
+            'totals',
+            'counts',
+            'appoitments',
+            'kunjunganHarian',
+            'kunjunganBulanan',
+            'totalKunjungan'
+        ));
     }
 
     public function laporan(Request $request)
@@ -122,7 +133,7 @@ class AdminController extends Controller
             $bulan = $request->bulan;
             $tahun = $request->tahun;
             $data->whereMonth('tanggal', $bulan)
-                 ->whereYear('tanggal', $tahun);
+                ->whereYear('tanggal', $tahun);
         }
 
         $laporans = $data->orderBy('tanggal', 'desc')->get();
@@ -131,7 +142,6 @@ class AdminController extends Controller
         $totalPendapatan = $data->sum('tagihan');
 
         return view('admin.laporan', compact('laporans', 'totalPendapatan', 'request'));
-    
     }
 
     /**
@@ -148,7 +158,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        list($kesenianID,$ketKesenian) = explode('.',$request->kesenian);
+        list($kesenianID, $ketKesenian) = explode('.', $request->kesenian);
 
         Paket::create([
             'batik_id' => $request->batik,
@@ -162,10 +172,10 @@ class AdminController extends Controller
         ]);
 
         $paket = Paket::latest()->first();
-        if($ketKesenian == 'pementasan'){
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
-        }else{
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        if ($ketKesenian == 'pementasan') {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
+        } else {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
         }
         Booking::create([
             'nama_pic' => $request->nama_pic,
@@ -207,7 +217,7 @@ class AdminController extends Controller
         $studiBandings = StudyBanding::all();
         $data = Booking::findOrFail($id);
         $guides = Guide::all();
-        return view('admin.edit',compact('data','guides','batiks','homestays','studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
+        return view('admin.edit', compact('data', 'guides', 'batiks', 'homestays', 'studiBandings', 'kesenians', 'cocokTanams', 'permainans', 'kuliners'));
     }
 
     /**
@@ -215,16 +225,22 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->kesenianBelajar == "1.belajar"){
-            list($kesenianID,$ketKesenian) = explode('.',$request->kesenianPementasan);
+        if ($request->has('status')) {
+            $booking = Booking::findOrFail($id);
+            $booking->status = $request->input('status');
+            $booking->save();
 
-        }else if($request->kesenianPementasan == "1.pementasan"){
-            list($kesenianID,$ketKesenian) = explode('.',$request->kesenianBelajar);
+            return response()->json(['success' => true]);
+        }
 
+        if ($request->kesenianBelajar == "1.belajar") {
+            list($kesenianID, $ketKesenian) = explode('.', $request->kesenianPementasan);
+        } else if ($request->kesenianPementasan == "1.pementasan") {
+            list($kesenianID, $ketKesenian) = explode('.', $request->kesenianBelajar);
         }
         $bookingID = Booking::findOrFail($id);
         $paketID = Paket::findOrFail($bookingID->paket_id);
-         
+
         $paketID->update([
             'batik_id' => $request->batik,
             'kesenian_id' => $kesenianID,
@@ -237,10 +253,10 @@ class AdminController extends Controller
         ]);
 
         $paket = $paketID;
-        if($ketKesenian == 'pementasan'){
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
-        }else{
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga ) * $request->visitor)+ $paket->homestay->harga + $paket->study_banding->harga;
+        if ($ketKesenian == 'pementasan') {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
+        } else {
+            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
         }
 
         $bookingID->update([
@@ -274,12 +290,12 @@ class AdminController extends Controller
     public function detail(Request $request, $id)
     {
         $detail = Booking::findOrFail($id);
-        if($detail->paket->ketKesenian == 'pementasan'){
+        if ($detail->paket->ketKesenian == 'pementasan') {
             $tagihanKesenian = 150000;
-        }else{
+        } else {
             $tagihanKesenian = 40000;
-        } 
-        return view('admin.detail', compact('detail','tagihanKesenian'));
+        }
+        return view('admin.detail', compact('detail', 'tagihanKesenian'));
     }
 
     public function searchPIC(Request $request)
@@ -309,22 +325,24 @@ class AdminController extends Controller
         return view('admin.booking', compact('bookings'));
     }
 
-    public function login(){
+    public function login()
+    {
         return view('admin.login');
     }
 
-    public function loginProses(Request $request){
+    public function loginProses(Request $request)
+    {
 
-       if(Auth::attempt(['name' => $request->name , 'password' => $request->password])){
-            
-            return redirect()->route('admin.dashboard')->with('success','Anda berhasil login!');
-       }else{
-            return back()->with('error','Periksa Kembali Username atau Password Anda!');
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
+
+            return redirect()->route('admin.dashboard')->with('success', 'Anda berhasil login!');
+        } else {
+            return back()->with('error', 'Periksa Kembali Username atau Password Anda!');
         }
-
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         return view('admin.login');
     }

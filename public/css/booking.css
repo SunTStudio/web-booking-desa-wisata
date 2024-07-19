@@ -15,6 +15,16 @@
     font-size: 0.8rem;
 }
 
+.form-select {
+    font-size: 0.8rem; 
+}
+
+.form-select option {
+    padding: rem; /* Padding untuk elemen <option> */
+    background-color: #f8f9fa; /* Warna latar belakang abu-abu terang */
+    color: #333; /* Warna teks */
+}
+
 
 
 @media (max-width: 768px) {
