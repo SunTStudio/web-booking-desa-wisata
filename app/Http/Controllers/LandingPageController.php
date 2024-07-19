@@ -33,7 +33,6 @@ class LandingPageController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         list($kesenianID, $ketKesenian) = explode('.', $request->kesenian);
         Paket::create([
             'batik_id' => $request->batik,

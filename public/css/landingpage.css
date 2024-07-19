@@ -68,6 +68,14 @@ footer {
     background-color:blue;
 }
 
+#paketWisata {
+    display: none;
+}
+
+#kirim-data{
+    display: none;
+}
+
 @media (max-width: 768px) {
     .fc .fc-toolbar-title {
         font-size: 1.5rem;

@@ -119,6 +119,7 @@ function waktuHomestay(data) {
 // !! Pengihitungan Jam Booking Akhir
 function waktuAkhir() {
     var waktuAwal = document.getElementById("jam-booking-mulai");
+    // console.log(waktuAwal.value)
     var waktuAwalValue = waktuAwal.value;
     // console.log(waktuAwal.value);
     var waktuAwalSplit = waktuAwalValue.split(":");
@@ -137,18 +138,50 @@ function waktuAkhir() {
             wKuliner +
             wPermainan +
             wStudy +
-            awalJam +
-            awalMenit) %
+            awalJam) %
         24;
     // Calculate the total time in hours and use modulo 24 to wrap around if it exceeds 24 hours
     // var totalWaktu = (awalWaktu + tambah) % 24;
 
     // Format the result as "HH:MM"
-    var totalWaktuFormatted = totalWaktu.toString().padStart(2, "0") + ":00";
+    var totalWaktuFormatted =
+        totalWaktu.toString().padStart(2, "0") +
+        ":" +
+        awalMenit.toString().padStart(2, "0");
     // totalWaktuFormatted += waktuAwal;
     // console.log(totalWaktuFormatted); // Output the formatted time
     var formWaktuAkhir = document.getElementById("jam-booking-selesai");
+    // console.log(formWaktuAkhir.value);
     formWaktuAkhir.setAttribute("value", totalWaktuFormatted);
+    // console.log(formWaktuAkhir.value);
+
+    // Mengambil nilai dari elemen input
+    const tanggalBookingValue =
+        document.getElementById("tanggal-booking").value;
+    const namaPembookingValue =
+        document.getElementById("nama-pembooking").value;
+    const organisasiValue = document.getElementById("organisasi").value;
+    const noTelpPicValue = document.getElementById("no-telp-pic").value;
+    const jamBookingMulaiValue =
+        document.getElementById("jam-booking-mulai").value;
+    const jamBookingSelesaiValue = document.getElementById(
+        "jam-booking-selesai"
+    ).value;
+    const jumlahVisitorValue = document.getElementById("jumlah-visitor").value;
+
+    // Menampilkan nilai di elemen lain
+    document.getElementById("nama-pembooking-display").innerText =
+        namaPembookingValue;
+    document.getElementById("organisasi-display").innerText = organisasiValue;
+    document.getElementById("visitor-display").innerText = jumlahVisitorValue;
+    document.getElementById("tanggal-display").innerText = tanggalBookingValue;
+    document.getElementById("jam-mulai-display").innerText =
+        jamBookingMulaiValue;
+    document.getElementById("jam-selesai-display").innerText =
+        jamBookingSelesaiValue;
+
+    // Menampilkan status dengan nilai tetap
+    document.getElementById("status-display").innerText = "Belum ACC";
 }
 
 // document.getElementById('jam-booking-mulai').addEventListener('input', function(event) {
@@ -168,71 +201,71 @@ function waktuAkhir() {
 // });
 
 // Ambil nilai dari input teks saat nilainya berubah
-document
-    .getElementById("nama-pembooking")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("nama-pembooking-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("nama-pembooking")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("nama-pembooking-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("nama-pembooking-display").textContent =
-            namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("nama-pembooking-display").textContent =
+//             namaPicValue;
+//     });
 
-document
-    .getElementById("organisasi")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("organisasi-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("organisasi")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("organisasi-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("organisasi-display").textContent =
-            namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("organisasi-display").textContent =
+//             namaPicValue;
+//     });
 
-document
-    .getElementById("jumlah-visitor")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("visitor-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("jumlah-visitor")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("visitor-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("visitor-display").textContent = namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("visitor-display").textContent = namaPicValue;
+//     });
 
-document
-    .getElementById("tanggal-booking")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("tanggal-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("tanggal-booking")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("tanggal-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("tanggal-display").textContent = namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("tanggal-display").textContent = namaPicValue;
+//     });
 
-document
-    .getElementById("jam-booking-mulai")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("jam-mulai-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("jam-booking-mulai")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("jam-mulai-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("jam-mulai-display").textContent = namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("jam-mulai-display").textContent = namaPicValue;
+//     });
 
-document
-    .getElementById("jam-booking-selesai")
-    .addEventListener("input", function (event) {
-        var namaPicValue = event.target.value;
-        document.getElementById("jam-selesai-hidden").value = namaPicValue; // Update nilai input hidden
+// document
+//     .getElementById("jam-booking-selesai")
+//     .addEventListener("input", function (event) {
+//         var namaPicValue = event.target.value;
+//         document.getElementById("jam-selesai-hidden").value = namaPicValue; // Update nilai input hidden
 
-        // Tampilkan nilai di bagian yang diinginkan
-        document.getElementById("jam-selesai-display").textContent =
-            namaPicValue;
-    });
+//         // Tampilkan nilai di bagian yang diinginkan
+//         document.getElementById("jam-selesai-display").textContent =
+//             namaPicValue;
+//     });
 
 // Tambahkan event listener untuk form submit untuk menangkap data sebelum dikirim
-document.getElementById("myForm").addEventListener("submit", function (event) {
-    // Lakukan pengiriman form secara manual jika diperlukan
-    // this.submit(); // Uncomment jika ingin melanjutkan pengiriman form
-});
+// document.getElementById("myForm").addEventListener("submit", function (event) {
+//     // Lakukan pengiriman form secara manual jika diperlukan
+//     // this.submit(); // Uncomment jika ingin melanjutkan pengiriman form
+// });
