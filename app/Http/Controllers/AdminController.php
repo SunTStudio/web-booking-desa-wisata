@@ -225,54 +225,56 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->has('status')) {
+        if ($request->status) {
             $booking = Booking::findOrFail($id);
             $booking->status = $request->input('status');
             $booking->save();
 
             return response()->json(['success' => true]);
+        }else{
+            if ($request->kesenianBelajar == "1.belajar") {
+                list($kesenianID, $ketKesenian) = explode('.', $request->kesenianPementasan);
+            } else if ($request->kesenianPementasan == "1.pementasan") {
+                list($kesenianID, $ketKesenian) = explode('.', $request->kesenianBelajar);
+            }
+            $bookingID = Booking::findOrFail($id);
+            $paketID = Paket::findOrFail($bookingID->paket_id);
+
+            $paketID->update([
+                'batik_id' => $request->batik,
+                'kesenian_id' => $kesenianID,
+                'study_banding_id' => $request->studiBanding,
+                'cocok_tanam_id' => $request->cocokTanam,
+                'permainan_id' => $request->permainan,
+                'homestay_id' => $request->homestay,
+                'kuliner_id' => $request->kuliner,
+                'ketKesenian' => $ketKesenian,
+            ]);
+
+            $paket = $paketID;
+            if ($ketKesenian == 'pementasan') {
+                $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
+            } else {
+                $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
+            }
+
+            $bookingID->update([
+                'nama_pic' => $request->nama_pic,
+                'organisasi' => $request->organisasi,
+                'noTelpPIC' => $request->notelppic,
+                'visitor' => $request->visitor,
+                'tanggal' => $request->tanggal,
+                'jam_mulai' => $request->jam_mulai,
+                'jam_selesai' => $request->jam_selesai,
+                'paket_id' => $paket->id,
+                'tagihan' => $tagihan,
+                'guide_id' => $request->guide,
+                'status' => $request->statusData,
+            ]);
+            return redirect()->route('admin.booking');
         }
 
-        if ($request->kesenianBelajar == "1.belajar") {
-            list($kesenianID, $ketKesenian) = explode('.', $request->kesenianPementasan);
-        } else if ($request->kesenianPementasan == "1.pementasan") {
-            list($kesenianID, $ketKesenian) = explode('.', $request->kesenianBelajar);
-        }
-        $bookingID = Booking::findOrFail($id);
-        $paketID = Paket::findOrFail($bookingID->paket_id);
-
-        $paketID->update([
-            'batik_id' => $request->batik,
-            'kesenian_id' => $kesenianID,
-            'study_banding_id' => $request->studiBanding,
-            'cocok_tanam_id' => $request->cocokTanam,
-            'permainan_id' => $request->permainan,
-            'homestay_id' => $request->homestay,
-            'kuliner_id' => $request->kuliner,
-            'ketKesenian' => $ketKesenian,
-        ]);
-
-        $paket = $paketID;
-        if ($ketKesenian == 'pementasan') {
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_pementasan + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
-        } else {
-            $tagihan = (($paket->batik->harga + $paket->kesenian->harga_belajar + $paket->cocokTanam->harga + $paket->permainan->harga + $paket->kuliner->harga) * $request->visitor) + $paket->homestay->harga + $paket->study_banding->harga;
-        }
-
-        $bookingID->update([
-            'nama_pic' => $request->nama_pic,
-            'organisasi' => $request->organisasi,
-            'noTelpPIC' => $request->notelppic,
-            'visitor' => $request->visitor,
-            'tanggal' => $request->tanggal,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'paket_id' => $paket->id,
-            'tagihan' => $tagihan,
-            'guide_id' => $request->guide,
-            'status' => $request->status,
-        ]);
-        return redirect()->route('admin.booking');
+        
     }
 
     /**

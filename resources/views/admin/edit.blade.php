@@ -64,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="status" class="form-label fw-bold">Status</label>
-                            <select class="form-select" name="status" id="status">
+                            <select class="form-select" name="statusData" id="status">
                                 <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
                                 <option value="Belum ACC"> Belum ACC </option>
                                 <option value="Sudah ACC"> Sudah ACC </option>
