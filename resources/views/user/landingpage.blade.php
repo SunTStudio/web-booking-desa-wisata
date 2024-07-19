@@ -51,35 +51,35 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col">
                         <div class="row" id="progress">
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center" onclick="progress(0)">
                                 <div class="box-active mb-1 progresBar"></div>
                                 <p>Data Diri</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(1)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Studi Banding</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(2)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Batik</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(3)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Kesenian</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(4)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Cocok Tanam</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(5)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Permainan</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(6)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Kuliner</p>
                             </div>
-                            <div class="col p-1 text-center ">
+                            <div class="col p-1 text-center " onclick="progress(7)">
                                 <div class="box mb-1 progresBar"></div>
                                 <p>Paket Homestay</p>
                             </div>
